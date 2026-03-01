@@ -1,0 +1,254 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.ComboBoxUsage.ComboBoxUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:linq="clr-namespace:System.Linq;assembly=System.Core"
+    xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.ComboBoxUsage"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    d:DataContext="{d:DesignInstance local:ComboBoxUsageViewModel,
+                                     IsDesignTimeCreatable=True}"
+    d:DesignHeight="3000"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ObjectDataProvider
+            x:Key="DayOfWeekList"
+            MethodName="GetValues"
+            ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="system:DayOfWeek" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider
+            x:Key="DayOfWeekRangeData"
+            MethodName="Range"
+            ObjectType="{x:Type linq:Enumerable}">
+            <ObjectDataProvider.MethodParameters>
+                <system:Int32>1</system:Int32>
+                <system:Int32>7</system:Int32>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageHeader}" Text="ComboBox" />
+            <Expander Header="IsDropDownOpen" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <CheckBox
+                            x:Name="IsDropDownOpen"
+                            VerticalContentAlignment="Center"
+                            Content="IsDropDownOpen" />
+                    </GroupBox>
+                    <ComboBox IsDropDownOpen="{Binding IsChecked, ElementName=IsDropDownOpen}" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                </StackPanel>
+            </Expander>
+            <Expander Header="IsEditable" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <CheckBox
+                            x:Name="IsEditable"
+                            VerticalContentAlignment="Center"
+                            Content="IsEditable" />
+                    </GroupBox>
+                    <ComboBox
+                        x:Name="IsEditableComboBox"
+                        IsEditable="{Binding IsChecked, ElementName=IsEditable}"
+                        ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <GroupBox Header="SelectedValue" Style="{StaticResource SubGroupBox}">
+                            <TextBlock Text="{Binding SelectedValue, ElementName=IsEditableComboBox}" />
+                        </GroupBox>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="IsReadOnly" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <CheckBox
+                            x:Name="IsReadOnly"
+                            VerticalContentAlignment="Center"
+                            Content="IsReadOnly" />
+                    </GroupBox>
+                    <ComboBox
+                        x:Name="IsReadOnlyComboBox"
+                        IsEditable="True"
+                        IsReadOnly="{Binding IsChecked, ElementName=IsReadOnly}"
+                        ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <GroupBox Header="SelectedValue" Style="{StaticResource SubGroupBox}">
+                            <TextBlock Text="{Binding SelectedValue, ElementName=IsReadOnlyComboBox}" />
+                        </GroupBox>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="MaxDropDownHeight" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="MaxDropDownHeight" Style="{StaticResource SubGroupBox}">
+                            <ComboBox x:Name="MaxDropDownHeight" SelectedIndex="0">
+                                <system:Double>40.0</system:Double>
+                                <system:Double>45.5</system:Double>
+                                <system:Double>60.0</system:Double>
+                                <system:Double>65.5</system:Double>
+                                <system:Double>80.0</system:Double>
+                                <system:Double>85.5</system:Double>
+                                <system:Double>100.0</system:Double>
+                                <system:Double>105.5</system:Double>
+                                <system:Double>120.0</system:Double>
+                                <system:Double>125.5</system:Double>
+                                <system:Double>140.0</system:Double>
+                                <system:Double>145.5</system:Double>
+                            </ComboBox>
+                        </GroupBox>
+                    </GroupBox>
+                    <ComboBox ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" MaxDropDownHeight="{Binding SelectedValue, ElementName=MaxDropDownHeight}" />
+                </StackPanel>
+            </Expander>
+            <Expander Header="Text" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <ComboBox
+                        x:Name="TextComboBox"
+                        IsEditable="True"
+                        ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding Text, ElementName=TextComboBox}" />
+                            </GroupBox>
+                            <GroupBox Header="SelectedValue" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding SelectedValue, ElementName=TextComboBox}" />
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="StaysOpenOnEdit" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <CheckBox
+                            x:Name="StaysOpenOnEdit"
+                            VerticalContentAlignment="Center"
+                            Content="StaysOpenOnEdit" />
+                    </GroupBox>
+                    <ComboBox
+                        IsEditable="True"
+                        ItemsSource="{Binding Source={StaticResource DayOfWeekList}}"
+                        StaysOpenOnEdit="{Binding IsChecked, ElementName=StaysOpenOnEdit}" />
+                </StackPanel>
+            </Expander>
+            <Expander Header="ShouldPreserveUserEnteredPrefix" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <CheckBox
+                            x:Name="ShouldPreserveUserEnteredPrefix"
+                            VerticalContentAlignment="Center"
+                            Content="ShouldPreserveUserEnteredPrefix" />
+                    </GroupBox>
+                    <ComboBox
+                        x:Name="ShouldPreserveUserEnteredPrefixComboBox"
+                        IsEditable="True"
+                        ItemsSource="{Binding Source={StaticResource DayOfWeekList}}"
+                        ShouldPreserveUserEnteredPrefix="{Binding IsChecked, ElementName=ShouldPreserveUserEnteredPrefix}" />
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding Text, ElementName=ShouldPreserveUserEnteredPrefixComboBox}" />
+                            </GroupBox>
+                            <GroupBox Header="SelectedValue" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding SelectedValue, ElementName=ShouldPreserveUserEnteredPrefixComboBox}" />
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="SelectedIndex(Selector)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <ComboBox x:Name="SelectedIndexComboBox" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <GroupBox Header="SelectedIndex" Style="{StaticResource SubGroupBox}">
+                            <TextBlock Text="{Binding SelectedIndex, ElementName=SelectedIndexComboBox}" />
+                        </GroupBox>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="SelectedItem(Selector)" Style="{StaticResource BaseContentsExpander}">
+                <UniformGrid Rows="1">
+                    <StackPanel>
+                        <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                            <GroupBox Header="ItemsSource=Values" Style="{StaticResource SubGroupBox}">
+                                <ComboBox x:Name="SelectedItemSimpleComboBox" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                            </GroupBox>
+                        </GroupBox>
+                        <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                            <GroupBox Header="SeledtedItem" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding SelectedItem, ElementName=SelectedItemSimpleComboBox}" />
+                            </GroupBox>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel>
+                        <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                            <GroupBox Header="ItemsSource=Classes" Style="{StaticResource SubGroupBox}">
+
+                                <ComboBox x:Name="SelectedItemDicComboBox" ItemsSource="{Binding ShortingDayOfWeeks}" />
+                            </GroupBox>
+                        </GroupBox>
+                        <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                            <GroupBox Header="SelectedItem" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding SelectedItem, ElementName=SelectedItemDicComboBox}" />
+                            </GroupBox>
+                        </GroupBox>
+                    </StackPanel>
+                </UniformGrid>
+            </Expander>
+            <Expander Header="SelectedValue(Selector)&#10;SelectedValuePath(Selector)&#10;DisplayMemberPath(ItemsControl)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="ItemsSource=Classes&#10;DisplayMemberPath=Value&#10;SelectedValuePath=Key" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="PathComboBox"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding ShortingDayOfWeeks}"
+                                SelectedValuePath="Key" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Rows="1">
+                            <GroupBox Header="SelectedItem" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding SelectedItem, ElementName=PathComboBox}" />
+                            </GroupBox>
+                            <GroupBox Header="SelectedValue" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding SelectedValue, ElementName=PathComboBox}" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="IsSynchronizedWithCurrentItem(ItemsControl)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <CheckBox
+                            x:Name="IsSynchronizedWithCurrentItem"
+                            VerticalContentAlignment="Center"
+                            Content="IsSynchronizedWithCurrentItem"
+                            IsChecked="True" />
+                    </GroupBox>
+                    <UniformGrid Rows="1">
+                        <GroupBox Header="ComboBox1" Style="{StaticResource SubGroupBox}">
+                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                        </GroupBox>
+                        <GroupBox Header="ComboBox2" Style="{StaticResource SubGroupBox}">
+                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                        </GroupBox>
+                        <GroupBox Header="ComboBox3" Style="{StaticResource SubGroupBox}">
+                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                        </GroupBox>
+                    </UniformGrid>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
+

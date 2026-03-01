@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="SubGroupBox" TargetType="{x:Type GroupBox}">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock
+                        Margin="2,0"
+                        FontSize="15"
+                        Text="{Binding}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Padding" Value="4" />
+    </Style>
+    <Style x:Key="PropertyGroupBox" TargetType="{x:Type GroupBox}">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock
+                        Margin="2,0"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType=GroupBox, Mode=FindAncestor}}"
+                        Text="{Binding}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="RoyalBlue" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Padding" Value="4" />
+    </Style>
+    <Style x:Key="ResultGroupBox" TargetType="{x:Type GroupBox}">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock
+                        Margin="2,0"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType=GroupBox, Mode=FindAncestor}}"
+                        Text="{Binding}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="Tomato" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Padding" Value="4" />
+    </Style>
+</ResourceDictionary>

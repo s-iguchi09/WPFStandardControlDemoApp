@@ -1,0 +1,94 @@
+﻿<Window
+    x:Class="WPFStandardControlDemoApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:about="clr-namespace:WPFStandardControlDemoApp.Features.About"
+    xmlns:button="clr-namespace:WPFStandardControlDemoApp.Features.ButtonUsage"
+    xmlns:checkbox="clr-namespace:WPFStandardControlDemoApp.Features.CheckBoxUsage"
+    xmlns:combobox="clr-namespace:WPFStandardControlDemoApp.Features.ComboBoxUsage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:home="clr-namespace:WPFStandardControlDemoApp.Features.Home"
+    xmlns:local="clr-namespace:WPFStandardControlDemoApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:radiobutton="clr-namespace:WPFStandardControlDemoApp.Features.RadioButtonUsage"
+    xmlns:repeatbutton="clr-namespace:WPFStandardControlDemoApp.Features.RepeatButtonUsage"
+    xmlns:textbox="clr-namespace:WPFStandardControlDemoApp.Features.TextBoxUsage"
+    xmlns:togglebutton="clr-namespace:WPFStandardControlDemoApp.Features.ToggleButtonUsage"
+    xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+    Title="WPFStandardControlDemoApp"
+    Width="1200"
+    Height="800"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <home:HomeViewModel x:Key="HomeViewModel" />
+        <textbox:TextBoxUsageViewModel x:Key="TextBoxUsageViewModel" />
+        <button:ButtonUsageViewModel x:Key="ButtonUsageViewModel" />
+        <togglebutton:ToggleButtonUsageViewModel x:Key="ToggleButtonUsageViewModel" />
+        <checkbox:CheckBoxUsageViewModel x:Key="CheckBoxUsageViewModel" />
+        <radiobutton:RadioButtonUsageViewModel x:Key="RadioButtonUsageViewModel" />
+        <combobox:ComboBoxUsageViewModel x:Key="ComboBoxUsageViewModel" />
+        <repeatbutton:RepeatButtonUsageViewModel x:Key="RepeatButtonUsageViewModel" />
+        <about:AboutViewModel x:Key="AboutViewModel" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border
+            Grid.Column="1"
+            BorderBrush="{Binding BorderBrush, ElementName=ContentsSelector}"
+            BorderThickness="1">
+            <Border.Resources>
+                <DataTemplate DataType="{x:Type home:HomeViewModel}">
+                    <home:HomeControl DataContext="{StaticResource HomeViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type textbox:TextBoxUsageViewModel}">
+                    <textbox:TextBoxUsageControl DataContext="{StaticResource TextBoxUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type button:ButtonUsageViewModel}">
+                    <button:ButtonUsageControl DataContext="{StaticResource ButtonUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type togglebutton:ToggleButtonUsageViewModel}">
+                    <togglebutton:ToggleButtonUsageControl DataContext="{StaticResource ToggleButtonUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type checkbox:CheckBoxUsageViewModel}">
+                    <checkbox:CheckBoxUsageControl DataContext="{StaticResource CheckBoxUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type radiobutton:RadioButtonUsageViewModel}">
+                    <radiobutton:RadioButtonUsageControl DataContext="{StaticResource RadioButtonUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type combobox:ComboBoxUsageViewModel}">
+                    <combobox:ComboBoxUsageControl DataContext="{StaticResource ComboBoxUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type repeatbutton:RepeatButtonUsageViewModel}">
+                    <repeatbutton:RepeatButtonUsageControl DataContext="{StaticResource RepeatButtonUsageViewModel}" />
+                </DataTemplate>
+
+
+                <DataTemplate DataType="{x:Type about:AboutViewModel}">
+                    <about:AboutControl DataContext="{StaticResource AboutViewModel}" />
+                </DataTemplate>
+            </Border.Resources>
+            <ContentControl Content="{Binding SelectedItem.Content, ElementName=ContentsSelector}" />
+        </Border>
+        <Grid Grid.Column="0">
+            <ListBox x:Name="ContentsSelector" SelectionMode="Single">
+                <ListBox.Resources>
+                    <Style BasedOn="{StaticResource ContentsListItem}" TargetType="ListBoxItem" />
+                </ListBox.Resources>
+                <ListBoxItem Content="{StaticResource HomeViewModel}" IsSelected="True" />
+                <ListBoxItem Content="{StaticResource TextBoxUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource ButtonUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource ToggleButtonUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource CheckBoxUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource RadioButtonUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource ComboBoxUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource RepeatButtonUsageViewModel}" />
+
+
+                <ListBoxItem Content="{StaticResource AboutViewModel}" />
+            </ListBox>
+        </Grid>
+    </Grid>
+</Window>
