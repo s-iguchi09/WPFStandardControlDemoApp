@@ -1,0 +1,77 @@
+name: Build & Release WPF App (use pubxml)
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      #- name: Setup .NET 8
+      #  uses: actions/setup-dotnet@v4
+      #  with:
+      #    dotnet-version: "8.0.x"
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore
+        run: dotnet restore src/WPFStandardControlDemoApp.slnx
+
+      #- name: Publish (.NET 8, using pubxml)
+      #  run: dotnet publish src/WPFStandardControlDemoApp/WPFStandardControlDemoApp.csproj -c Release -f net8.0-windows /p:PublishProfile=net8.0-windows.pubxml
+
+      - name: Publish (.NET 10, using pubxml)
+        run: dotnet publish src/WPFStandardControlDemoApp/WPFStandardControlDemoApp.csproj -c Release -f net10.0-windows /p:PublishProfile=net10.0-windows.pubxml
+
+      - name: Merge publish outputs
+        shell: powershell
+        run: |
+          mkdir publish
+
+          # --- NET 8 ---
+          #$pub8 = "src/WPFStandardControlDemoApp/bin/Release/net8.0-windows"
+          #$src8 = Get-ChildItem $pub8 -Recurse -Directory | Where-Object { $_.Name -eq "publish" } | Select-Object -First 1
+
+          #if (-not $src8) {
+          #  Write-Error "Publish folder for net8.0-windows not found under $pub8"
+          #  exit 1
+          #}
+
+          #robocopy $src8.FullName publish/WPFStandardControlDemoApp/Release/net8.0-windows /E
+          #if ($LASTEXITCODE -ge 8) { exit $LASTEXITCODE }
+
+          # --- NET 10 ---
+          $pub10 = "src/WPFStandardControlDemoApp/bin/Release/net10.0-windows"
+          $src10 = Get-ChildItem $pub10 -Recurse -Directory | Where-Object { $_.Name -eq "publish" } | Select-Object -First 1
+
+          if (-not $src10) {
+            Write-Error "Publish folder for net10.0-windows not found under $pub10"
+            exit 1
+          }
+
+          robocopy $src10.FullName publish/WPFStandardControlDemoApp/Release/net10.0-windows /E
+          if ($LASTEXITCODE -ge 8) { exit $LASTEXITCODE }
+
+          exit 0
+
+      - name: Zip all outputs
+        run: |
+          $version="${{ github.ref_name }}"
+          powershell Compress-Archive -Path publish/* -DestinationPath "WPFStandardControlDemoApp-$version.zip"
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "WPFStandardControlDemoApp-${{ github.ref_name }}.zip"
