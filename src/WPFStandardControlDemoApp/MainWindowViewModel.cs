@@ -7,6 +7,6 @@ namespace WPFStandardControlDemoApp
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged = delegate { };
     }
 }

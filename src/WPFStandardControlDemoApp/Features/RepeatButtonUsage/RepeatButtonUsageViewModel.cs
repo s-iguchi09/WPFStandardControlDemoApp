@@ -7,7 +7,7 @@ namespace WPFStandardControlDemoApp.Features.RepeatButtonUsage
 {
     public class RepeatButtonUsageViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged = delegate { };
 
         public override string ToString()
         {

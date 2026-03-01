@@ -7,7 +7,7 @@ namespace WPFStandardControlDemoApp.Features.ComboBoxUsage
 {
     public class ComboBoxUsageViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged = delegate { };
 
         public Dictionary<DayOfWeek, string> ShortingDayOfWeeks { get; set; } = new Dictionary<DayOfWeek, string>()
         {
