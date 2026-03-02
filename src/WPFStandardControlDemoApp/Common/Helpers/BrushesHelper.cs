@@ -1,0 +1,10 @@
+﻿using System.Windows.Media;
+using WPFStandardControlDemoApp.Common.Extensions;
+
+namespace WPFStandardControlDemoApp.Common.Helpers
+{
+    public static class BrushesHelper
+    {
+        public static List<KeyValuePair<string, Brush>> AllBrushes => Brushes.GetAllBrushs().ToList();
+    }
+}

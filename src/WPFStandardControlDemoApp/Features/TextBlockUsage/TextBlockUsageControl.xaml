@@ -1,0 +1,344 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.TextBlockUsage.TextBlockUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
+    xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.TextBlockUsage"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    d:DesignHeight="4000"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ObjectDataProvider
+            x:Key="LineStackingStrategyList"
+            MethodName="GetValues"
+            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="LineStackingStrategy" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageHeader}" Text="TextBlock" />
+            <Expander Header="Text" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                            <TextBox x:Name="Text" AcceptsReturn="True" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TextBlock Text="{Binding Text, ElementName=Text}" />
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="TextWrapping" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                            <TextBox x:Name="TextWrapping" AcceptsReturn="True" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Rows="1">
+                            <GroupBox Header="NoWrap" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding Text, ElementName=TextWrapping}" TextWrapping="NoWrap" />
+                            </GroupBox>
+                            <GroupBox Header="Wrap" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding Text, ElementName=TextWrapping}" TextWrapping="Wrap" />
+                            </GroupBox>
+                            <GroupBox Header="WrapWithOverflow" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding Text, ElementName=TextWrapping}" TextWrapping="WrapWithOverflow" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="TextTrimming" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                            <TextBox x:Name="TextTrimming" AcceptsReturn="True" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Rows="1">
+                            <GroupBox Header="None" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding Text, ElementName=TextTrimming}" TextTrimming="None" />
+                            </GroupBox>
+                            <GroupBox Header="WordEllipsis" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding Text, ElementName=TextTrimming}" TextTrimming="WordEllipsis" />
+                            </GroupBox>
+                            <GroupBox Header="CharacterEllipsis" Style="{StaticResource SubGroupBox}">
+                                <TextBlock Text="{Binding Text, ElementName=TextTrimming}" TextTrimming="CharacterEllipsis" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="TextAlignment" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                            <TextBox
+                                x:Name="TextAlignment"
+                                AcceptsReturn="True"
+                                Text="TEXTBLOCK" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Rows="1">
+                            <GroupBox Header="Left" Style="{StaticResource SubGroupBox}">
+                                <TextBlock
+                                    Text="{Binding Text, ElementName=TextAlignment}"
+                                    TextAlignment="Left"
+                                    TextWrapping="Wrap" />
+                            </GroupBox>
+                            <GroupBox Header="Right" Style="{StaticResource SubGroupBox}">
+                                <TextBlock
+                                    Text="{Binding Text, ElementName=TextAlignment}"
+                                    TextAlignment="Right"
+                                    TextWrapping="Wrap" />
+                            </GroupBox>
+                            <GroupBox Header="Center" Style="{StaticResource SubGroupBox}">
+                                <TextBlock
+                                    Text="{Binding Text, ElementName=TextAlignment}"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
+                            </GroupBox>
+                            <GroupBox Header="Justify" Style="{StaticResource SubGroupBox}">
+                                <TextBlock
+                                    Text="{Binding Text, ElementName=TextAlignment}"
+                                    TextAlignment="Justify"
+                                    TextWrapping="Wrap" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="Padding" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="PaddingText"
+                                    AcceptsReturn="True"
+                                    Text="TEXTBLOCK" />
+                            </GroupBox>
+                            <GroupBox Header="Padding" Style="{StaticResource SubGroupBox}">
+                                <TextBox x:Name="Padding" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TextBlock Padding="{Binding Text, ElementName=Padding}" Text="{Binding Text, ElementName=PaddingText}" />
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="FontWeight" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="FontWeightText"
+                                    AcceptsReturn="True"
+                                    Text="TEXTBLOCK" />
+                            </GroupBox>
+                            <GroupBox Header="FontWeight" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="FontWeight"
+                                    ItemsSource="{x:Static helpers:FontWeightsHelper.AllFontWeigthts}"
+                                    SelectedIndex="0" />
+                            </GroupBox>
+                        </StackPanel>
+
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TextBlock FontWeight="{Binding SelectedValue, ElementName=FontWeight}" Text="{Binding Text, ElementName=FontWeightText}" />
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="FontStyle" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="FontStyleText"
+                                    AcceptsReturn="True"
+                                    Text="TEXTBLOCK" />
+                            </GroupBox>
+                            <GroupBox Header="FontStyle" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="FontStyle"
+                                    ItemsSource="{x:Static helpers:FontStylesHelpers.AllFontStyles}"
+                                    SelectedIndex="0" />
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TextBlock FontStyle="{Binding SelectedValue, ElementName=FontStyle}" Text="{Binding Text, ElementName=FontStyleText}" />
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="FontStretch" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="FontStretchText"
+                                    AcceptsReturn="True"
+                                    Text="TEXTBLOCK" />
+                            </GroupBox>
+                            <GroupBox Header="FontStretch" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="FontStretch"
+                                    ItemsSource="{x:Static helpers:FontStretchesHelper.AllFontStretchs}"
+                                    SelectedIndex="0" />
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TextBlock FontStretch="{Binding SelectedValue, ElementName=FontStretch}" Text="{Binding Text, ElementName=FontStretchText}" />
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="FontSize" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="FontSizeText"
+                                    AcceptsReturn="True"
+                                    Text="TEXTBLOCK" />
+                            </GroupBox>
+                            <GroupBox Header="FontSize" Style="{StaticResource SubGroupBox}">
+                                <TextBox x:Name="FontSize" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TextBlock FontSize="{Binding Text, ElementName=FontSize}" Text="{Binding Text, ElementName=FontSizeText}" />
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="FontFamily" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="FontFamilyText"
+                                    AcceptsReturn="True"
+                                    Text="TEXTBLOCK" />
+                            </GroupBox>
+                            <GroupBox Header="FontFamily" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="FontFamily"
+                                    DisplayMemberPath="Source"
+                                    ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
+                                    SelectedIndex="0" />
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TextBlock FontFamily="{Binding SelectedValue, ElementName=FontFamily}" Text="{Binding Text, ElementName=FontFamilyText}" />
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="Background" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="BackgroundText"
+                                    AcceptsReturn="True"
+                                    Text="TEXTBLOCK" />
+                            </GroupBox>
+                            <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="Background"
+                                    behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
+                                    DisplayMemberPath="Key"
+                                    ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TextBlock Background="{Binding SelectedValue, ElementName=Background}" Text="{Binding Text, ElementName=BackgroundText}" />
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="Foreground" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="ForegroundText"
+                                    AcceptsReturn="True"
+                                    Text="TEXTBLOCK" />
+                            </GroupBox>
+                            <GroupBox Header="Foreground" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="Foreground"
+                                    behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
+                                    DisplayMemberPath="Key"
+                                    ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TextBlock Foreground="{Binding SelectedValue, ElementName=Foreground}" Text="{Binding Text, ElementName=ForegroundText}" />
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="LineHeight&#10;LineStackingStrategy" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="LineHeightText"
+                                    AcceptsReturn="True"
+                                    Text="TEXTBLOCK&#10;TEXTBLOCK&#10;TEXTBLOCK&#10;TEXTBLOCK" />
+                            </GroupBox>
+                            <UniformGrid Rows="1">
+                                <GroupBox Header="LineHeight" Style="{StaticResource SubGroupBox}">
+                                    <TextBox x:Name="LineHeight" Text="5" />
+                                </GroupBox>
+                                <GroupBox Header="LineStackingStrategy" Style="{StaticResource SubGroupBox}">
+                                    <ComboBox
+                                        x:Name="LineStackingStrategy"
+                                        ItemsSource="{Binding Source={StaticResource LineStackingStrategyList}}"
+                                        SelectedIndex="0" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TextBlock
+                            LineHeight="{Binding Text, ElementName=LineHeight}"
+                            LineStackingStrategy="{Binding SelectedValue, ElementName=LineStackingStrategy}"
+                            Text="{Binding Text, ElementName=LineHeightText}" />
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
+

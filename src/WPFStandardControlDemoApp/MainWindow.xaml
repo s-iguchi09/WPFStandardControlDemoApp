@@ -7,11 +7,15 @@
     xmlns:checkbox="clr-namespace:WPFStandardControlDemoApp.Features.CheckBoxUsage"
     xmlns:combobox="clr-namespace:WPFStandardControlDemoApp.Features.ComboBoxUsage"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:grid="clr-namespace:WPFStandardControlDemoApp.Features.GridUsage"
     xmlns:home="clr-namespace:WPFStandardControlDemoApp.Features.Home"
+    xmlns:label="clr-namespace:WPFStandardControlDemoApp.Features.LabelUsage"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:radiobutton="clr-namespace:WPFStandardControlDemoApp.Features.RadioButtonUsage"
     xmlns:repeatbutton="clr-namespace:WPFStandardControlDemoApp.Features.RepeatButtonUsage"
+    xmlns:stackpanel="clr-namespace:WPFStandardControlDemoApp.Features.StackPanelUsage"
+    xmlns:textblock="clr-namespace:WPFStandardControlDemoApp.Features.TextBlockUsage"
     xmlns:textbox="clr-namespace:WPFStandardControlDemoApp.Features.TextBoxUsage"
     xmlns:togglebutton="clr-namespace:WPFStandardControlDemoApp.Features.ToggleButtonUsage"
     xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
@@ -28,6 +32,11 @@
         <radiobutton:RadioButtonUsageViewModel x:Key="RadioButtonUsageViewModel" />
         <combobox:ComboBoxUsageViewModel x:Key="ComboBoxUsageViewModel" />
         <repeatbutton:RepeatButtonUsageViewModel x:Key="RepeatButtonUsageViewModel" />
+        <textblock:TextBlockUsageViewModel x:Key="TextBlockUsageViewModel" />
+        <label:LabelUsageViewModel x:Key="LabelUsageViewModel" />
+        <grid:GridUsageViewModel x:Key="GridUsageViewModel" />
+        <stackpanel:StackPanelUsageViewModel x:Key="StackPanelUsageViewModel" />
+
         <about:AboutViewModel x:Key="AboutViewModel" />
     </Window.Resources>
     <Grid>
@@ -64,7 +73,18 @@
                 <DataTemplate DataType="{x:Type repeatbutton:RepeatButtonUsageViewModel}">
                     <repeatbutton:RepeatButtonUsageControl DataContext="{StaticResource RepeatButtonUsageViewModel}" />
                 </DataTemplate>
-
+                <DataTemplate DataType="{x:Type textblock:TextBlockUsageViewModel}">
+                    <textblock:TextBlockUsageControl DataContext="{StaticResource TextBlockUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type label:LabelUsageViewModel}">
+                    <label:LabelUsageControl DataContext="{StaticResource LabelUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type grid:GridUsageViewModel}">
+                    <grid:GridUsageControl DataContext="{StaticResource GridUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type stackpanel:StackPanelUsageViewModel}">
+                    <stackpanel:StackPanelUsageControl DataContext="{StaticResource StackPanelUsageViewModel}" />
+                </DataTemplate>
 
                 <DataTemplate DataType="{x:Type about:AboutViewModel}">
                     <about:AboutControl DataContext="{StaticResource AboutViewModel}" />
@@ -85,7 +105,10 @@
                 <ListBoxItem Content="{StaticResource RadioButtonUsageViewModel}" />
                 <ListBoxItem Content="{StaticResource ComboBoxUsageViewModel}" />
                 <ListBoxItem Content="{StaticResource RepeatButtonUsageViewModel}" />
-
+                <ListBoxItem Content="{StaticResource TextBlockUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource LabelUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource GridUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource StackPanelUsageViewModel}" />
 
                 <ListBoxItem Content="{StaticResource AboutViewModel}" />
             </ListBox>

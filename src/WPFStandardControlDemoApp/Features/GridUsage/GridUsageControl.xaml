@@ -1,0 +1,606 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.GridUsage.GridUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
+    xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.GridUsage"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    d:DesignHeight="4000"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageHeader}" Text="Grid" />
+            <Expander Header="Column&#10;Row" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Rows="1">
+                            <GroupBox Header="Column" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="Column"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Content">
+                                    <ComboBoxItem Content="0" />
+                                    <ComboBoxItem Content="1" />
+                                    <ComboBoxItem Content="2" />
+                                </ComboBox>
+                            </GroupBox>
+                            <GroupBox Header="Row" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="Row"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Content">
+                                    <ComboBoxItem Content="0" />
+                                    <ComboBoxItem Content="1" />
+                                    <ComboBoxItem Content="2" />
+                                </ComboBox>
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Height="120" Rows="1">
+                            <GroupBox Header="Column:2 x Row:2" Style="{StaticResource SubGroupBox}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Border
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Background="AliceBlue" />
+                                    <Border
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Background="CadetBlue" />
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Background="CornflowerBlue" />
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Background="LightBlue" />
+                                    <TextBlock
+                                        Grid.Row="{Binding SelectedValue, ElementName=Row}"
+                                        Grid.Column="{Binding SelectedValue, ElementName=Column}"
+                                        Text="Control" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Column:3 x Row:2" Style="{StaticResource SubGroupBox}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Border
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Background="AliceBlue" />
+                                    <Border
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Background="CadetBlue" />
+                                    <Border
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        Background="SteelBlue" />
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Background="CornflowerBlue" />
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Background="LightBlue" />
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        Background="SkyBlue" />
+                                    <TextBlock
+                                        Grid.Row="{Binding SelectedValue, ElementName=Row}"
+                                        Grid.Column="{Binding SelectedValue, ElementName=Column}"
+                                        Text="Control" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Column:2 x Row:3" Style="{StaticResource SubGroupBox}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Border
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Background="AliceBlue" />
+                                    <Border
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Background="CadetBlue" />
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Background="CornflowerBlue" />
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Background="LightBlue" />
+                                    <Border
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Background="SteelBlue" />
+                                    <Border
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Background="SkyBlue" />
+                                    <TextBlock
+                                        Grid.Row="{Binding SelectedValue, ElementName=Row}"
+                                        Grid.Column="{Binding SelectedValue, ElementName=Column}"
+                                        Text="Control" />
+                                </Grid>
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="ColumnSpan&#10;RowSpan" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="ColumnSpan" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="ColumnSpan"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Content">
+                                    <ComboBoxItem Content="1" />
+                                    <ComboBoxItem Content="2" />
+                                </ComboBox>
+                            </GroupBox>
+                            <GroupBox Header="RowSpan" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="RowSpan"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Content">
+                                    <ComboBoxItem Content="1" />
+                                    <ComboBoxItem Content="2" />
+                                </ComboBox>
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <GroupBox Header="Column:3 x Row:2" Style="{StaticResource SubGroupBox}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="{Binding SelectedValue, ElementName=ColumnSpan}"
+                                    Background="CadetBlue"
+                                    Text="1x1,ColumnSpanSetting" />
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.RowSpan="{Binding SelectedValue, ElementName=RowSpan}"
+                                    Grid.Column="2"
+                                    Background="SteelBlue"
+                                    Text="1x3,RowSpanSetting" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Background="CornflowerBlue"
+                                    Text="2x1" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Background="LightBlue"
+                                    Text="2x2" />
+                            </Grid>
+                        </GroupBox>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="ShowGridLines" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <CheckBox
+                            x:Name="ShowGridLines"
+                            VerticalContentAlignment="Center"
+                            Content="ShowGridLines"
+                            IsChecked="True" />
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <GroupBox Header="Column:3 x Row:2" Style="{StaticResource SubGroupBox}">
+                            <Grid ShowGridLines="{Binding IsChecked, ElementName=ShowGridLines}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="1x1,ColumnSpan=2" />
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="1x3,RowSpan=2" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="2x1" />
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="2x2" />
+                            </Grid>
+                        </GroupBox>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="IsSharedSizeScope&#10;SharedSizeGroup(DefinitionBase)" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <CheckBox
+                                x:Name="IsSharedSizeScope"
+                                VerticalContentAlignment="Center"
+                                Content="IsSharedSizeScope" />
+                            <UniformGrid Rows="1">
+                                <GroupBox Header="Text1" Style="{StaticResource SubGroupBox}">
+                                    <TextBox
+                                        x:Name="IsSharedSizeScopeText1"
+                                        AcceptsReturn="True"
+                                        Text="Text&#10;Text" />
+                                </GroupBox>
+                                <GroupBox Header="Text2" Style="{StaticResource SubGroupBox}">
+                                    <TextBox
+                                        x:Name="IsSharedSizeScopeText2"
+                                        AcceptsReturn="True"
+                                        Text="TextText" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox
+                        Grid.IsSharedSizeScope="{Binding IsChecked, ElementName=IsSharedSizeScope}"
+                        Header="Result"
+                        Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Rows="1">
+                            <GroupBox Header="Grid1" Style="{StaticResource SubGroupBox}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" SharedSizeGroup="Column" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" SharedSizeGroup="Row" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Background="AliceBlue"
+                                        Text="{Binding Text, ElementName=IsSharedSizeScopeText1}" />
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Background="CadetBlue" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Background="CornflowerBlue" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Background="LightBlue" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Grid2" Style="{StaticResource SubGroupBox}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" SharedSizeGroup="Column" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" SharedSizeGroup="Row" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Background="AliceBlue"
+                                        Text="{Binding Text, ElementName=IsSharedSizeScopeText2}" />
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Background="CadetBlue" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Background="CornflowerBlue" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Background="LightBlue" />
+                                </Grid>
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="MaxWidth(ColumnDefinition)&#10;MinWidth(ColumnDefinition)&#10;Width(ColumnDefinition)" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="WidthText"
+                                    AcceptsReturn="True"
+                                    Text="TEXT" />
+                            </GroupBox>
+                            <UniformGrid Rows="1">
+                                <GroupBox Header="MaxWidth" Style="{StaticResource SubGroupBox}">
+                                    <TextBox
+                                        x:Name="MaxWidth"
+                                        behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                        Text="100" />
+                                </GroupBox>
+                                <GroupBox Header="MinWidth" Style="{StaticResource SubGroupBox}">
+                                    <TextBox
+                                        x:Name="MinWidth"
+                                        behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                        Text="30" />
+                                </GroupBox>
+                                <GroupBox Header="Width" Style="{StaticResource SubGroupBox}">
+                                    <StackPanel>
+                                        <TextBox
+                                            x:Name="Width"
+                                            behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                            Text="25" />
+                                    </StackPanel>
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Width=Manual" Style="{StaticResource SubGroupBox}">
+                                <Grid Height="30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition
+                                            Width="{Binding Text, ElementName=Width}"
+                                            MinWidth="{Binding Text, ElementName=MinWidth}"
+                                            MaxWidth="{Binding Text, ElementName=MaxWidth}" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Background="CornflowerBlue" />
+                                    <Border Grid.Column="1" Background="LightBlue" />
+                                    <Border Grid.Column="2" Background="SkyBlue" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Text, ElementName=WidthText}" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Width=Auto" Style="{StaticResource SubGroupBox}">
+                                <Grid Height="30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition
+                                            Width="Auto"
+                                            MinWidth="{Binding Text, ElementName=MinWidth}"
+                                            MaxWidth="{Binding Text, ElementName=MaxWidth}" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Background="CornflowerBlue" />
+                                    <Border Grid.Column="1" Background="LightBlue" />
+                                    <Border Grid.Column="2" Background="SkyBlue" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Text, ElementName=WidthText}" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Width=Star" Style="{StaticResource SubGroupBox}">
+                                <Grid Height="30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition
+                                            Width="*"
+                                            MinWidth="{Binding Text, ElementName=MinWidth}"
+                                            MaxWidth="{Binding Text, ElementName=MaxWidth}" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Background="CornflowerBlue" />
+                                    <Border Grid.Column="1" Background="LightBlue" />
+                                    <Border Grid.Column="2" Background="SkyBlue" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Text, ElementName=WidthText}" />
+                                </Grid>
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="MaxHeight(RowDefinition)&#10;MinHeight(RowDefinition)&#10;Height(RowDefinition)" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="HeightText"
+                                    AcceptsReturn="True"
+                                    Text="TEXT&#10;TEXT" />
+                            </GroupBox>
+                            <UniformGrid Rows="1">
+                                <GroupBox Header="MaxHeight" Style="{StaticResource SubGroupBox}">
+                                    <TextBox
+                                        x:Name="MaxHeight"
+                                        behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                        Text="100" />
+                                </GroupBox>
+                                <GroupBox Header="MinHeight" Style="{StaticResource SubGroupBox}">
+                                    <TextBox
+                                        x:Name="MinHeight"
+                                        behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                        Text="10" />
+                                </GroupBox>
+                                <GroupBox Header="Height" Style="{StaticResource SubGroupBox}">
+                                    <StackPanel>
+                                        <TextBox
+                                            x:Name="Height"
+                                            behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                            Text="20" />
+                                    </StackPanel>
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Height=Manual" Style="{StaticResource SubGroupBox}">
+                                <Grid Height="120">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition
+                                            Height="{Binding Text, ElementName=Height}"
+                                            MinHeight="{Binding Text, ElementName=MinHeight}"
+                                            MaxHeight="{Binding Text, ElementName=MaxHeight}" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0" Background="CornflowerBlue" />
+                                    <Border Grid.Row="1" Background="LightBlue" />
+                                    <Border Grid.Row="2" Background="SkyBlue" />
+                                    <TextBlock Grid.Row="1" Text="{Binding Text, ElementName=HeightText}" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Height=Auto" Style="{StaticResource SubGroupBox}">
+                                <Grid Height="120">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition
+                                            Height="auto"
+                                            MinHeight="{Binding Text, ElementName=MinHeight}"
+                                            MaxHeight="{Binding Text, ElementName=MaxHeight}" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0" Background="CornflowerBlue" />
+                                    <Border Grid.Row="1" Background="LightBlue" />
+                                    <Border Grid.Row="2" Background="SkyBlue" />
+                                    <TextBlock Grid.Row="1" Text="{Binding Text, ElementName=HeightText}" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Height=Star" Style="{StaticResource SubGroupBox}">
+                                <Grid Height="120">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition
+                                            Height="*"
+                                            MinHeight="{Binding Text, ElementName=MinHeight}"
+                                            MaxHeight="{Binding Text, ElementName=MaxHeight}" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0" Background="CornflowerBlue" />
+                                    <Border Grid.Row="1" Background="LightBlue" />
+                                    <Border Grid.Row="2" Background="SkyBlue" />
+                                    <TextBlock Grid.Row="1" Text="{Binding Text, ElementName=HeightText}" />
+                                </Grid>
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="Background(Panel)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="Background"
+                                behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
+                                DisplayMemberPath="Key"
+                                IsSynchronizedWithCurrentItem="True"
+                                ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
+                                SelectedValuePath="Value" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Grid Height="30" Background="{Binding SelectedValue, ElementName=Background}" />
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="ZIndex(Panel)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <UniformGrid Rows="1">
+                                <GroupBox Header="ZIndex(Item1)" Style="{StaticResource SubGroupBox}">
+                                    <TextBox
+                                        x:Name="ZIndexItem1Text"
+                                        behaviors:TextBoxIntOnlyBehavior.Enable="True"
+                                        Text="1" />
+                                </GroupBox>
+                                <GroupBox Header="ZIndex(Item2)" Style="{StaticResource SubGroupBox}">
+                                    <TextBox
+                                        x:Name="ZIndexItem2Text"
+                                        behaviors:TextBoxIntOnlyBehavior.Enable="True"
+                                        Text="2" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Grid Height="60">
+                            <Label
+                                VerticalAlignment="Top"
+                                Panel.ZIndex="{Binding Text, ElementName=ZIndexItem1Text}"
+                                Background="LightBlue"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item1" />
+                            <Label
+                                HorizontalAlignment="Right"
+                                VerticalContentAlignment="Bottom"
+                                Panel.ZIndex="{Binding Text, ElementName=ZIndexItem2Text}"
+                                Background="SkyBlue"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item2" />
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
