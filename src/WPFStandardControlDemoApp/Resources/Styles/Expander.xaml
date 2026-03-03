@@ -4,10 +4,10 @@
             <Setter.Value>
                 <DataTemplate>
                     <TextBlock
-                                Margin="2,0"
-                                FontSize="25"
-                                FontWeight="Bold"
-                                Text="{Binding}" />
+                        Margin="2,0"
+                        FontSize="25"
+                        FontWeight="Bold"
+                        Text="{Binding}" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -19,9 +19,9 @@
         <Setter Property="FontSize" Value="20" />
     </Style>
     <Style
-                x:Key="BaseContentsExpander"
-                BasedOn="{StaticResource ContentsExpander}"
-                TargetType="Expander">
+        x:Key="BaseContentsExpander"
+        BasedOn="{StaticResource ContentsExpander}"
+        TargetType="Expander">
         <Setter Property="BorderBrush" Value="LimeGreen" />
     </Style>
 </ResourceDictionary>
