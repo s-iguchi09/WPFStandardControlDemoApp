@@ -58,7 +58,7 @@
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <StackPanel Height="30" Background="{Binding SelectedValue, ElementName=BackgroundComboBox}" />
+                        <StackPanel Height="30" Background="{Binding SelectedItem.Value, ElementName=BackgroundComboBox}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>

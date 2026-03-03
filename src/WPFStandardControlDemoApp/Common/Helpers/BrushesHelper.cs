@@ -5,6 +5,6 @@ namespace WPFStandardControlDemoApp.Common.Helpers
 {
     public static class BrushesHelper
     {
-        public static List<KeyValuePair<string, Brush>> AllBrushes => Brushes.GetAllBrushs().ToList();
+        public static IEnumerable<KeyValuePair<string, Brush>> AllBrushes => Brushes.GetAllBrushs().ToList();
     }
 }

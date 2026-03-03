@@ -423,8 +423,8 @@
                                         <ColumnDefinition />
                                         <ColumnDefinition
                                             Width="Auto"
-                                            MinWidth="{Binding Text, ElementName=MinWidth}"
-                                            MaxWidth="{Binding Text, ElementName=MaxWidth}" />
+                                            MinWidth="{Binding Text, ElementName=MinWidthTextBox}"
+                                            MaxWidth="{Binding Text, ElementName=MaxWidthTextBox}" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" Background="CornflowerBlue" />
@@ -439,8 +439,8 @@
                                         <ColumnDefinition />
                                         <ColumnDefinition
                                             Width="*"
-                                            MinWidth="{Binding Text, ElementName=MinWidth}"
-                                            MaxWidth="{Binding Text, ElementName=MaxWidth}" />
+                                            MinWidth="{Binding Text, ElementName=MinWidthTextBox}"
+                                            MaxWidth="{Binding Text, ElementName=MaxWidthTextBox}" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" Background="CornflowerBlue" />
@@ -511,8 +511,8 @@
                                         <RowDefinition />
                                         <RowDefinition
                                             Height="auto"
-                                            MinHeight="{Binding Text, ElementName=MinHeight}"
-                                            MaxHeight="{Binding Text, ElementName=MaxHeight}" />
+                                            MinHeight="{Binding Text, ElementName=MinHeightTextBox}"
+                                            MaxHeight="{Binding Text, ElementName=MaxHeightTextBox}" />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Border Grid.Row="0" Background="CornflowerBlue" />
@@ -527,8 +527,8 @@
                                         <RowDefinition />
                                         <RowDefinition
                                             Height="*"
-                                            MinHeight="{Binding Text, ElementName=MinHeight}"
-                                            MaxHeight="{Binding Text, ElementName=MaxHeight}" />
+                                            MinHeight="{Binding Text, ElementName=MinHeightTextBox}"
+                                            MaxHeight="{Binding Text, ElementName=MaxHeightTextBox}" />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Border Grid.Row="0" Background="CornflowerBlue" />
@@ -555,7 +555,7 @@
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Grid Height="30" Background="{Binding SelectedValue, ElementName=BackgroundComboBox}" />
+                        <Grid Height="30" Background="{Binding SelectedItem.Value, ElementName=BackgroundComboBox}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
