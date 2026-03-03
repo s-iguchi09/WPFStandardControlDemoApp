@@ -7,20 +7,9 @@
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.TextBlockUsage"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     d:DesignHeight="4000"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ObjectDataProvider
-            x:Key="LineStackingStrategyList"
-            MethodName="GetValues"
-            ObjectType="{x:Type sys:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="LineStackingStrategy" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="TextBlock" />
@@ -131,12 +120,12 @@
                                     Text="TEXTBLOCK" />
                             </GroupBox>
                             <GroupBox Header="Padding" Style="{StaticResource SubGroupBox}">
-                                <TextBox x:Name="Padding" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
+                                <TextBox x:Name="PaddingTextBox" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock Padding="{Binding Text, ElementName=Padding}" Text="{Binding Text, ElementName=PaddingText}" />
+                        <TextBlock Padding="{Binding Text, ElementName=PaddingTextBox}" Text="{Binding Text, ElementName=PaddingText}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -152,7 +141,7 @@
                             </GroupBox>
                             <GroupBox Header="FontWeight" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="FontWeight"
+                                    x:Name="FontWeightComboBox"
                                     ItemsSource="{x:Static helpers:FontWeightsHelper.AllFontWeigthts}"
                                     SelectedIndex="0" />
                             </GroupBox>
@@ -160,7 +149,7 @@
 
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock FontWeight="{Binding SelectedValue, ElementName=FontWeight}" Text="{Binding Text, ElementName=FontWeightText}" />
+                        <TextBlock FontWeight="{Binding SelectedValue, ElementName=FontWeightComboBox}" Text="{Binding Text, ElementName=FontWeightText}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -176,14 +165,14 @@
                             </GroupBox>
                             <GroupBox Header="FontStyle" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="FontStyle"
+                                    x:Name="FontStyleComboBox"
                                     ItemsSource="{x:Static helpers:FontStylesHelpers.AllFontStyles}"
                                     SelectedIndex="0" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock FontStyle="{Binding SelectedValue, ElementName=FontStyle}" Text="{Binding Text, ElementName=FontStyleText}" />
+                        <TextBlock FontStyle="{Binding SelectedValue, ElementName=FontStyleComboBox}" Text="{Binding Text, ElementName=FontStyleText}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -199,14 +188,14 @@
                             </GroupBox>
                             <GroupBox Header="FontStretch" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="FontStretch"
+                                    x:Name="FontStretchComboBox"
                                     ItemsSource="{x:Static helpers:FontStretchesHelper.AllFontStretchs}"
                                     SelectedIndex="0" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock FontStretch="{Binding SelectedValue, ElementName=FontStretch}" Text="{Binding Text, ElementName=FontStretchText}" />
+                        <TextBlock FontStretch="{Binding SelectedValue, ElementName=FontStretchComboBox}" Text="{Binding Text, ElementName=FontStretchText}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -221,12 +210,12 @@
                                     Text="TEXTBLOCK" />
                             </GroupBox>
                             <GroupBox Header="FontSize" Style="{StaticResource SubGroupBox}">
-                                <TextBox x:Name="FontSize" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
+                                <TextBox x:Name="FontSizeTextBox" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock FontSize="{Binding Text, ElementName=FontSize}" Text="{Binding Text, ElementName=FontSizeText}" />
+                        <TextBlock FontSize="{Binding Text, ElementName=FontSizeTextBox}" Text="{Binding Text, ElementName=FontSizeText}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -242,7 +231,7 @@
                             </GroupBox>
                             <GroupBox Header="FontFamily" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="FontFamily"
+                                    x:Name="FontFamilyComboBox"
                                     DisplayMemberPath="Source"
                                     ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
                                     SelectedIndex="0" />
@@ -250,7 +239,7 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock FontFamily="{Binding SelectedValue, ElementName=FontFamily}" Text="{Binding Text, ElementName=FontFamilyText}" />
+                        <TextBlock FontFamily="{Binding SelectedValue, ElementName=FontFamilyComboBox}" Text="{Binding Text, ElementName=FontFamilyText}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -266,7 +255,7 @@
                             </GroupBox>
                             <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="Background"
+                                    x:Name="BackgroundComboBox"
                                     behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                     DisplayMemberPath="Key"
                                     ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
@@ -276,7 +265,7 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock Background="{Binding SelectedValue, ElementName=Background}" Text="{Binding Text, ElementName=BackgroundText}" />
+                        <TextBlock Background="{Binding SelectedValue, ElementName=BackgroundComboBox}" Text="{Binding Text, ElementName=BackgroundText}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -292,7 +281,7 @@
                             </GroupBox>
                             <GroupBox Header="Foreground" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="Foreground"
+                                    x:Name="ForegroundComboBox"
                                     behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                     DisplayMemberPath="Key"
                                     ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
@@ -302,7 +291,7 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock Foreground="{Binding SelectedValue, ElementName=Foreground}" Text="{Binding Text, ElementName=ForegroundText}" />
+                        <TextBlock Foreground="{Binding SelectedValue, ElementName=ForegroundComboBox}" Text="{Binding Text, ElementName=ForegroundText}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -323,7 +312,7 @@
                                 <GroupBox Header="LineStackingStrategy" Style="{StaticResource SubGroupBox}">
                                     <ComboBox
                                         x:Name="LineStackingStrategy"
-                                        ItemsSource="{Binding Source={StaticResource LineStackingStrategyList}}"
+                                        ItemsSource="{x:Static helpers:LineStackingStrategyHelper.AllLineStackingStrategies}"
                                         SelectedIndex="0" />
                                 </GroupBox>
                             </UniformGrid>

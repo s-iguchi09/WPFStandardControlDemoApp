@@ -7,7 +7,6 @@
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.GridUsage"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     d:DesignHeight="4000"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -379,20 +378,20 @@
                             <UniformGrid Rows="1">
                                 <GroupBox Header="MaxWidth" Style="{StaticResource SubGroupBox}">
                                     <TextBox
-                                        x:Name="MaxWidth"
+                                        x:Name="MaxWidthTextBox"
                                         behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
                                         Text="100" />
                                 </GroupBox>
                                 <GroupBox Header="MinWidth" Style="{StaticResource SubGroupBox}">
                                     <TextBox
-                                        x:Name="MinWidth"
+                                        x:Name="MinWidthTextBox"
                                         behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
                                         Text="30" />
                                 </GroupBox>
                                 <GroupBox Header="Width" Style="{StaticResource SubGroupBox}">
                                     <StackPanel>
                                         <TextBox
-                                            x:Name="Width"
+                                            x:Name="WidthTextBox"
                                             behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
                                             Text="25" />
                                     </StackPanel>
@@ -407,9 +406,9 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition
-                                            Width="{Binding Text, ElementName=Width}"
-                                            MinWidth="{Binding Text, ElementName=MinWidth}"
-                                            MaxWidth="{Binding Text, ElementName=MaxWidth}" />
+                                            Width="{Binding Text, ElementName=WidthTextBox}"
+                                            MinWidth="{Binding Text, ElementName=MinWidthTextBox}"
+                                            MaxWidth="{Binding Text, ElementName=MaxWidthTextBox}" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" Background="CornflowerBlue" />
@@ -467,20 +466,20 @@
                             <UniformGrid Rows="1">
                                 <GroupBox Header="MaxHeight" Style="{StaticResource SubGroupBox}">
                                     <TextBox
-                                        x:Name="MaxHeight"
+                                        x:Name="MaxHeightTextBox"
                                         behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
                                         Text="100" />
                                 </GroupBox>
                                 <GroupBox Header="MinHeight" Style="{StaticResource SubGroupBox}">
                                     <TextBox
-                                        x:Name="MinHeight"
+                                        x:Name="MinHeightTextBox"
                                         behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
                                         Text="10" />
                                 </GroupBox>
                                 <GroupBox Header="Height" Style="{StaticResource SubGroupBox}">
                                     <StackPanel>
                                         <TextBox
-                                            x:Name="Height"
+                                            x:Name="HeightTextBox"
                                             behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
                                             Text="20" />
                                     </StackPanel>
@@ -495,9 +494,9 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition
-                                            Height="{Binding Text, ElementName=Height}"
-                                            MinHeight="{Binding Text, ElementName=MinHeight}"
-                                            MaxHeight="{Binding Text, ElementName=MaxHeight}" />
+                                            Height="{Binding Text, ElementName=HeightTextBox}"
+                                            MinHeight="{Binding Text, ElementName=MinHeightTextBox}"
+                                            MaxHeight="{Binding Text, ElementName=MaxHeightTextBox}" />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Border Grid.Row="0" Background="CornflowerBlue" />
@@ -547,7 +546,7 @@
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
                             <ComboBox
-                                x:Name="Background"
+                                x:Name="BackgroundComboBox"
                                 behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                 DisplayMemberPath="Key"
                                 IsSynchronizedWithCurrentItem="True"
@@ -556,7 +555,7 @@
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Grid Height="30" Background="{Binding SelectedValue, ElementName=Background}" />
+                        <Grid Height="30" Background="{Binding SelectedValue, ElementName=BackgroundComboBox}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>

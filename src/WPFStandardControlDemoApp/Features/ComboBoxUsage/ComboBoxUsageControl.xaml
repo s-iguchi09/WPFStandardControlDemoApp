@@ -3,34 +3,16 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:linq="clr-namespace:System.Linq;assembly=System.Core"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.ComboBoxUsage"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
     d:DataContext="{d:DesignInstance local:ComboBoxUsageViewModel,
                                      IsDesignTimeCreatable=True}"
     d:DesignHeight="3000"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ObjectDataProvider
-            x:Key="DayOfWeekList"
-            MethodName="GetValues"
-            ObjectType="{x:Type system:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="system:DayOfWeek" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-        <ObjectDataProvider
-            x:Key="DayOfWeekRangeData"
-            MethodName="Range"
-            ObjectType="{x:Type linq:Enumerable}">
-            <ObjectDataProvider.MethodParameters>
-                <system:Int32>1</system:Int32>
-                <system:Int32>7</system:Int32>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="ComboBox" />
@@ -42,7 +24,7 @@
                             VerticalContentAlignment="Center"
                             Content="IsDropDownOpen" />
                     </GroupBox>
-                    <ComboBox IsDropDownOpen="{Binding IsChecked, ElementName=IsDropDownOpen}" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                    <ComboBox IsDropDownOpen="{Binding IsChecked, ElementName=IsDropDownOpen}" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
                 </StackPanel>
             </Expander>
             <Expander Header="IsEditable" Style="{StaticResource ContentsExpander}">
@@ -56,7 +38,7 @@
                     <ComboBox
                         x:Name="IsEditableComboBox"
                         IsEditable="{Binding IsChecked, ElementName=IsEditable}"
-                        ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                        ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <GroupBox Header="SelectedValue" Style="{StaticResource SubGroupBox}">
                             <TextBlock Text="{Binding SelectedValue, ElementName=IsEditableComboBox}" />
@@ -76,7 +58,7 @@
                         x:Name="IsReadOnlyComboBox"
                         IsEditable="True"
                         IsReadOnly="{Binding IsChecked, ElementName=IsReadOnly}"
-                        ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                        ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <GroupBox Header="SelectedValue" Style="{StaticResource SubGroupBox}">
                             <TextBlock Text="{Binding SelectedValue, ElementName=IsReadOnlyComboBox}" />
@@ -88,23 +70,11 @@
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="MaxDropDownHeight" Style="{StaticResource SubGroupBox}">
-                            <ComboBox x:Name="MaxDropDownHeight" SelectedIndex="0">
-                                <system:Double>40.0</system:Double>
-                                <system:Double>45.5</system:Double>
-                                <system:Double>60.0</system:Double>
-                                <system:Double>65.5</system:Double>
-                                <system:Double>80.0</system:Double>
-                                <system:Double>85.5</system:Double>
-                                <system:Double>100.0</system:Double>
-                                <system:Double>105.5</system:Double>
-                                <system:Double>120.0</system:Double>
-                                <system:Double>125.5</system:Double>
-                                <system:Double>140.0</system:Double>
-                                <system:Double>145.5</system:Double>
-                            </ComboBox>
+                            <TextBox x:Name="MaxDropDownHeightTextBox" Text="100" behaviors:TextBoxDoubleOnlyBehavior.Enable="True"/>
+
                         </GroupBox>
                     </GroupBox>
-                    <ComboBox ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" MaxDropDownHeight="{Binding SelectedValue, ElementName=MaxDropDownHeight}" />
+                    <ComboBox ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" MaxDropDownHeight="{Binding Text, ElementName=MaxDropDownHeightTextBox}" />
                 </StackPanel>
             </Expander>
             <Expander Header="Text" Style="{StaticResource ContentsExpander}">
@@ -112,7 +82,7 @@
                     <ComboBox
                         x:Name="TextComboBox"
                         IsEditable="True"
-                        ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                        ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
@@ -135,7 +105,7 @@
                     </GroupBox>
                     <ComboBox
                         IsEditable="True"
-                        ItemsSource="{Binding Source={StaticResource DayOfWeekList}}"
+                        ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}"
                         StaysOpenOnEdit="{Binding IsChecked, ElementName=StaysOpenOnEdit}" />
                 </StackPanel>
             </Expander>
@@ -150,7 +120,7 @@
                     <ComboBox
                         x:Name="ShouldPreserveUserEnteredPrefixComboBox"
                         IsEditable="True"
-                        ItemsSource="{Binding Source={StaticResource DayOfWeekList}}"
+                        ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}"
                         ShouldPreserveUserEnteredPrefix="{Binding IsChecked, ElementName=ShouldPreserveUserEnteredPrefix}" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <StackPanel>
@@ -166,7 +136,7 @@
             </Expander>
             <Expander Header="SelectedIndex(Selector)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
-                    <ComboBox x:Name="SelectedIndexComboBox" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                    <ComboBox x:Name="SelectedIndexComboBox" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <GroupBox Header="SelectedIndex" Style="{StaticResource SubGroupBox}">
                             <TextBlock Text="{Binding SelectedIndex, ElementName=SelectedIndexComboBox}" />
@@ -179,7 +149,7 @@
                     <StackPanel>
                         <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                             <GroupBox Header="ItemsSource=Values" Style="{StaticResource SubGroupBox}">
-                                <ComboBox x:Name="SelectedItemSimpleComboBox" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                                <ComboBox x:Name="SelectedItemSimpleComboBox" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
                             </GroupBox>
                         </GroupBox>
                         <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
@@ -237,13 +207,13 @@
                     </GroupBox>
                     <UniformGrid Rows="1">
                         <GroupBox Header="ComboBox1" Style="{StaticResource SubGroupBox}">
-                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
                         </GroupBox>
                         <GroupBox Header="ComboBox2" Style="{StaticResource SubGroupBox}">
-                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
                         </GroupBox>
                         <GroupBox Header="ComboBox3" Style="{StaticResource SubGroupBox}">
-                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{Binding Source={StaticResource DayOfWeekList}}" />
+                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
                         </GroupBox>
                     </UniformGrid>
                 </StackPanel>

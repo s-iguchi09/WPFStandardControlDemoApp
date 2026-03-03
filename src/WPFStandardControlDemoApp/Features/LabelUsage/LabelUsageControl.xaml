@@ -7,28 +7,9 @@
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.LabelUsage"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     d:DesignHeight="4000"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <ObjectDataProvider
-            x:Key="HorizontalAlignmentList"
-            MethodName="GetValues"
-            ObjectType="{x:Type sys:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="HorizontalAlignment" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-        <ObjectDataProvider
-            x:Key="VerticalAlignmenttList"
-            MethodName="GetValues"
-            ObjectType="{x:Type sys:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="VerticalAlignment" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="Label" />
@@ -91,12 +72,12 @@
                                     Text="LABEL" />
                             </GroupBox>
                             <GroupBox Header="Padding" Style="{StaticResource SubGroupBox}">
-                                <TextBox x:Name="Padding" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
+                                <TextBox x:Name="PaddingTextBox" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Label Padding="{Binding Text, ElementName=Padding}" Content="{Binding Text, ElementName=PaddingText}" />
+                        <Label Padding="{Binding Text, ElementName=PaddingTextBox}" Content="{Binding Text, ElementName=PaddingText}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -112,7 +93,7 @@
                             </GroupBox>
                             <GroupBox Header="FontWeight" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="FontWeight"
+                                    x:Name="FontWeightComboBox"
                                     ItemsSource="{x:Static helpers:FontWeightsHelper.AllFontWeigthts}"
                                     SelectedIndex="0" />
                             </GroupBox>
@@ -120,7 +101,7 @@
 
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Label Content="{Binding Text, ElementName=FontWeightText}" FontWeight="{Binding SelectedValue, ElementName=FontWeight}" />
+                        <Label Content="{Binding Text, ElementName=FontWeightText}" FontWeight="{Binding SelectedValue, ElementName=FontWeightComboBox}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -136,14 +117,14 @@
                             </GroupBox>
                             <GroupBox Header="FontStyle" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="FontStyle"
+                                    x:Name="FontStyleComboBox"
                                     ItemsSource="{x:Static helpers:FontStylesHelpers.AllFontStyles}"
                                     SelectedIndex="0" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Label Content="{Binding Text, ElementName=FontStyleText}" FontStyle="{Binding SelectedValue, ElementName=FontStyle}" />
+                        <Label Content="{Binding Text, ElementName=FontStyleText}" FontStyle="{Binding SelectedValue, ElementName=FontStyleComboBox}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -159,14 +140,14 @@
                             </GroupBox>
                             <GroupBox Header="FontStretch" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="FontStretch"
+                                    x:Name="FontStretchComboBox"
                                     ItemsSource="{x:Static helpers:FontStretchesHelper.AllFontStretchs}"
                                     SelectedIndex="0" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Label Content="{Binding Text, ElementName=FontStretchText}" FontStretch="{Binding SelectedValue, ElementName=FontStretch}" />
+                        <Label Content="{Binding Text, ElementName=FontStretchText}" FontStretch="{Binding SelectedValue, ElementName=FontStretchComboBox}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -181,12 +162,12 @@
                                     Text="LABEL" />
                             </GroupBox>
                             <GroupBox Header="FontSize" Style="{StaticResource SubGroupBox}">
-                                <TextBox x:Name="FontSize" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
+                                <TextBox x:Name="FontSizeTextBox" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Label Content="{Binding Text, ElementName=FontSizeText}" FontSize="{Binding Text, ElementName=FontSize}" />
+                        <Label Content="{Binding Text, ElementName=FontSizeText}" FontSize="{Binding Text, ElementName=FontSizeTextBox}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -202,7 +183,7 @@
                             </GroupBox>
                             <GroupBox Header="FontFamily" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="FontFamily"
+                                    x:Name="FontFamilyComboBox"
                                     DisplayMemberPath="Source"
                                     ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
                                     SelectedIndex="0" />
@@ -210,7 +191,7 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Label Content="{Binding Text, ElementName=FontFamilyText}" FontFamily="{Binding SelectedValue, ElementName=FontFamily}" />
+                        <Label Content="{Binding Text, ElementName=FontFamilyText}" FontFamily="{Binding SelectedValue, ElementName=FontFamilyComboBox}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -226,7 +207,7 @@
                             </GroupBox>
                             <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="Background"
+                                    x:Name="BackgroundComboBox"
                                     behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                     DisplayMemberPath="Key"
                                     ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
@@ -236,7 +217,7 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Label Background="{Binding SelectedValue, ElementName=Background}" Content="{Binding Text, ElementName=BackgroundText}" />
+                        <Label Background="{Binding SelectedValue, ElementName=BackgroundComboBox}" Content="{Binding Text, ElementName=BackgroundText}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -252,7 +233,7 @@
                             </GroupBox>
                             <GroupBox Header="Foreground" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="Foreground"
+                                    x:Name="ForegroundComboBox"
                                     behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                     DisplayMemberPath="Key"
                                     ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
@@ -262,7 +243,7 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Label Content="{Binding Text, ElementName=ForegroundText}" Foreground="{Binding SelectedValue, ElementName=Foreground}" />
+                        <Label Content="{Binding Text, ElementName=ForegroundText}" Foreground="{Binding SelectedValue, ElementName=ForegroundComboBox}" />
                     </GroupBox>
                 </StackPanel>
             </Expander>
@@ -285,7 +266,7 @@
                                 </GroupBox>
                                 <GroupBox Header="BorderBrush" Style="{StaticResource SubGroupBox}">
                                     <ComboBox
-                                        x:Name="BorderBrush"
+                                        x:Name="BorderBrushComboBox"
                                         behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                         DisplayMemberPath="Key"
                                         ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
@@ -296,7 +277,7 @@
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <Label
-                            BorderBrush="{Binding SelectedValue, ElementName=BorderBrush}"
+                            BorderBrush="{Binding SelectedValue, ElementName=BorderBrushComboBox}"
                             BorderThickness="{Binding Text, ElementName=BorderThicknessText}"
                             Content="{Binding Text, ElementName=BorderText}" />
                     </GroupBox>
@@ -315,14 +296,14 @@
                             <UniformGrid Rows="1">
                                 <GroupBox Header="HorizontalContentAlignment" Style="{StaticResource SubGroupBox}">
                                     <ComboBox
-                                        x:Name="HorizontalContentAlignment"
-                                        ItemsSource="{Binding Source={StaticResource HorizontalAlignmentList}}"
+                                        x:Name="HorizontalContentAlignmentComboBox"
+                                        ItemsSource="{x:Static helpers:HorizontalAlignmentHelpers.AllHorizontalAlignments}"
                                         SelectedIndex="0" />
                                 </GroupBox>
                                 <GroupBox Header="VerticalContentAlignment" Style="{StaticResource SubGroupBox}">
                                     <ComboBox
-                                        x:Name="VerticalContentAlignment"
-                                        ItemsSource="{Binding Source={StaticResource VerticalAlignmenttList}}"
+                                        x:Name="VerticalContentAlignmentComboBox"
+                                        ItemsSource="{x:Static helpers:VerticalAlignmentHelpers.AllVerticalAlignments}"
                                         SelectedIndex="0" />
                                 </GroupBox>
                             </UniformGrid>
@@ -333,8 +314,8 @@
                         Header="Result"
                         Style="{StaticResource ResultGroupBox}">
                         <Label
-                            HorizontalContentAlignment="{Binding SelectedValue, ElementName=HorizontalContentAlignment}"
-                            VerticalContentAlignment="{Binding SelectedValue, ElementName=VerticalContentAlignment}"
+                            HorizontalContentAlignment="{Binding SelectedValue, ElementName=HorizontalContentAlignmentComboBox}"
+                            VerticalContentAlignment="{Binding SelectedValue, ElementName=VerticalContentAlignmentComboBox}"
                             BorderBrush="Black"
                             BorderThickness="1"
                             Content="{Binding Text, ElementName=AlignmentText}" />

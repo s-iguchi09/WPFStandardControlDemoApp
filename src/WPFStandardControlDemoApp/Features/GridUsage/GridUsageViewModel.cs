@@ -4,7 +4,7 @@ namespace WPFStandardControlDemoApp.Features.GridUsage
 {
     public class GridUsageViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged = delegate { };
 
         public override string ToString()
         {
