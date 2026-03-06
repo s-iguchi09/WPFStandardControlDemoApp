@@ -7,10 +7,13 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/Expander.xaml" />
-                <ResourceDictionary Source="/Resources/Styles/ListBoxItem.xaml" />
-                <ResourceDictionary Source="/Resources/Styles/TextBlock.xaml" />
-                <ResourceDictionary Source="/Resources/Styles/GroupBox.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/ExpanderStyle.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/ListBoxItemStyle.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/TextBlockStyle.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/GroupBoxStyle.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/BorderStyle.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/ToggleButtonStyle.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/TextBoxStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
