@@ -78,7 +78,10 @@
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <ScrollViewer IsDeferredScrollingEnabled="{Binding IsChecked, ElementName=IsDeferredScrollingEnabledCheckBox}" Style="{StaticResource ScrollViewerStyle}">
+                        <ScrollViewer
+                            x:Name="IsDeferredScrollingEnabledScrollViewer"
+                            IsDeferredScrollingEnabled="{Binding IsChecked, ElementName=IsDeferredScrollingEnabledCheckBox}"
+                            Style="{StaticResource ScrollViewerStyle}">
                             <StackPanel Orientation="Vertical">
                                 <Label Content="Item1" Style="{StaticResource LabelStyle}" />
                                 <Label Content="Item2" Style="{StaticResource LabelStyle}" />
@@ -92,6 +95,15 @@
                             </StackPanel>
                         </ScrollViewer>
                     </GroupBox>
+                    <ToggleButton x:Name="IsDeferredScrollingEnabledPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IsDeferredScrollingEnabledPopupButton}"
+                        PlacementTarget="{Binding ElementName=IsDeferredScrollingEnabledPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsDeferredScrollingEnabledCheckBox,IsDeferredScrollingEnabledScrollViewer" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="VerticalScrollBarVisibility" Style="{StaticResource ContentsExpander}">
@@ -107,7 +119,10 @@
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <UniformGrid Rows="1">
                             <GroupBox Header="Fits" Style="{StaticResource SubGroupBox}">
-                                <ScrollViewer Style="{StaticResource ScrollViewerStyle}" VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=VerticalScrollBarVisibilityComboBox}">
+                                <ScrollViewer
+                                    x:Name="VerticalScrollBarVisibilityFitsScrollViewer"
+                                    Style="{StaticResource ScrollViewerStyle}"
+                                    VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=VerticalScrollBarVisibilityComboBox}">
                                     <StackPanel>
                                         <Label Content="Item1" Style="{StaticResource LabelStyle}" />
                                         <Label Content="Item2" Style="{StaticResource LabelStyle}" />
@@ -115,7 +130,10 @@
                                 </ScrollViewer>
                             </GroupBox>
                             <GroupBox Header="OverFlows" Style="{StaticResource SubGroupBox}">
-                                <ScrollViewer Style="{StaticResource ScrollViewerStyle}" VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=VerticalScrollBarVisibilityComboBox}">
+                                <ScrollViewer
+                                    x:Name="VerticalScrollBarVisibilityOverFlowsScrollViewer"
+                                    Style="{StaticResource ScrollViewerStyle}"
+                                    VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=VerticalScrollBarVisibilityComboBox}">
                                     <StackPanel Orientation="Vertical">
                                         <Label Content="Item1" Style="{StaticResource LabelStyle}" />
                                         <Label Content="Item2" Style="{StaticResource LabelStyle}" />
@@ -131,6 +149,15 @@
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="VerticalScrollBarVisibilityPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=VerticalScrollBarVisibilityPopupButton}"
+                        PlacementTarget="{Binding ElementName=VerticalScrollBarVisibilityPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="VerticalScrollBarVisibilityComboBox,VerticalScrollBarVisibilityFitsScrollViewer,VerticalScrollBarVisibilityOverFlowsScrollViewer" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="HorizontalScrollBarVisibility" Style="{StaticResource ContentsExpander}">
@@ -147,6 +174,7 @@
                         <UniformGrid Rows="1">
                             <GroupBox Header="Fits" Style="{StaticResource SubGroupBox}">
                                 <ScrollViewer
+                                    x:Name="HorizontalScrollBarVisibilityFitsScrollViewer"
                                     HorizontalScrollBarVisibility="{Binding SelectedItem, ElementName=HorizontalScrollBarVisibilityComboBox}"
                                     Style="{StaticResource ScrollViewerStyle}"
                                     VerticalScrollBarVisibility="Disabled">
@@ -157,7 +185,11 @@
                                 </ScrollViewer>
                             </GroupBox>
                             <GroupBox Header="OverFlows" Style="{StaticResource SubGroupBox}">
-                                <ScrollViewer HorizontalScrollBarVisibility="{Binding SelectedItem, ElementName=HorizontalScrollBarVisibilityComboBox}" VerticalScrollBarVisibility="Disabled">
+                                <ScrollViewer
+                                    x:Name="HorizontalScrollBarVisibilityOverFlowsScrollViewer"
+                                    HorizontalScrollBarVisibility="{Binding SelectedItem, ElementName=HorizontalScrollBarVisibilityComboBox}"
+                                    Style="{StaticResource ScrollViewerStyle}"
+                                    VerticalScrollBarVisibility="Disabled">
                                     <StackPanel Orientation="Horizontal">
                                         <Label Content="Item1" Style="{StaticResource LabelStyle}" />
                                         <Label Content="Item2" Style="{StaticResource LabelStyle}" />
@@ -173,12 +205,21 @@
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="HorizontalScrollBarVisibilityPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=HorizontalScrollBarVisibilityPopupButton}"
+                        PlacementTarget="{Binding ElementName=HorizontalScrollBarVisibilityPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="HorizontalScrollBarVisibilityComboBox,HorizontalScrollBarVisibilityFitsScrollViewer,HorizontalScrollBarVisibilityOverFlowsScrollViewer" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="ComputedVerticalScrollBarVisibility&#10;ExtentHeight &#10;ViewportHeight&#10;ScrollableHeight&#10;VerticalOffset&#10;ContentVerticalOffset" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
-                        <GroupBox Header="ComputedVerticalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
+                        <GroupBox Header="VerticalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox"
                                 ItemsSource="{x:Static helpers:ScrollBarVisibilityHelper.AllScrollBarVisibilities}"
@@ -295,12 +336,21 @@
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="ComputedVerticalScrollBarVisibilityPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ComputedVerticalScrollBarVisibilityPopupButton}"
+                        PlacementTarget="{Binding ElementName=ComputedVerticalScrollBarVisibilityPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox,ComputedVerticalScrollBarVisibilityScrollViewerFits,ComputedVerticalScrollBarVisibilityScrollViewerOverFlows" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="ComputedHorizontalScrollBarVisibility&#10;ExtentWidth&#10;ViewportWidth&#10;ScrollableWidth&#10;HorizontalOffset&#10;ContentHorizontalOffset" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
-                        <GroupBox Header="ComputedHorizontalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
+                        <GroupBox Header="HorizontalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox"
                                 ItemsSource="{x:Static helpers:ScrollBarVisibilityHelper.AllScrollBarVisibilities}"
@@ -417,6 +467,16 @@
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="ComputedHorizontalScrollBarVisibilityPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ComputedHorizontalScrollBarVisibilityPopupButton}"
+                        PlacementTarget="{Binding ElementName=ComputedHorizontalScrollBarVisibilityPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox,ComputedHorizontalScrollBarVisibilityScrollViewerFits,ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+
                 </StackPanel>
             </Expander>
         </StackPanel>

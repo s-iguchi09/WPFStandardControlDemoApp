@@ -2,7 +2,7 @@
     <Style x:Key="HyperlinkToggleStyle" TargetType="ToggleButton">
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Padding" Value="4" />
-        <Setter Property="Content" Value="Code" />
+        <Setter Property="Content" Value="Show Code" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
