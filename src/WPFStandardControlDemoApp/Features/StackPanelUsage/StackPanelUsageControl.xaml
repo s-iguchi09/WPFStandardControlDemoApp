@@ -70,13 +70,13 @@
                                 <GroupBox Header="ZIndex(Item1)" Style="{StaticResource SubGroupBox}">
                                     <TextBox
                                         x:Name="ZIndexItem1Text"
-                                        behaviors:TextBoxIntOnlyBehavior.Enable="True"
+                                        behaviors:TextBoxIntInputBehavior.IsEnabled="True"
                                         Text="1" />
                                 </GroupBox>
                                 <GroupBox Header="ZIndex(Item2)" Style="{StaticResource SubGroupBox}">
                                     <TextBox
                                         x:Name="ZIndexItem2Text"
-                                        behaviors:TextBoxIntOnlyBehavior.Enable="True"
+                                        behaviors:TextBoxIntInputBehavior.IsEnabled="True"
                                         Text="2" />
                                 </GroupBox>
                             </UniformGrid>

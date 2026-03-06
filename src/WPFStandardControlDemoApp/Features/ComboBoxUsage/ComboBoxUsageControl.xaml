@@ -72,7 +72,7 @@
                         <GroupBox Header="MaxDropDownHeight" Style="{StaticResource SubGroupBox}">
                             <TextBox
                                 x:Name="MaxDropDownHeightTextBox"
-                                behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
                                 Text="100" />
                         </GroupBox>
                     </GroupBox>

@@ -379,20 +379,20 @@
                                 <GroupBox Header="MaxWidth" Style="{StaticResource SubGroupBox}">
                                     <TextBox
                                         x:Name="MaxWidthTextBox"
-                                        behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                        behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
                                         Text="100" />
                                 </GroupBox>
                                 <GroupBox Header="MinWidth" Style="{StaticResource SubGroupBox}">
                                     <TextBox
                                         x:Name="MinWidthTextBox"
-                                        behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                        behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
                                         Text="30" />
                                 </GroupBox>
                                 <GroupBox Header="Width" Style="{StaticResource SubGroupBox}">
                                     <StackPanel>
                                         <TextBox
                                             x:Name="WidthTextBox"
-                                            behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                            behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
                                             Text="25" />
                                     </StackPanel>
                                 </GroupBox>
@@ -467,20 +467,20 @@
                                 <GroupBox Header="MaxHeight" Style="{StaticResource SubGroupBox}">
                                     <TextBox
                                         x:Name="MaxHeightTextBox"
-                                        behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                        behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
                                         Text="100" />
                                 </GroupBox>
                                 <GroupBox Header="MinHeight" Style="{StaticResource SubGroupBox}">
                                     <TextBox
                                         x:Name="MinHeightTextBox"
-                                        behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                        behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
                                         Text="10" />
                                 </GroupBox>
                                 <GroupBox Header="Height" Style="{StaticResource SubGroupBox}">
                                     <StackPanel>
                                         <TextBox
                                             x:Name="HeightTextBox"
-                                            behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                            behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
                                             Text="20" />
                                     </StackPanel>
                                 </GroupBox>
@@ -567,13 +567,13 @@
                                 <GroupBox Header="ZIndex(Item1)" Style="{StaticResource SubGroupBox}">
                                     <TextBox
                                         x:Name="ZIndexItem1Text"
-                                        behaviors:TextBoxIntOnlyBehavior.Enable="True"
+                                        behaviors:TextBoxIntInputBehavior.IsEnabled="True"
                                         Text="1" />
                                 </GroupBox>
                                 <GroupBox Header="ZIndex(Item2)" Style="{StaticResource SubGroupBox}">
                                     <TextBox
                                         x:Name="ZIndexItem2Text"
-                                        behaviors:TextBoxIntOnlyBehavior.Enable="True"
+                                        behaviors:TextBoxIntInputBehavior.IsEnabled="True"
                                         Text="2" />
                                 </GroupBox>
                             </UniformGrid>

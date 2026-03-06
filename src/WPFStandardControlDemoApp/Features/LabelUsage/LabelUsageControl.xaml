@@ -77,7 +77,7 @@
                                     Text="LABEL" />
                             </GroupBox>
                             <GroupBox Header="Padding" Style="{StaticResource SubGroupBox}">
-                                <TextBox x:Name="PaddingTextBox" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
+                                <TextBox x:Name="PaddingTextBox" behaviors:TextBoxDoubleInputBehavior.IsEnabled="True" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
@@ -167,7 +167,7 @@
                                     Text="LABEL" />
                             </GroupBox>
                             <GroupBox Header="FontSize" Style="{StaticResource SubGroupBox}">
-                                <TextBox x:Name="FontSizeTextBox" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
+                                <TextBox x:Name="FontSizeTextBox" behaviors:TextBoxDoubleInputBehavior.IsEnabled="True" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
@@ -266,7 +266,7 @@
                                 <GroupBox Header="BorderThickness" Style="{StaticResource SubGroupBox}">
                                     <TextBox
                                         x:Name="BorderThicknessText"
-                                        behaviors:TextBoxDoubleOnlyBehavior.Enable="True"
+                                        behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
                                         Text="1" />
                                 </GroupBox>
                                 <GroupBox Header="BorderBrush" Style="{StaticResource SubGroupBox}">

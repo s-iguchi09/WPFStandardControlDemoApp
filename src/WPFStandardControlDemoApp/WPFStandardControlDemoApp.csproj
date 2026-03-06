@@ -30,4 +30,21 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3800.47" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="RawXaml\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RawXaml\*.xaml.raw" />
+  </ItemGroup>
+
+  <Target Name="GenerateRawXaml" BeforeTargets="BeforeBuild">
+    <ItemGroup>
+      <PageXaml Include="Features\*\*.xaml" />
+      <PageXaml Include="Features\*\*.xaml" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(PageXaml)" DestinationFiles="@(PageXaml->'RawXaml\%(Filename).xaml.raw')" OverwriteReadOnlyFiles="true" />
+  </Target>
+
 </Project>

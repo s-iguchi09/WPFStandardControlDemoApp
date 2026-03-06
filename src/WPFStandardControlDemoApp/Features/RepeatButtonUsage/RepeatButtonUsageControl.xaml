@@ -2,7 +2,7 @@
     x:Class="WPFStandardControlDemoApp.Features.RepeatButtonUsage.RepeatButtonUsageControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:behavior="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.RepeatButtonUsage"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -19,14 +19,14 @@
                             <GroupBox Header="Delay" Style="{StaticResource SubGroupBox}">
                                 <TextBox
                                     x:Name="Delay"
-                                    behavior:TextBoxIntOnlyBehavior.Enable="True"
+                                    behaviors:TextBoxIntInputBehavior.IsEnabled="True"
                                     InputMethod.IsInputMethodEnabled="False"
                                     Text="100" />
                             </GroupBox>
                             <GroupBox Header="Interval" Style="{StaticResource SubGroupBox}">
                                 <TextBox
                                     x:Name="Interval"
-                                    behavior:TextBoxIntOnlyBehavior.Enable="True"
+                                    behaviors:TextBoxIntInputBehavior.IsEnabled="True"
                                     InputMethod.IsInputMethodEnabled="False"
                                     Text="100" />
                             </GroupBox>

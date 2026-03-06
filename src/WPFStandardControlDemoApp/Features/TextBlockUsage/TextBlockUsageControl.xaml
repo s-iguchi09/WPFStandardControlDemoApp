@@ -125,7 +125,7 @@
                                     Text="TEXTBLOCK" />
                             </GroupBox>
                             <GroupBox Header="Padding" Style="{StaticResource SubGroupBox}">
-                                <TextBox x:Name="PaddingTextBox" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
+                                <TextBox x:Name="PaddingTextBox" behaviors:TextBoxDoubleInputBehavior.IsEnabled="True" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
@@ -215,7 +215,7 @@
                                     Text="TEXTBLOCK" />
                             </GroupBox>
                             <GroupBox Header="FontSize" Style="{StaticResource SubGroupBox}">
-                                <TextBox x:Name="FontSizeTextBox" behaviors:TextBoxDoubleOnlyBehavior.Enable="True" />
+                                <TextBox x:Name="FontSizeTextBox" behaviors:TextBoxDoubleInputBehavior.IsEnabled="True" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
