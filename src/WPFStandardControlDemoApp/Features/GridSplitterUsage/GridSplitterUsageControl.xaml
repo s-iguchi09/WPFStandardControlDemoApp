@@ -1,0 +1,1246 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.GridSplitterUsage.GridSplitterUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
+    xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.GridSplitterUsage"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="4000"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageHeader}" Text="GridSplitter" />
+            <Expander Header="DragIncrement" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="DragIncrement" Style="{StaticResource SubGroupBox}">
+                            <TextBox
+                                x:Name="DragIncrementTextBox"
+                                behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                Text="1.0" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                HorizontalAlignment="Stretch"
+                                Background="LightBlue"
+                                Content="Item1" />
+                            <GridSplitter
+                                Grid.Column="1"
+                                Width="5"
+                                Background="Gray"
+                                Cursor="SizeWE"
+                                DragIncrement="{Binding Text, ElementName=DragIncrementTextBox}"
+                                ResizeBehavior="PreviousAndNext" />
+                            <Label
+                                Grid.Column="2"
+                                HorizontalAlignment="Stretch"
+                                Background="SkyBlue"
+                                Content="Item2" />
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="KeyboardIncrement" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="KeyboardIncrement" Style="{StaticResource SubGroupBox}">
+                            <TextBox
+                                x:Name="KeyboardIncrementTextBox"
+                                behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                Text="1.0" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                HorizontalAlignment="Stretch"
+                                Background="LightBlue"
+                                Content="Item1" />
+                            <GridSplitter
+                                Grid.Column="1"
+                                Width="5"
+                                Background="Gray"
+                                Cursor="SizeWE"
+                                KeyboardIncrement="{Binding Text, ElementName=KeyboardIncrementTextBox}"
+                                ResizeBehavior="PreviousAndNext" />
+                            <Label
+                                Grid.Column="2"
+                                HorizontalAlignment="Stretch"
+                                Background="SkyBlue"
+                                Content="Item2"
+                                Cursor="" />
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="ShowsPreview" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="ShowsPreview" Style="{StaticResource SubGroupBox}">
+                            <CheckBox
+                                x:Name="ShowsPreviewCheckBox"
+                                VerticalContentAlignment="Center"
+                                Content="ShowsPreview" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                HorizontalAlignment="Stretch"
+                                Background="LightBlue"
+                                Content="Item1" />
+                            <GridSplitter
+                                Grid.Column="1"
+                                Width="5"
+                                Background="Gray"
+                                Cursor="SizeWE"
+                                ShowsPreview="{Binding IsChecked, ElementName=ShowsPreviewCheckBox}" />
+                            <Label
+                                Grid.Column="2"
+                                HorizontalAlignment="Stretch"
+                                Background="SkyBlue"
+                                Content="Item2"
+                                Cursor="" />
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="ResizeDirection" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="ResizeDirection" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="ResizeDirectionComboBox"
+                                ItemsSource="{x:Static helpers:GridResizeDirectionHelper.AllGridResizeDirection}"
+                                SelectedIndex="0" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Grid Height="100">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Background="#FFCCE5FF"
+                                Content="TopLeft" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Background="#FFFFE5CC"
+                                Content="TopRight" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Background="#FFD5FFCC"
+                                Content="BottomLeft" />
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Background="#FFFFCCCC"
+                                Content="BottomRight" />
+                            <GridSplitter
+                                Grid.RowSpan="3"
+                                Grid.Column="1"
+                                Width="5"
+                                VerticalAlignment="Stretch"
+                                Background="Gray"
+                                ResizeBehavior="PreviousAndNext"
+                                ResizeDirection="{Binding SelectedValue, ElementName=ResizeDirectionComboBox}" />
+                            <GridSplitter
+                                Grid.Row="1"
+                                Grid.ColumnSpan="3"
+                                Height="5"
+                                HorizontalAlignment="Stretch"
+                                Background="Gray"
+                                ResizeBehavior="PreviousAndNext"
+                                ResizeDirection="{Binding SelectedValue, ElementName=ResizeDirectionComboBox}" />
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="PreviewStyle" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <CheckBox
+                            x:Name="PreviewStyleForPreviewStyleCheckBox"
+                            VerticalContentAlignment="Center"
+                            Content="ShowsPreview"
+                            IsChecked="True" />
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="PreviewStyle=Default" Style="{StaticResource SubGroupBox}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="*" MinWidth="0" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        HorizontalAlignment="Stretch"
+                                        Background="LightBlue"
+                                        Content="Item1(Star)" />
+                                    <GridSplitter
+                                        Grid.Column="1"
+                                        Width="7"
+                                        Background="Gray"
+                                        Cursor="SizeWE"
+                                        ResizeBehavior="PreviousAndNext"
+                                        ShowsPreview="{Binding IsChecked, ElementName=PreviewStyleForPreviewStyleCheckBox}" />
+                                    <Label
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Stretch"
+                                        Background="SkyBlue"
+                                        Content="Item2(Star)"
+                                        Cursor="" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="PreviewStyle=Template" Style="{StaticResource SubGroupBox}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="*" MinWidth="0" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        HorizontalAlignment="Stretch"
+                                        Background="LightBlue"
+                                        Content="Item1(Star)" />
+                                    <GridSplitter
+                                        Grid.Column="1"
+                                        Width="7"
+                                        Background="Gray"
+                                        Cursor="SizeWE"
+                                        ResizeBehavior="PreviousAndNext"
+                                        ShowsPreview="{Binding IsChecked, ElementName=PreviewStyleForPreviewStyleCheckBox}">
+                                        <GridSplitter.PreviewStyle>
+                                            <Style TargetType="Control">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Control">
+                                                            <Border
+                                                                Background="YellowGreen"
+                                                                BorderBrush="IndianRed"
+                                                                BorderThickness="2"
+                                                                SnapsToDevicePixels="True" />
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </GridSplitter.PreviewStyle>
+
+                                    </GridSplitter>
+                                    <Label
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Stretch"
+                                        Background="SkyBlue"
+                                        Content="Item2(Star)"
+                                        Cursor="" />
+                                </Grid>
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="ResizeBehavior" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="BasedOnAlignment" Style="{StaticResource SubGroupBox}">
+                                <StackPanel>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="BasedOnAlignment" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="BasedOnAlignment" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="BasedOnAlignment" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="BasedOnAlignment" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="BasedOnAlignment" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="BasedOnAlignment" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="BasedOnAlignment" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="BasedOnAlignment" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="BasedOnAlignment" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="CurrentAndNext" Style="{StaticResource SubGroupBox}">
+                                <StackPanel>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="CurrentAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="CurrentAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="CurrentAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="CurrentAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="CurrentAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="CurrentAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="CurrentAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="CurrentAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="CurrentAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="PreviousAndCurrent" Style="{StaticResource SubGroupBox}">
+                                <StackPanel>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndCurrent" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndCurrent" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndCurrent" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndCurrent" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndCurrent" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndCurrent" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndCurrent" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndCurrent" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndCurrent" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="PreviousAndNext" Style="{StaticResource SubGroupBox}">
+                                <StackPanel>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(Star)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(auto)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="*" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(Star)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(auto)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="200" MinWidth="0" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                                HorizontalAlignment="Stretch"
+                                                Background="LightBlue"
+                                                Content="Item1(manual)" />
+                                            <GridSplitter
+                                                Grid.Column="1"
+                                                Width="5"
+                                                Background="Gray"
+                                                Cursor="SizeWE"
+                                                ResizeBehavior="PreviousAndNext" />
+                                            <Label
+                                                Grid.Column="2"
+                                                HorizontalAlignment="Stretch"
+                                                Background="SkyBlue"
+                                                Content="Item2(manual)"
+                                                Cursor="" />
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="IsDragging(Thumb)" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" MinWidth="0" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    HorizontalAlignment="Stretch"
+                                    Background="LightBlue"
+                                    Content="Item1(Star)" />
+                                <GridSplitter
+                                    x:Name="IsDraggingGridSplitter"
+                                    Grid.Column="1"
+                                    Width="5"
+                                    Background="Gray"
+                                    Cursor="SizeWE"
+                                    ResizeBehavior="PreviousAndNext" />
+                                <Label
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Stretch"
+                                    Background="SkyBlue"
+                                    Content="Item2(Star)"
+                                    Cursor="" />
+                            </Grid>
+                        </Border>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <GroupBox Header="IsDragging" Style="{StaticResource SubGroupBox}">
+                            <TextBlock Text="{Binding IsDragging, ElementName=IsDraggingGridSplitter}" />
+                        </GroupBox>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
+

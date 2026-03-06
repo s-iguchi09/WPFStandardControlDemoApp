@@ -1,0 +1,425 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.ScrollViewerUsage.ScrollViewerUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
+    xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.ScrollViewerUsage"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="4000"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style x:Key="ScrollViewerStyle" TargetType="ScrollViewer">
+            <Setter Property="Height" Value="100" />
+        </Style>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="ScrollViewerUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageHeader}" Text="ScrollViewer" />
+            <Expander Header="CanContentScroll" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="CanContentScroll" Style="{StaticResource SubGroupBox}">
+                            <CheckBox
+                                x:Name="CanContentScrollCheckBox"
+                                VerticalContentAlignment="Center"
+                                Content="CanContentScroll" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <ScrollViewer
+                            x:Name="CanContentScrollScrollViewer"
+                            CanContentScroll="{Binding IsChecked, ElementName=CanContentScrollCheckBox}"
+                            Style="{StaticResource ScrollViewerStyle}">
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Item1" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item2" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item3" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item4" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item5" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item6" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item7" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item8" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item9" Style="{StaticResource LabelStyle}" />
+                            </StackPanel>
+                        </ScrollViewer>
+                    </GroupBox>
+                    <ToggleButton x:Name="CanContentScrollPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=CanContentScrollPopupButton}"
+                        PlacementTarget="{Binding ElementName=CanContentScrollPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="CanContentScrollCheckBox,CanContentScrollScrollViewer" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="IsDeferredScrollingEnabled" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="IsDeferredScrollingEnabled" Style="{StaticResource SubGroupBox}">
+                            <CheckBox
+                                x:Name="IsDeferredScrollingEnabledCheckBox"
+                                VerticalContentAlignment="Center"
+                                Content="IsDeferredScrollingEnabled" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <ScrollViewer IsDeferredScrollingEnabled="{Binding IsChecked, ElementName=IsDeferredScrollingEnabledCheckBox}" Style="{StaticResource ScrollViewerStyle}">
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Item1" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item2" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item3" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item4" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item5" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item6" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item7" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item8" Style="{StaticResource LabelStyle}" />
+                                <Label Content="Item9" Style="{StaticResource LabelStyle}" />
+                            </StackPanel>
+                        </ScrollViewer>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="VerticalScrollBarVisibility" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="VerticalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="VerticalScrollBarVisibilityComboBox"
+                                ItemsSource="{x:Static helpers:ScrollBarVisibilityHelper.AllScrollBarVisibilities}"
+                                SelectedIndex="0" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Rows="1">
+                            <GroupBox Header="Fits" Style="{StaticResource SubGroupBox}">
+                                <ScrollViewer Style="{StaticResource ScrollViewerStyle}" VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=VerticalScrollBarVisibilityComboBox}">
+                                    <StackPanel>
+                                        <Label Content="Item1" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item2" Style="{StaticResource LabelStyle}" />
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </GroupBox>
+                            <GroupBox Header="OverFlows" Style="{StaticResource SubGroupBox}">
+                                <ScrollViewer Style="{StaticResource ScrollViewerStyle}" VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=VerticalScrollBarVisibilityComboBox}">
+                                    <StackPanel Orientation="Vertical">
+                                        <Label Content="Item1" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item2" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item3" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item4" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item5" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item6" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item7" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item8" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item9" Style="{StaticResource LabelStyle}" />
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="HorizontalScrollBarVisibility" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="HorizontalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="HorizontalScrollBarVisibilityComboBox"
+                                ItemsSource="{x:Static helpers:ScrollBarVisibilityHelper.AllScrollBarVisibilities}"
+                                SelectedIndex="0" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Rows="1">
+                            <GroupBox Header="Fits" Style="{StaticResource SubGroupBox}">
+                                <ScrollViewer
+                                    HorizontalScrollBarVisibility="{Binding SelectedItem, ElementName=HorizontalScrollBarVisibilityComboBox}"
+                                    Style="{StaticResource ScrollViewerStyle}"
+                                    VerticalScrollBarVisibility="Disabled">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Item1" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item2" Style="{StaticResource LabelStyle}" />
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </GroupBox>
+                            <GroupBox Header="OverFlows" Style="{StaticResource SubGroupBox}">
+                                <ScrollViewer HorizontalScrollBarVisibility="{Binding SelectedItem, ElementName=HorizontalScrollBarVisibilityComboBox}" VerticalScrollBarVisibility="Disabled">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Item1" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item2" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item3" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item4" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item5" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item6" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item7" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item8" Style="{StaticResource LabelStyle}" />
+                                        <Label Content="Item9" Style="{StaticResource LabelStyle}" />
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="ComputedVerticalScrollBarVisibility&#10;ExtentHeight &#10;ViewportHeight&#10;ScrollableHeight&#10;VerticalOffset&#10;ContentVerticalOffset" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="ComputedVerticalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox"
+                                ItemsSource="{x:Static helpers:ScrollBarVisibilityHelper.AllScrollBarVisibilities}"
+                                SelectedIndex="0" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Rows="1">
+                            <GroupBox Header="Fits" Style="{StaticResource SubGroupBox}">
+                                <DockPanel>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ContentVerticalOffset"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ContentVerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="VerticalOffset"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding VerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ScrollableHeight"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ScrollableHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ViewportHeight"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ViewportHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ExtentHeight"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ExtentHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ComputedVerticalScrollBarVisibility"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ComputedVerticalScrollBarVisibility, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <ScrollViewer
+                                        x:Name="ComputedVerticalScrollBarVisibilityScrollViewerFits"
+                                        Style="{StaticResource ScrollViewerStyle}"
+                                        VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox}">
+                                        <StackPanel>
+                                            <Label Content="Item1" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item2" Style="{StaticResource LabelStyle}" />
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </DockPanel>
+                            </GroupBox>
+                            <GroupBox Header="OverFlows" Style="{StaticResource SubGroupBox}">
+                                <DockPanel>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ContentVerticalOffset"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ContentVerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="VerticalOffset"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding VerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ScrollableHeight"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ScrollableHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ViewportHeight"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ViewportHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ExtentHeight"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ExtentHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ComputedVerticalScrollBarVisibility"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ComputedVerticalScrollBarVisibility, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+                                    <ScrollViewer
+                                        x:Name="ComputedVerticalScrollBarVisibilityScrollViewerOverFlows"
+                                        Style="{StaticResource ScrollViewerStyle}"
+                                        VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox}">
+                                        <StackPanel Orientation="Vertical">
+                                            <Label Content="Item1" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item2" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item3" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item4" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item5" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item6" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item7" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item8" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item9" Style="{StaticResource LabelStyle}" />
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </DockPanel>
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <Expander Header="ComputedHorizontalScrollBarVisibility&#10;ExtentWidth&#10;ViewportWidth&#10;ScrollableWidth&#10;HorizontalOffset&#10;ContentHorizontalOffset" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="ComputedHorizontalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox"
+                                ItemsSource="{x:Static helpers:ScrollBarVisibilityHelper.AllScrollBarVisibilities}"
+                                SelectedIndex="0" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Rows="1">
+                            <GroupBox Header="Fits" Style="{StaticResource SubGroupBox}">
+                                <DockPanel>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ContentHorizontalOffset"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ContentHorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="HorizontalOffset"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding HorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ScrollableWidth"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ScrollableWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ViewportWidth"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ViewportWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ExtentWidth"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ExtentWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ComputedHorizontalScrollBarVisibility"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ComputedHorizontalScrollBarVisibility, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                    </GroupBox>
+                                    <ScrollViewer
+                                        x:Name="ComputedHorizontalScrollBarVisibilityScrollViewerFits"
+                                        HorizontalScrollBarVisibility="{Binding SelectedItem, ElementName=ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox}"
+                                        Style="{StaticResource ScrollViewerStyle}"
+                                        VerticalScrollBarVisibility="Disabled">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Item1" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item2" Style="{StaticResource LabelStyle}" />
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </DockPanel>
+                            </GroupBox>
+                            <GroupBox Header="OverFlows" Style="{StaticResource SubGroupBox}">
+                                <DockPanel>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ContentHorizontalOffset"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ContentHorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="HorizontalOffset"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding HorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ScrollableWidth"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ScrollableWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ViewportWidth"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ViewportWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ExtentWidth"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ExtentWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+                                    <GroupBox
+                                        DockPanel.Dock="Bottom"
+                                        Header="ComputedHorizontalScrollBarVisibility"
+                                        Style="{StaticResource SubGroupBox}">
+                                        <TextBlock Text="{Binding ComputedHorizontalScrollBarVisibility, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                    </GroupBox>
+                                    <ScrollViewer
+                                        x:Name="ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows"
+                                        HorizontalScrollBarVisibility="{Binding SelectedItem, ElementName=ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox}"
+                                        VerticalScrollBarVisibility="Disabled">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="Item1" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item2" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item3" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item4" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item5" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item6" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item7" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item8" Style="{StaticResource LabelStyle}" />
+                                            <Label Content="Item9" Style="{StaticResource LabelStyle}" />
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </DockPanel>
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
+

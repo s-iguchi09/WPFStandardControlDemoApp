@@ -7,17 +7,22 @@
     xmlns:checkbox="clr-namespace:WPFStandardControlDemoApp.Features.CheckBoxUsage"
     xmlns:combobox="clr-namespace:WPFStandardControlDemoApp.Features.ComboBoxUsage"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dockpanel="clr-namespace:WPFStandardControlDemoApp.Features.DockPanelUsage"
     xmlns:grid="clr-namespace:WPFStandardControlDemoApp.Features.GridUsage"
+    xmlns:gridsplitter="clr-namespace:WPFStandardControlDemoApp.Features.GridSplitterUsage"
     xmlns:home="clr-namespace:WPFStandardControlDemoApp.Features.Home"
     xmlns:label="clr-namespace:WPFStandardControlDemoApp.Features.LabelUsage"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:radiobutton="clr-namespace:WPFStandardControlDemoApp.Features.RadioButtonUsage"
     xmlns:repeatbutton="clr-namespace:WPFStandardControlDemoApp.Features.RepeatButtonUsage"
+    xmlns:scrollviewer="clr-namespace:WPFStandardControlDemoApp.Features.ScrollViewerUsage"
     xmlns:stackpanel="clr-namespace:WPFStandardControlDemoApp.Features.StackPanelUsage"
     xmlns:textblock="clr-namespace:WPFStandardControlDemoApp.Features.TextBlockUsage"
     xmlns:textbox="clr-namespace:WPFStandardControlDemoApp.Features.TextBoxUsage"
     xmlns:togglebutton="clr-namespace:WPFStandardControlDemoApp.Features.ToggleButtonUsage"
+    xmlns:uniformgrid="clr-namespace:WPFStandardControlDemoApp.Features.UniformGridUsage"
+    xmlns:wrappanel="clr-namespace:WPFStandardControlDemoApp.Features.WrapPanelUsage"
     xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
     Title="WPFStandardControlDemoApp"
     Width="1200"
@@ -36,6 +41,11 @@
         <label:LabelUsageViewModel x:Key="LabelUsageViewModel" />
         <grid:GridUsageViewModel x:Key="GridUsageViewModel" />
         <stackpanel:StackPanelUsageViewModel x:Key="StackPanelUsageViewModel" />
+        <wrappanel:WrapPanelUsageViewModel x:Key="WrapPanelUsageViewModel" />
+        <dockpanel:DockPanelUsageViewModel x:Key="DockPanelUsageViewModel" />
+        <uniformgrid:UniformGridUsageViewModel x:Key="UniformGridUsageViewModel" />
+        <gridsplitter:GridSplitterUsageViewModel x:Key="GridSplitterUsageViewModel" />
+        <scrollviewer:ScrollViewerUsageViewModel x:Key="ScrollViewerUsageViewModel" />
 
         <about:AboutViewModel x:Key="AboutViewModel" />
     </Window.Resources>
@@ -85,6 +95,21 @@
                 <DataTemplate DataType="{x:Type stackpanel:StackPanelUsageViewModel}">
                     <stackpanel:StackPanelUsageControl DataContext="{StaticResource StackPanelUsageViewModel}" />
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type wrappanel:WrapPanelUsageViewModel}">
+                    <wrappanel:WrapPanelUsageControl DataContext="{StaticResource WrapPanelUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type dockpanel:DockPanelUsageViewModel}">
+                    <dockpanel:DockPanelUsageControl DataContext="{StaticResource DockPanelUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type uniformgrid:UniformGridUsageViewModel}">
+                    <uniformgrid:UniformGridUsageControl DataContext="{StaticResource UniformGridUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type gridsplitter:GridSplitterUsageViewModel}">
+                    <gridsplitter:GridSplitterUsageControl DataContext="{StaticResource GridSplitterUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type scrollviewer:ScrollViewerUsageViewModel}">
+                    <scrollviewer:ScrollViewerUsageControl DataContext="{StaticResource ScrollViewerUsageViewModel}" />
+                </DataTemplate>
 
                 <DataTemplate DataType="{x:Type about:AboutViewModel}">
                     <about:AboutControl DataContext="{StaticResource AboutViewModel}" />
@@ -109,6 +134,11 @@
                 <ListBoxItem Content="{StaticResource LabelUsageViewModel}" />
                 <ListBoxItem Content="{StaticResource GridUsageViewModel}" />
                 <ListBoxItem Content="{StaticResource StackPanelUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource WrapPanelUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource DockPanelUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource UniformGridUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource GridSplitterUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource ScrollViewerUsageViewModel}" />
 
                 <ListBoxItem Content="{StaticResource AboutViewModel}" />
             </ListBox>
