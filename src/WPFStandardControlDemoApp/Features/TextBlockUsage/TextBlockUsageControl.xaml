@@ -15,72 +15,127 @@
     <UserControl.Resources>
         <converters:StringToThicknessConverter x:Key="StringToThicknessConverter" />
         <converters:ToDoubleConverter x:Key="ToDoubleConverter" />
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="TextBlockUsageControl.xaml.raw" />
+        </Style>
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="TextBlock" />
+
             <Expander Header="Text" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
-                            <TextBox x:Name="Text" AcceptsReturn="True" />
+                            <TextBox x:Name="TextTextTextBox" AcceptsReturn="True" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock Text="{Binding Text, ElementName=Text}" />
+                        <TextBlock x:Name="TextResultTextBlock" Text="{Binding Text, ElementName=TextTextTextBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="TextPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=TextPopupButton}"
+                        PlacementTarget="{Binding ElementName=TextPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="TextTextTextBox,TextResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="TextWrapping" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
-                            <TextBox x:Name="TextWrapping" AcceptsReturn="True" />
+                            <TextBox x:Name="TextWrappingTextTextBox" AcceptsReturn="True" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <UniformGrid Rows="1">
                             <GroupBox Header="NoWrap" Style="{StaticResource SubGroupBox}">
-                                <TextBlock Text="{Binding Text, ElementName=TextWrapping}" TextWrapping="NoWrap" />
+                                <TextBlock
+                                    x:Name="TextWrappingNoWrapResultTextBlock"
+                                    Text="{Binding Text, ElementName=TextWrappingTextTextBox}"
+                                    TextWrapping="NoWrap" />
                             </GroupBox>
                             <GroupBox Header="Wrap" Style="{StaticResource SubGroupBox}">
-                                <TextBlock Text="{Binding Text, ElementName=TextWrapping}" TextWrapping="Wrap" />
+                                <TextBlock
+                                    x:Name="TextWrappingWrapResultTextBlock"
+                                    Text="{Binding Text, ElementName=TextWrappingTextTextBox}"
+                                    TextWrapping="Wrap" />
                             </GroupBox>
                             <GroupBox Header="WrapWithOverflow" Style="{StaticResource SubGroupBox}">
-                                <TextBlock Text="{Binding Text, ElementName=TextWrapping}" TextWrapping="WrapWithOverflow" />
+                                <TextBlock
+                                    x:Name="TextWrappingWrapWithOverflowResultTextBlock"
+                                    Text="{Binding Text, ElementName=TextWrappingTextTextBox}"
+                                    TextWrapping="WrapWithOverflow" />
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="TextWrappingPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=TextWrappingPopupButton}"
+                        PlacementTarget="{Binding ElementName=TextWrappingPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="TextWrappingTextTextBox,TextWrappingNoWrapResultTextBlock,TextWrappingWrapResultTextBlock,TextWrappingWrapWithOverflowResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="TextTrimming" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
-                            <TextBox x:Name="TextTrimming" AcceptsReturn="True" />
+                            <TextBox x:Name="TextTrimmingTextTextBox" AcceptsReturn="True" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <UniformGrid Rows="1">
                             <GroupBox Header="None" Style="{StaticResource SubGroupBox}">
-                                <TextBlock Text="{Binding Text, ElementName=TextTrimming}" TextTrimming="None" />
+                                <TextBlock
+                                    x:Name="TextTrimmingNoneResultTextBlock"
+                                    Text="{Binding Text, ElementName=TextTrimmingTextTextBox}"
+                                    TextTrimming="None" />
                             </GroupBox>
                             <GroupBox Header="WordEllipsis" Style="{StaticResource SubGroupBox}">
-                                <TextBlock Text="{Binding Text, ElementName=TextTrimming}" TextTrimming="WordEllipsis" />
+                                <TextBlock
+                                    x:Name="TextTrimmingWordEllipsisResultTextBlock"
+                                    Text="{Binding Text, ElementName=TextTrimmingTextTextBox}"
+                                    TextTrimming="WordEllipsis" />
                             </GroupBox>
                             <GroupBox Header="CharacterEllipsis" Style="{StaticResource SubGroupBox}">
-                                <TextBlock Text="{Binding Text, ElementName=TextTrimming}" TextTrimming="CharacterEllipsis" />
+                                <TextBlock
+                                    x:Name="TextTrimmingCharacterEllipsisResultTextBlock"
+                                    Text="{Binding Text, ElementName=TextTrimmingTextTextBox}"
+                                    TextTrimming="CharacterEllipsis" />
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="TextTrimmingPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=TextTrimmingPopupButton}"
+                        PlacementTarget="{Binding ElementName=TextTrimmingPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="TextTrimmingTextTextBox,TextTrimmingNoneResultTextBlock,TextTrimmingWordEllipsisResultTextBlock,TextTrimmingCharacterEllipsisResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="TextAlignment" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                             <TextBox
-                                x:Name="TextAlignment"
+                                x:Name="TextAlignmentTextTextBox"
                                 AcceptsReturn="True"
                                 Text="TEXTBLOCK" />
                         </GroupBox>
@@ -89,39 +144,53 @@
                         <UniformGrid Rows="1">
                             <GroupBox Header="Left" Style="{StaticResource SubGroupBox}">
                                 <TextBlock
-                                    Text="{Binding Text, ElementName=TextAlignment}"
+                                    x:Name="TextAlignmentLeftResultTextBlock"
+                                    Text="{Binding Text, ElementName=TextAlignmentTextTextBox}"
                                     TextAlignment="Left"
                                     TextWrapping="Wrap" />
                             </GroupBox>
                             <GroupBox Header="Right" Style="{StaticResource SubGroupBox}">
                                 <TextBlock
-                                    Text="{Binding Text, ElementName=TextAlignment}"
+                                    x:Name="TextAlignmentRightResultTextBlock"
+                                    Text="{Binding Text, ElementName=TextAlignmentTextTextBox}"
                                     TextAlignment="Right"
                                     TextWrapping="Wrap" />
                             </GroupBox>
                             <GroupBox Header="Center" Style="{StaticResource SubGroupBox}">
                                 <TextBlock
-                                    Text="{Binding Text, ElementName=TextAlignment}"
+                                    x:Name="TextAlignmentCenterResultTextBlock"
+                                    Text="{Binding Text, ElementName=TextAlignmentTextTextBox}"
                                     TextAlignment="Center"
                                     TextWrapping="Wrap" />
                             </GroupBox>
                             <GroupBox Header="Justify" Style="{StaticResource SubGroupBox}">
                                 <TextBlock
-                                    Text="{Binding Text, ElementName=TextAlignment}"
+                                    x:Name="TextAlignmentJustifyResultTextBlock"
+                                    Text="{Binding Text, ElementName=TextAlignmentTextTextBox}"
                                     TextAlignment="Justify"
                                     TextWrapping="Wrap" />
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="TextAlignmentPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=TextAlignmentPopupButton}"
+                        PlacementTarget="{Binding ElementName=TextAlignmentPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="TextAlignmentTextTextBox,TextAlignmentLeftResultTextBlock,TextAlignmentRightResultTextBlock,TextAlignmentCenterResultTextBlock,TextAlignmentJustifyResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="Padding" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="PaddingText"
+                                    x:Name="PaddingTextTextBox"
                                     AcceptsReturn="True"
                                     Text="TEXTBLOCK" />
                             </GroupBox>
@@ -131,17 +200,30 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock Padding="{Binding Text, ElementName=PaddingTextBox, Converter={StaticResource StringToThicknessConverter}}" Text="{Binding Text, ElementName=PaddingText}" />
+                        <TextBlock
+                            x:Name="PaddingResultTextBlock"
+                            Padding="{Binding Text, ElementName=PaddingTextBox, Converter={StaticResource StringToThicknessConverter}}"
+                            Text="{Binding Text, ElementName=PaddingTextTextBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="PaddingPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=PaddingPopupButton}"
+                        PlacementTarget="{Binding ElementName=PaddingPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PaddingTextTextBox,PaddingTextBox,PaddingResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="FontWeight" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="FontWeightText"
+                                    x:Name="FontWeightTextTextBox"
                                     AcceptsReturn="True"
                                     Text="TEXTBLOCK" />
                             </GroupBox>
@@ -154,20 +236,32 @@
                                     SelectedValuePath="Value" />
                             </GroupBox>
                         </StackPanel>
-
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock FontWeight="{Binding SelectedValue, ElementName=FontWeightComboBox}" Text="{Binding Text, ElementName=FontWeightText}" />
+                        <TextBlock
+                            x:Name="FontWeightResultTextBlock"
+                            FontWeight="{Binding SelectedValue, ElementName=FontWeightComboBox}"
+                            Text="{Binding Text, ElementName=FontWeightTextTextBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="FontWeightPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=FontWeightPopupButton}"
+                        PlacementTarget="{Binding ElementName=FontWeightPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="FontWeightTextTextBox,FontWeightComboBox,FontWeightResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="FontStyle" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="FontStyleText"
+                                    x:Name="FontStyleTextTextBox"
                                     AcceptsReturn="True"
                                     Text="TEXTBLOCK" />
                             </GroupBox>
@@ -182,17 +276,30 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock FontStyle="{Binding SelectedValue, ElementName=FontStyleComboBox}" Text="{Binding Text, ElementName=FontStyleText}" />
+                        <TextBlock
+                            x:Name="FontStyleResultTextBlock"
+                            FontStyle="{Binding SelectedValue, ElementName=FontStyleComboBox}"
+                            Text="{Binding Text, ElementName=FontStyleTextTextBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="FontStylePopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=FontStylePopupButton}"
+                        PlacementTarget="{Binding ElementName=FontStylePopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="FontStyleTextTextBox,FontStyleComboBox,FontStyleResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="FontStretch" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="FontStretchText"
+                                    x:Name="FontStretchTextTextBox"
                                     AcceptsReturn="True"
                                     Text="TEXTBLOCK" />
                             </GroupBox>
@@ -207,17 +314,30 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock FontStretch="{Binding SelectedValue, ElementName=FontStretchComboBox}" Text="{Binding Text, ElementName=FontStretchText}" />
+                        <TextBlock
+                            x:Name="FontStretchResultTextBlock"
+                            FontStretch="{Binding SelectedValue, ElementName=FontStretchComboBox}"
+                            Text="{Binding Text, ElementName=FontStretchTextTextBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="FontStretchPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=FontStretchPopupButton}"
+                        PlacementTarget="{Binding ElementName=FontStretchPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="FontStretchTextTextBox,FontStretchComboBox,FontStretchResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="FontSize" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="FontSizeText"
+                                    x:Name="FontSizeTextTextBox"
                                     AcceptsReturn="True"
                                     Text="TEXTBLOCK" />
                             </GroupBox>
@@ -227,17 +347,30 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock FontSize="{Binding Text, ElementName=FontSizeTextBox, Converter={StaticResource ToDoubleConverter}}" Text="{Binding Text, ElementName=FontSizeText}" />
+                        <TextBlock
+                            x:Name="FontSizeResultTextBlock"
+                            FontSize="{Binding Text, ElementName=FontSizeTextBox, Converter={StaticResource ToDoubleConverter}}"
+                            Text="{Binding Text, ElementName=FontSizeTextTextBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="FontSizePopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=FontSizePopupButton}"
+                        PlacementTarget="{Binding ElementName=FontSizePopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="FontSizeTextTextBox,FontSizeTextBox,FontSizeResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="FontFamily" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="FontFamilyText"
+                                    x:Name="FontFamilyTextTextBox"
                                     AcceptsReturn="True"
                                     Text="TEXTBLOCK" />
                             </GroupBox>
@@ -251,17 +384,30 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock FontFamily="{Binding SelectedValue, ElementName=FontFamilyComboBox}" Text="{Binding Text, ElementName=FontFamilyText}" />
+                        <TextBlock
+                            x:Name="FontFamilyResultTextBlock"
+                            FontFamily="{Binding SelectedValue, ElementName=FontFamilyComboBox}"
+                            Text="{Binding Text, ElementName=FontFamilyTextTextBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="FontFamilyPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=FontFamilyPopupButton}"
+                        PlacementTarget="{Binding ElementName=FontFamilyPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="FontFamilyTextTextBox,FontFamilyComboBox,FontFamilyResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="Background" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="BackgroundText"
+                                    x:Name="BackgroundTextTextBox"
                                     AcceptsReturn="True"
                                     Text="TEXTBLOCK" />
                             </GroupBox>
@@ -277,17 +423,30 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock Background="{Binding SelectedItem.Value, ElementName=BackgroundComboBox}" Text="{Binding Text, ElementName=BackgroundText}" />
+                        <TextBlock
+                            x:Name="BackgroundResultTextBlock"
+                            Background="{Binding SelectedItem.Value, ElementName=BackgroundComboBox}"
+                            Text="{Binding Text, ElementName=BackgroundTextTextBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="BackgroundPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=BackgroundPopupButton}"
+                        PlacementTarget="{Binding ElementName=BackgroundPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="BackgroundTextTextBox,BackgroundComboBox,BackgroundResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="Foreground" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="ForegroundText"
+                                    x:Name="ForegroundTextTextBox"
                                     AcceptsReturn="True"
                                     Text="TEXTBLOCK" />
                             </GroupBox>
@@ -303,27 +462,40 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <TextBlock Foreground="{Binding SelectedItem.Value, ElementName=ForegroundComboBox}" Text="{Binding Text, ElementName=ForegroundText}" />
+                        <TextBlock
+                            x:Name="ForegroundResultTextBlock"
+                            Foreground="{Binding SelectedItem.Value, ElementName=ForegroundComboBox}"
+                            Text="{Binding Text, ElementName=ForegroundTextTextBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="ForegroundPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ForegroundPopupButton}"
+                        PlacementTarget="{Binding ElementName=ForegroundPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ForegroundTextTextBox,ForegroundComboBox,ForegroundResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="LineHeight&#10;LineStackingStrategy" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="LineHeightText"
+                                    x:Name="LineHeightTextTextBox"
                                     AcceptsReturn="True"
                                     Text="TEXTBLOCK&#10;TEXTBLOCK&#10;TEXTBLOCK&#10;TEXTBLOCK" />
                             </GroupBox>
                             <UniformGrid Rows="1">
                                 <GroupBox Header="LineHeight" Style="{StaticResource SubGroupBox}">
-                                    <TextBox x:Name="LineHeight" Text="5" />
+                                    <TextBox x:Name="LineHeightTextBox" Text="5" />
                                 </GroupBox>
                                 <GroupBox Header="LineStackingStrategy" Style="{StaticResource SubGroupBox}">
                                     <ComboBox
-                                        x:Name="LineStackingStrategy"
+                                        x:Name="LineStackingStrategyComboBox"
                                         DisplayMemberPath="Name"
                                         ItemsSource="{markupextensions:EnumBindingSource EnumType=LineStackingStrategy}"
                                         SelectedIndex="0"
@@ -334,14 +506,23 @@
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <TextBlock
-                            LineHeight="{Binding Text, ElementName=LineHeight}"
-                            LineStackingStrategy="{Binding SelectedValue, ElementName=LineStackingStrategy}"
-                            Text="{Binding Text, ElementName=LineHeightText}" />
+                            x:Name="LineHeightResultTextBlock"
+                            LineHeight="{Binding Text, ElementName=LineHeightTextBox}"
+                            LineStackingStrategy="{Binding SelectedValue, ElementName=LineStackingStrategyComboBox}"
+                            Text="{Binding Text, ElementName=LineHeightTextTextBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="LineHeightPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=LineHeightPopupButton}"
+                        PlacementTarget="{Binding ElementName=LineHeightPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="LineHeightTextTextBox,LineHeightTextBox,LineStackingStrategyComboBox,LineHeightResultTextBlock" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
 
         </StackPanel>
     </ScrollViewer>
 </UserControl>
-

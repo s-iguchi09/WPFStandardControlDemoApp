@@ -11,16 +11,26 @@
     d:DesignHeight="4000"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="GridUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="Grid" />
+
             <Expander Header="Column&#10;Row" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <UniformGrid Rows="1">
                             <GroupBox Header="Column" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="Column"
+                                    x:Name="ColumnComboBox"
                                     SelectedIndex="0"
                                     SelectedValuePath="Content">
                                     <ComboBoxItem Content="0" />
@@ -30,7 +40,7 @@
                             </GroupBox>
                             <GroupBox Header="Row" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="Row"
+                                    x:Name="RowComboBox"
                                     SelectedIndex="0"
                                     SelectedValuePath="Content">
                                     <ComboBoxItem Content="0" />
@@ -43,7 +53,7 @@
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <UniformGrid Height="120" Rows="1">
                             <GroupBox Header="Column:2 x Row:2" Style="{StaticResource SubGroupBox}">
-                                <Grid>
+                                <Grid x:Name="ColumnRowResult1Grid">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition />
@@ -69,13 +79,13 @@
                                         Grid.Column="1"
                                         Background="LightBlue" />
                                     <TextBlock
-                                        Grid.Row="{Binding SelectedValue, ElementName=Row}"
-                                        Grid.Column="{Binding SelectedValue, ElementName=Column}"
+                                        Grid.Row="{Binding SelectedValue, ElementName=RowComboBox}"
+                                        Grid.Column="{Binding SelectedValue, ElementName=ColumnComboBox}"
                                         Text="Control" />
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Column:3 x Row:2" Style="{StaticResource SubGroupBox}">
-                                <Grid>
+                                <Grid x:Name="ColumnRowResult2Grid">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition />
@@ -110,13 +120,13 @@
                                         Grid.Column="2"
                                         Background="SkyBlue" />
                                     <TextBlock
-                                        Grid.Row="{Binding SelectedValue, ElementName=Row}"
-                                        Grid.Column="{Binding SelectedValue, ElementName=Column}"
+                                        Grid.Row="{Binding SelectedValue, ElementName=RowComboBox}"
+                                        Grid.Column="{Binding SelectedValue, ElementName=ColumnComboBox}"
                                         Text="Control" />
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Column:2 x Row:3" Style="{StaticResource SubGroupBox}">
-                                <Grid>
+                                <Grid x:Name="ColumnRowResult3Grid">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition />
@@ -151,22 +161,32 @@
                                         Grid.Column="1"
                                         Background="SkyBlue" />
                                     <TextBlock
-                                        Grid.Row="{Binding SelectedValue, ElementName=Row}"
-                                        Grid.Column="{Binding SelectedValue, ElementName=Column}"
+                                        Grid.Row="{Binding SelectedValue, ElementName=RowComboBox}"
+                                        Grid.Column="{Binding SelectedValue, ElementName=ColumnComboBox}"
                                         Text="Control" />
                                 </Grid>
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="ColumnRowPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ColumnRowPopupButton}"
+                        PlacementTarget="{Binding ElementName=ColumnRowPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ColumnComboBox,RowComboBox,ColumnRowResult1Grid,ColumnRowResult2Grid,ColumnRowResult3Grid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ColumnSpan&#10;RowSpan" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="ColumnSpan" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="ColumnSpan"
+                                    x:Name="ColumnSpanComboBox"
                                     SelectedIndex="0"
                                     SelectedValuePath="Content">
                                     <ComboBoxItem Content="1" />
@@ -175,7 +195,7 @@
                             </GroupBox>
                             <GroupBox Header="RowSpan" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
-                                    x:Name="RowSpan"
+                                    x:Name="RowSpanComboBox"
                                     SelectedIndex="0"
                                     SelectedValuePath="Content">
                                     <ComboBoxItem Content="1" />
@@ -186,7 +206,7 @@
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <GroupBox Header="Column:3 x Row:2" Style="{StaticResource SubGroupBox}">
-                            <Grid>
+                            <Grid x:Name="ColumnSpanRowSpanResultGrid">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition />
@@ -199,12 +219,12 @@
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    Grid.ColumnSpan="{Binding SelectedValue, ElementName=ColumnSpan}"
+                                    Grid.ColumnSpan="{Binding SelectedValue, ElementName=ColumnSpanComboBox}"
                                     Background="CadetBlue"
                                     Text="1x1,ColumnSpanSetting" />
                                 <TextBlock
                                     Grid.Row="0"
-                                    Grid.RowSpan="{Binding SelectedValue, ElementName=RowSpan}"
+                                    Grid.RowSpan="{Binding SelectedValue, ElementName=RowSpanComboBox}"
                                     Grid.Column="2"
                                     Background="SteelBlue"
                                     Text="1x3,RowSpanSetting" />
@@ -221,20 +241,30 @@
                             </Grid>
                         </GroupBox>
                     </GroupBox>
+                    <ToggleButton x:Name="ColumnSpanRowSpanPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ColumnSpanRowSpanPopupButton}"
+                        PlacementTarget="{Binding ElementName=ColumnSpanRowSpanPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ColumnSpanComboBox,RowSpanComboBox,ColumnSpanRowSpanResultGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ShowGridLines" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <CheckBox
-                            x:Name="ShowGridLines"
+                            x:Name="ShowGridLinesCheckBox"
                             VerticalContentAlignment="Center"
                             Content="ShowGridLines"
                             IsChecked="True" />
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <GroupBox Header="Column:3 x Row:2" Style="{StaticResource SubGroupBox}">
-                            <Grid ShowGridLines="{Binding IsChecked, ElementName=ShowGridLines}">
+                            <Grid x:Name="ShowGridLinesResultGrid" ShowGridLines="{Binding IsChecked, ElementName=ShowGridLinesCheckBox}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition />
@@ -273,26 +303,36 @@
                             </Grid>
                         </GroupBox>
                     </GroupBox>
+                    <ToggleButton x:Name="ShowGridLinesPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ShowGridLinesPopupButton}"
+                        PlacementTarget="{Binding ElementName=ShowGridLinesPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ShowGridLinesCheckBox,ShowGridLinesResultGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="IsSharedSizeScope&#10;SharedSizeGroup(DefinitionBase)" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <CheckBox
-                                x:Name="IsSharedSizeScope"
+                                x:Name="IsSharedSizeScopeCheckBox"
                                 VerticalContentAlignment="Center"
                                 Content="IsSharedSizeScope" />
                             <UniformGrid Rows="1">
                                 <GroupBox Header="Text1" Style="{StaticResource SubGroupBox}">
                                     <TextBox
-                                        x:Name="IsSharedSizeScopeText1"
+                                        x:Name="IsSharedSizeScopeText1TextBox"
                                         AcceptsReturn="True"
                                         Text="Text&#10;Text" />
                                 </GroupBox>
                                 <GroupBox Header="Text2" Style="{StaticResource SubGroupBox}">
                                     <TextBox
-                                        x:Name="IsSharedSizeScopeText2"
+                                        x:Name="IsSharedSizeScopeText2TextBox"
                                         AcceptsReturn="True"
                                         Text="TextText" />
                                 </GroupBox>
@@ -300,7 +340,8 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox
-                        Grid.IsSharedSizeScope="{Binding IsChecked, ElementName=IsSharedSizeScope}"
+                        x:Name="IsSharedSizeScopeResultGroupBox"
+                        Grid.IsSharedSizeScope="{Binding IsChecked, ElementName=IsSharedSizeScopeCheckBox}"
                         Header="Result"
                         Style="{StaticResource ResultGroupBox}">
                         <UniformGrid Rows="1">
@@ -318,7 +359,7 @@
                                         Grid.Row="0"
                                         Grid.Column="0"
                                         Background="AliceBlue"
-                                        Text="{Binding Text, ElementName=IsSharedSizeScopeText1}" />
+                                        Text="{Binding Text, ElementName=IsSharedSizeScopeText1TextBox}" />
                                     <TextBlock
                                         Grid.Row="0"
                                         Grid.Column="1"
@@ -347,7 +388,7 @@
                                         Grid.Row="0"
                                         Grid.Column="0"
                                         Background="AliceBlue"
-                                        Text="{Binding Text, ElementName=IsSharedSizeScopeText2}" />
+                                        Text="{Binding Text, ElementName=IsSharedSizeScopeText2TextBox}" />
                                     <TextBlock
                                         Grid.Row="0"
                                         Grid.Column="1"
@@ -364,15 +405,25 @@
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="IsSharedSizeScopePopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IsSharedSizeScopePopupButton}"
+                        PlacementTarget="{Binding ElementName=IsSharedSizeScopePopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsSharedSizeScopeCheckBox,IsSharedSizeScopeText1TextBox,IsSharedSizeScopeText2TextBox,IsSharedSizeScopeResultGroupBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="MaxWidth(ColumnDefinition)&#10;MinWidth(ColumnDefinition)&#10;Width(ColumnDefinition)" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="WidthText"
+                                    x:Name="WidthTextTextBox"
                                     AcceptsReturn="True"
                                     Text="TEXT" />
                             </GroupBox>
@@ -403,7 +454,7 @@
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Width=Manual" Style="{StaticResource SubGroupBox}">
-                                <Grid Height="30">
+                                <Grid x:Name="ColumnDefinitionWidthManualGrid" Height="30">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition
@@ -415,11 +466,11 @@
                                     <Border Grid.Column="0" Background="CornflowerBlue" />
                                     <Border Grid.Column="1" Background="LightBlue" />
                                     <Border Grid.Column="2" Background="SkyBlue" />
-                                    <TextBlock Grid.Column="1" Text="{Binding Text, ElementName=WidthText}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Text, ElementName=WidthTextTextBox}" />
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Width=Auto" Style="{StaticResource SubGroupBox}">
-                                <Grid Height="30">
+                                <Grid x:Name="ColumnDefinitionWidthAutoGrid" Height="30">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition
@@ -431,11 +482,11 @@
                                     <Border Grid.Column="0" Background="CornflowerBlue" />
                                     <Border Grid.Column="1" Background="LightBlue" />
                                     <Border Grid.Column="2" Background="SkyBlue" />
-                                    <TextBlock Grid.Column="1" Text="{Binding Text, ElementName=WidthText}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Text, ElementName=WidthTextTextBox}" />
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Width=Star" Style="{StaticResource SubGroupBox}">
-                                <Grid Height="30">
+                                <Grid x:Name="ColumnDefinitionWidthStarGrid" Height="30">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition
@@ -447,20 +498,30 @@
                                     <Border Grid.Column="0" Background="CornflowerBlue" />
                                     <Border Grid.Column="1" Background="LightBlue" />
                                     <Border Grid.Column="2" Background="SkyBlue" />
-                                    <TextBlock Grid.Column="1" Text="{Binding Text, ElementName=WidthText}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Text, ElementName=WidthTextTextBox}" />
                                 </Grid>
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="ColumnDefinitionWidthPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ColumnDefinitionWidthPopupButton}"
+                        PlacementTarget="{Binding ElementName=ColumnDefinitionWidthPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="WidthTextTextBox,MaxWidthTextBox,MinWidthTextBox,WidthTextBox,ColumnDefinitionWidthManualGrid,ColumnDefinitionWidthAutoGrid,ColumnDefinitionWidthStarGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="MaxHeight(RowDefinition)&#10;MinHeight(RowDefinition)&#10;Height(RowDefinition)" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="HeightText"
+                                    x:Name="HeightTextTextBox"
                                     AcceptsReturn="True"
                                     Text="TEXT&#10;TEXT" />
                             </GroupBox>
@@ -491,7 +552,7 @@
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Height=Manual" Style="{StaticResource SubGroupBox}">
-                                <Grid Height="120">
+                                <Grid x:Name="RowDefinitionHeightManualGrid" Height="120">
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition
@@ -503,11 +564,11 @@
                                     <Border Grid.Row="0" Background="CornflowerBlue" />
                                     <Border Grid.Row="1" Background="LightBlue" />
                                     <Border Grid.Row="2" Background="SkyBlue" />
-                                    <TextBlock Grid.Row="1" Text="{Binding Text, ElementName=HeightText}" />
+                                    <TextBlock Grid.Row="1" Text="{Binding Text, ElementName=HeightTextTextBox}" />
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Height=Auto" Style="{StaticResource SubGroupBox}">
-                                <Grid Height="120">
+                                <Grid x:Name="RowDefinitionHeightAutoGrid" Height="120">
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition
@@ -519,11 +580,11 @@
                                     <Border Grid.Row="0" Background="CornflowerBlue" />
                                     <Border Grid.Row="1" Background="LightBlue" />
                                     <Border Grid.Row="2" Background="SkyBlue" />
-                                    <TextBlock Grid.Row="1" Text="{Binding Text, ElementName=HeightText}" />
+                                    <TextBlock Grid.Row="1" Text="{Binding Text, ElementName=HeightTextTextBox}" />
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Height=Star" Style="{StaticResource SubGroupBox}">
-                                <Grid Height="120">
+                                <Grid x:Name="RowDefinitionHeightStarGrid" Height="120">
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition
@@ -535,13 +596,23 @@
                                     <Border Grid.Row="0" Background="CornflowerBlue" />
                                     <Border Grid.Row="1" Background="LightBlue" />
                                     <Border Grid.Row="2" Background="SkyBlue" />
-                                    <TextBlock Grid.Row="1" Text="{Binding Text, ElementName=HeightText}" />
+                                    <TextBlock Grid.Row="1" Text="{Binding Text, ElementName=HeightTextTextBox}" />
                                 </Grid>
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="RowDefinitionHeightPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=RowDefinitionHeightPopupButton}"
+                        PlacementTarget="{Binding ElementName=RowDefinitionHeightPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="HeightTextTextBox,MaxHeightTextBox,MinHeightTextBox,HeightTextBox,RowDefinitionHeightManualGrid,RowDefinitionHeightAutoGrid,RowDefinitionHeightStarGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="Background(Panel)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -556,10 +627,23 @@
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Grid Height="30" Background="{Binding SelectedItem.Value, ElementName=BackgroundComboBox}" />
+                        <Grid
+                            x:Name="BackgroundResultGrid"
+                            Height="30"
+                            Background="{Binding SelectedItem.Value, ElementName=BackgroundComboBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="BackgroundPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=BackgroundPopupButton}"
+                        PlacementTarget="{Binding ElementName=BackgroundPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="BackgroundComboBox,BackgroundResultGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ZIndex(Panel)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -567,13 +651,13 @@
                             <UniformGrid Rows="1">
                                 <GroupBox Header="ZIndex(Item1)" Style="{StaticResource SubGroupBox}">
                                     <TextBox
-                                        x:Name="ZIndexItem1Text"
+                                        x:Name="ZIndexItem1TextBox"
                                         behaviors:TextBoxIntInputBehavior.IsEnabled="True"
                                         Text="1" />
                                 </GroupBox>
                                 <GroupBox Header="ZIndex(Item2)" Style="{StaticResource SubGroupBox}">
                                     <TextBox
-                                        x:Name="ZIndexItem2Text"
+                                        x:Name="ZIndexItem2TextBox"
                                         behaviors:TextBoxIntInputBehavior.IsEnabled="True"
                                         Text="2" />
                                 </GroupBox>
@@ -581,10 +665,10 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <Grid Height="60">
+                        <Grid x:Name="ZIndexResultGrid" Height="60">
                             <Label
                                 VerticalAlignment="Top"
-                                Panel.ZIndex="{Binding Text, ElementName=ZIndexItem1Text}"
+                                Panel.ZIndex="{Binding Text, ElementName=ZIndexItem1TextBox}"
                                 Background="LightBlue"
                                 BorderBrush="Black"
                                 BorderThickness="1"
@@ -592,13 +676,22 @@
                             <Label
                                 HorizontalAlignment="Right"
                                 VerticalContentAlignment="Bottom"
-                                Panel.ZIndex="{Binding Text, ElementName=ZIndexItem2Text}"
+                                Panel.ZIndex="{Binding Text, ElementName=ZIndexItem2TextBox}"
                                 Background="SkyBlue"
                                 BorderBrush="Black"
                                 BorderThickness="1"
                                 Content="Item2" />
                         </Grid>
                     </GroupBox>
+                    <ToggleButton x:Name="ZIndexPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ZIndexPopupButton}"
+                        PlacementTarget="{Binding ElementName=ZIndexPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ZIndexItem1TextBox,ZIndexItem2TextBox,ZIndexResultGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
         </StackPanel>

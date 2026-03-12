@@ -9,6 +9,14 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="RepeatButtonUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="RepeatButton" />
@@ -18,14 +26,14 @@
                         <UniformGrid Rows="1">
                             <GroupBox Header="Delay" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="Delay"
+                                    x:Name="DelayTextBox"
                                     behaviors:TextBoxIntInputBehavior.IsEnabled="True"
                                     InputMethod.IsInputMethodEnabled="False"
                                     Text="100" />
                             </GroupBox>
                             <GroupBox Header="Interval" Style="{StaticResource SubGroupBox}">
                                 <TextBox
-                                    x:Name="Interval"
+                                    x:Name="IntervalTextBox"
                                     behaviors:TextBoxIntInputBehavior.IsEnabled="True"
                                     InputMethod.IsInputMethodEnabled="False"
                                     Text="100" />
@@ -33,18 +41,27 @@
                         </UniformGrid>
                     </GroupBox>
                     <RepeatButton
+                        x:Name="RepeatButtonResult"
                         Click="RepeatButton_Click"
                         Content="Hold down"
-                        Delay="{Binding Text, ElementName=Delay}"
-                        Interval="{Binding Text, ElementName=Interval}" />
+                        Delay="{Binding Text, ElementName=DelayTextBox}"
+                        Interval="{Binding Text, ElementName=IntervalTextBox}" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <GroupBox Header="ClickDateTime" Style="{StaticResource SubGroupBox}">
-                            <TextBlock x:Name="ClickDateTime" />
+                            <TextBlock x:Name="ClickDateTimeTextBlock" />
                         </GroupBox>
                     </GroupBox>
+                    <ToggleButton x:Name="DelayIntervalPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=DelayIntervalPopupButton}"
+                        PlacementTarget="{Binding ElementName=DelayIntervalPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="DelayTextBox,IntervalTextBox,RepeatButtonResult" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>
-

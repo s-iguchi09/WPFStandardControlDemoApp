@@ -17,7 +17,7 @@ namespace WPFStandardControlDemoApp.Features.RepeatButtonUsage
 
         private void RepeatButton_Click(object sender, RoutedEventArgs e)
         {
-            ClickDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss.fff");
+            ClickDateTimeTextBlock.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss.fff");
         }
 
         //private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)

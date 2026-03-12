@@ -2,6 +2,7 @@
     x:Class="WPFStandardControlDemoApp.Features.CheckBoxUsage.CheckBoxUsageControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.CheckBoxUsage"
@@ -10,132 +11,135 @@
     d:DesignHeight="1200"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="CheckBoxUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="CheckBox" />
+
             <Expander Header="IsChecked(ToggleButton)" Style="{StaticResource BaseContentsExpander}">
-                <UniformGrid Columns="3">
-                    <StackPanel>
-                        <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
-                            <GroupBox Header="IsChecked=(Null)" Style="{StaticResource SubGroupBox}">
-                                <CheckBox
-                                    x:Name="IsCheckedNullCheckBox"
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Center"
-                                    VerticalContentAlignment="Center"
-                                    Content="CheckBox"
-                                    IsChecked="{x:Null}" />
+                <StackPanel>
+                    <UniformGrid Columns="3">
+                        <StackPanel>
+                            <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                                <GroupBox Header="IsChecked=(Null)" Style="{StaticResource SubGroupBox}">
+                                    <CheckBox
+                                        x:Name="IsCheckedNullCheckBox"
+                                        HorizontalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Content="CheckBox"
+                                        IsChecked="{x:Null}" />
+                                </GroupBox>
                             </GroupBox>
-                        </GroupBox>
-                        <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                            <GroupBox Header="IsChecked" Style="{StaticResource SubGroupBox}">
-                                <TextBlock
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Center"
-                                    Text="{Binding IsChecked, ElementName=IsCheckedNullCheckBox, TargetNullValue=(Null)}" />
+                            <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                                <GroupBox Header="IsChecked" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsChecked, ElementName=IsCheckedNullCheckBox, TargetNullValue=(Null)}" />
+                                </GroupBox>
                             </GroupBox>
-                        </GroupBox>
-                    </StackPanel>
-                    <StackPanel>
-                        <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
-                            <GroupBox Header="IsChecked=False" Style="{StaticResource SubGroupBox}">
-                                <CheckBox
-                                    x:Name="IsCheckedFalseCheckBox"
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Center"
-                                    VerticalContentAlignment="Center"
-                                    Content="CheckBox"
-                                    IsChecked="False" />
+                        </StackPanel>
+                        <StackPanel>
+                            <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                                <GroupBox Header="IsChecked=False" Style="{StaticResource SubGroupBox}">
+                                    <CheckBox
+                                        x:Name="IsCheckedFalseCheckBox"
+                                        HorizontalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Content="CheckBox"
+                                        IsChecked="False" />
+                                </GroupBox>
                             </GroupBox>
-                        </GroupBox>
-                        <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                            <GroupBox Header="IsChecked" Style="{StaticResource SubGroupBox}">
-                                <TextBlock
-                                    Grid.Row="2"
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Center"
-                                    Text="{Binding IsChecked, ElementName=IsCheckedFalseCheckBox}" />
+                            <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                                <GroupBox Header="IsChecked" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsChecked, ElementName=IsCheckedFalseCheckBox}" />
+                                </GroupBox>
                             </GroupBox>
-                        </GroupBox>
-                    </StackPanel>
-                    <StackPanel>
-                        <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
-                            <GroupBox Header="IsChecked=True" Style="{StaticResource SubGroupBox}">
-                                <CheckBox
-                                    x:Name="IsCheckedTrueCheckBox"
-                                    Grid.Row="3"
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Center"
-                                    VerticalContentAlignment="Center"
-                                    Content="CheckBox"
-                                    IsChecked="True" />
+                        </StackPanel>
+                        <StackPanel>
+                            <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                                <GroupBox Header="IsChecked=True" Style="{StaticResource SubGroupBox}">
+                                    <CheckBox
+                                        x:Name="IsCheckedTrueCheckBox"
+                                        HorizontalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Content="CheckBox"
+                                        IsChecked="True" />
+                                </GroupBox>
                             </GroupBox>
-                        </GroupBox>
-                        <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                            <GroupBox Header="IsChecked" Style="{StaticResource SubGroupBox}">
-                                <TextBlock
-                                    Grid.Row="3"
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Center"
-                                    Text="{Binding IsChecked, ElementName=IsCheckedTrueCheckBox}" />
+                            <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                                <GroupBox Header="IsChecked" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsChecked, ElementName=IsCheckedTrueCheckBox}" />
+                                </GroupBox>
                             </GroupBox>
-                        </GroupBox>
-                    </StackPanel>
-                </UniformGrid>
+                        </StackPanel>
+                    </UniformGrid>
+                    <ToggleButton x:Name="IsCheckedPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IsCheckedPopupButton}"
+                        PlacementTarget="{Binding ElementName=IsCheckedPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsCheckedNullCheckBox,IsCheckedFalseCheckBox,IsCheckedTrueCheckBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
             </Expander>
+
             <Expander Header="IsThreeState(ToggleButton)" Style="{StaticResource BaseContentsExpander}">
-                <UniformGrid Columns="2">
-                    <StackPanel>
-                        <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
-                            <GroupBox Header="IsThreeState=True" Style="{StaticResource SubGroupBox}">
-                                <CheckBox
-                                    x:Name="IsThreeStateTrueCheckBox"
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Center"
-                                    VerticalContentAlignment="Center"
-                                    Content="CheckBox"
-                                    IsThreeState="True" />
+                <StackPanel>
+                    <UniformGrid Columns="2">
+                        <StackPanel>
+                            <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                                <GroupBox Header="IsThreeState=True" Style="{StaticResource SubGroupBox}">
+                                    <CheckBox
+                                        x:Name="IsThreeStateTrueCheckBox"
+                                        HorizontalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Content="CheckBox"
+                                        IsThreeState="True" />
+                                </GroupBox>
                             </GroupBox>
-                        </GroupBox>
-                        <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                            <GroupBox Header="IsChecked" Style="{StaticResource SubGroupBox}">
-                                <TextBlock
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Center"
-                                    Text="{Binding IsChecked, ElementName=IsThreeStateTrueCheckBox, TargetNullValue=(Null)}" />
+                            <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                                <GroupBox Header="IsChecked" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsChecked, ElementName=IsThreeStateTrueCheckBox, TargetNullValue=(Null)}" />
+                                </GroupBox>
                             </GroupBox>
-                        </GroupBox>
-                    </StackPanel>
-                    <StackPanel>
-                        <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
-                            <GroupBox Header="IsThreeState=False" Style="{StaticResource SubGroupBox}">
-                                <CheckBox
-                                    x:Name="IsThreeStateFalseCheckBox"
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Center"
-                                    VerticalContentAlignment="Center"
-                                    Content="CheckBox"
-                                    IsThreeState="False" />
+                        </StackPanel>
+                        <StackPanel>
+                            <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                                <GroupBox Header="IsThreeState=False" Style="{StaticResource SubGroupBox}">
+                                    <CheckBox
+                                        x:Name="IsThreeStateFalseCheckBox"
+                                        HorizontalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        Content="CheckBox"
+                                        IsThreeState="False" />
+                                </GroupBox>
                             </GroupBox>
-                        </GroupBox>
-                        <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                            <GroupBox Header="IsChecked" Style="{StaticResource SubGroupBox}">
-                                <TextBlock
-                                    Grid.Row="2"
-                                    Grid.Column="0"
-                                    HorizontalAlignment="Center"
-                                    Text="{Binding IsChecked, ElementName=IsThreeStateFalseCheckBox}" />
+                            <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                                <GroupBox Header="IsChecked" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsChecked, ElementName=IsThreeStateFalseCheckBox}" />
+                                </GroupBox>
                             </GroupBox>
-                        </GroupBox>
-                    </StackPanel>
-                </UniformGrid>
+                        </StackPanel>
+                    </UniformGrid>
+                    <ToggleButton x:Name="IsThreeStatePopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IsThreeStatePopupButton}"
+                        PlacementTarget="{Binding ElementName=IsThreeStatePopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsThreeStateTrueCheckBox,IsThreeStateFalseCheckBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
             </Expander>
+
             <Expander Header="VerticalContentAlignment(Control)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -150,12 +154,20 @@
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <CheckBox
-                            Grid.Row="1"
-                            Grid.Column="0"
+                            x:Name="VerticalContentAlignmentResultCheckBox"
                             HorizontalAlignment="Center"
                             VerticalContentAlignment="{Binding SelectedValue, ElementName=VerticalContentAlignmentComboBox}"
                             Content="CheckBox" />
                     </GroupBox>
+                    <ToggleButton x:Name="VerticalContentAlignmentPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=VerticalContentAlignmentPopupButton}"
+                        PlacementTarget="{Binding ElementName=VerticalContentAlignmentPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="VerticalContentAlignmentComboBox,VerticalContentAlignmentResultCheckBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
         </StackPanel>

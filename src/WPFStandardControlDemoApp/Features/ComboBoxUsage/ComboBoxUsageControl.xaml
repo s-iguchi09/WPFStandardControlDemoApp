@@ -15,9 +15,18 @@
     d:DesignHeight="3000"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="ComboBoxUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="ComboBox" />
+
             <Expander Header="IsDropDownOpen" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -27,12 +36,23 @@
                             Content="IsDropDownOpen" />
                     </GroupBox>
                     <ComboBox
+                        x:Name="IsDropDownOpenComboBox"
                         DisplayMemberPath="Name"
                         IsDropDownOpen="{Binding IsChecked, ElementName=IsDropDownOpen}"
                         ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
                         SelectedValuePath="Value" />
+                    <ToggleButton x:Name="IsDropDownOpenPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IsDropDownOpenPopupButton}"
+                        PlacementTarget="{Binding ElementName=IsDropDownOpenPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsDropDownOpen,IsDropDownOpenComboBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="IsEditable" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -52,8 +72,18 @@
                             <TextBlock Text="{Binding SelectedValue, ElementName=IsEditableComboBox}" />
                         </GroupBox>
                     </GroupBox>
+                    <ToggleButton x:Name="IsEditablePopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IsEditablePopupButton}"
+                        PlacementTarget="{Binding ElementName=IsEditablePopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsEditable,IsEditableComboBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="IsReadOnly" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -74,25 +104,46 @@
                             <TextBlock Text="{Binding SelectedValue, ElementName=IsReadOnlyComboBox}" />
                         </GroupBox>
                     </GroupBox>
+                    <ToggleButton x:Name="IsReadOnlyPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IsReadOnlyPopupButton}"
+                        PlacementTarget="{Binding ElementName=IsReadOnlyPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsReadOnly,IsReadOnlyComboBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="MaxDropDownHeight" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="MaxDropDownHeight" Style="{StaticResource SubGroupBox}">
                             <TextBox
-                                x:Name="MaxDropDownHeightTextBox"
+                                x:Name="MaxDropDownHeight"
                                 behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
                                 Text="100" />
                         </GroupBox>
                     </GroupBox>
                     <ComboBox
+                        x:Name="MaxDropDownHeightComboBox"
                         DisplayMemberPath="Name"
                         ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
-                        MaxDropDownHeight="{Binding Text, ElementName=MaxDropDownHeightTextBox}"
+                        MaxDropDownHeight="{Binding Text, ElementName=MaxDropDownHeight}"
                         SelectedValuePath="Value" />
+                    <ToggleButton x:Name="MaxDropDownHeightPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=MaxDropDownHeightPopupButton}"
+                        PlacementTarget="{Binding ElementName=MaxDropDownHeightPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="MaxDropDownHeight,MaxDropDownHeightComboBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="Text" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <ComboBox
@@ -111,8 +162,18 @@
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="TextPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=TextPopupButton}"
+                        PlacementTarget="{Binding ElementName=TextPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="TextComboBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="StaysOpenOnEdit" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -122,13 +183,24 @@
                             Content="StaysOpenOnEdit" />
                     </GroupBox>
                     <ComboBox
+                        x:Name="StaysOpenOnEditComboBox"
                         DisplayMemberPath="Name"
                         IsEditable="True"
                         ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
                         SelectedValuePath="Value"
                         StaysOpenOnEdit="{Binding IsChecked, ElementName=StaysOpenOnEdit}" />
+                    <ToggleButton x:Name="StaysOpenOnEditPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=StaysOpenOnEditPopupButton}"
+                        PlacementTarget="{Binding ElementName=StaysOpenOnEditPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="StaysOpenOnEdit,StaysOpenOnEditComboBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ShouldPreserveUserEnteredPrefix" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -154,8 +226,18 @@
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="ShouldPreserveUserEnteredPrefixPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ShouldPreserveUserEnteredPrefixPopupButton}"
+                        PlacementTarget="{Binding ElementName=ShouldPreserveUserEnteredPrefixPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ShouldPreserveUserEnteredPrefix,ShouldPreserveUserEnteredPrefixComboBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="SelectedIndex(Selector)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <ComboBox
@@ -168,8 +250,18 @@
                             <TextBlock Text="{Binding SelectedIndex, ElementName=SelectedIndexComboBox}" />
                         </GroupBox>
                     </GroupBox>
+                    <ToggleButton x:Name="SelectedIndexPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=SelectedIndexPopupButton}"
+                        PlacementTarget="{Binding ElementName=SelectedIndexPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="SelectedIndexComboBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="SelectedItem(Selector)" Style="{StaticResource BaseContentsExpander}">
                 <UniformGrid Rows="1">
                     <StackPanel>
@@ -183,20 +275,27 @@
                                     <sys:DayOfWeek>Thursday</sys:DayOfWeek>
                                     <sys:DayOfWeek>Friday</sys:DayOfWeek>
                                     <sys:DayOfWeek>Saturday</sys:DayOfWeek>
-
                                 </ComboBox>
                             </GroupBox>
                         </GroupBox>
                         <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                            <GroupBox Header="SeledtedItem" Style="{StaticResource SubGroupBox}">
+                            <GroupBox Header="SelectedItem" Style="{StaticResource SubGroupBox}">
                                 <TextBlock Text="{Binding SelectedItem, ElementName=SelectedItemSimpleComboBox}" />
                             </GroupBox>
                         </GroupBox>
+                        <ToggleButton x:Name="SelectedItemSimplePopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                        <Popup
+                            IsOpen="{Binding IsChecked, ElementName=SelectedItemSimplePopupButton}"
+                            PlacementTarget="{Binding ElementName=SelectedItemSimplePopupButton}"
+                            StaysOpen="False">
+                            <Border Style="{StaticResource PopupBorderStyle}">
+                                <TextBox behaviors:XamlExtractBehavior.TargetNames="SelectedItemSimpleComboBox,SelectedItemDicComboBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            </Border>
+                        </Popup>
                     </StackPanel>
                     <StackPanel>
                         <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                             <GroupBox Header="ItemsSource=Classes" Style="{StaticResource SubGroupBox}">
-
                                 <ComboBox
                                     x:Name="SelectedItemDicComboBox"
                                     DisplayMemberPath="Name"
@@ -212,6 +311,7 @@
                     </StackPanel>
                 </UniformGrid>
             </Expander>
+
             <Expander Header="SelectedValue(Selector)&#10;SelectedValuePath(Selector)&#10;DisplayMemberPath(ItemsControl)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -233,8 +333,18 @@
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="PathPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=PathPopupButton}"
+                        PlacementTarget="{Binding ElementName=PathPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PathComboBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="IsSynchronizedWithCurrentItem(ItemsControl)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -270,9 +380,17 @@
                                 SelectedValuePath="Value" />
                         </GroupBox>
                     </UniformGrid>
+                    <ToggleButton x:Name="IsSynchronizedWithCurrentItemPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItemPopupButton}"
+                        PlacementTarget="{Binding ElementName=IsSynchronizedWithCurrentItemPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsSynchronizedWithCurrentItem,IsSynchronizedWithCurrentItemComboBox1,IsSynchronizedWithCurrentItemComboBox2,IsSynchronizedWithCurrentItemComboBox3" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>
-
