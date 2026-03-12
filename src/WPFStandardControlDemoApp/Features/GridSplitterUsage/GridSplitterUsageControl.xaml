@@ -6,10 +6,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.GridSplitterUsage"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="4000"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="GridSplitterUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="GridSplitter" />
@@ -35,6 +44,7 @@
                                 Background="LightBlue"
                                 Content="Item1" />
                             <GridSplitter
+                                x:Name="DragIncrementSplitter"
                                 Grid.Column="1"
                                 Width="5"
                                 Background="Gray"
@@ -48,8 +58,18 @@
                                 Content="Item2" />
                         </Grid>
                     </GroupBox>
+                    <ToggleButton x:Name="DragIncrementDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=DragIncrementDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=DragIncrementDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="DragIncrementTextBox,DragIncrementSplitter" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="KeyboardIncrement" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -72,6 +92,7 @@
                                 Background="LightBlue"
                                 Content="Item1" />
                             <GridSplitter
+                                x:Name="KeyboardIncrementSplitter"
                                 Grid.Column="1"
                                 Width="5"
                                 Background="Gray"
@@ -82,12 +103,21 @@
                                 Grid.Column="2"
                                 HorizontalAlignment="Stretch"
                                 Background="SkyBlue"
-                                Content="Item2"
-                                Cursor="" />
+                                Content="Item2" />
                         </Grid>
                     </GroupBox>
+                    <ToggleButton x:Name="KeyboardIncrementDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=KeyboardIncrementDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=KeyboardIncrementDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="KeyboardIncrementTextBox,KeyboardIncrementSplitter" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ShowsPreview" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -110,6 +140,7 @@
                                 Background="LightBlue"
                                 Content="Item1" />
                             <GridSplitter
+                                x:Name="ShowsPreviewSplitter"
                                 Grid.Column="1"
                                 Width="5"
                                 Background="Gray"
@@ -119,20 +150,31 @@
                                 Grid.Column="2"
                                 HorizontalAlignment="Stretch"
                                 Background="SkyBlue"
-                                Content="Item2"
-                                Cursor="" />
+                                Content="Item2" />
                         </Grid>
                     </GroupBox>
+                    <ToggleButton x:Name="ShowsPreviewDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ShowsPreviewDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ShowsPreviewDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ShowsPreviewCheckBox,ShowsPreviewSplitter" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ResizeDirection" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="ResizeDirection" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="ResizeDirectionComboBox"
-                                ItemsSource="{x:Static helpers:GridResizeDirectionHelper.AllGridResizeDirection}"
-                                SelectedIndex="0" />
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=GridResizeDirection}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
@@ -176,6 +218,7 @@
                                 Background="#FFFFCCCC"
                                 Content="BottomRight" />
                             <GridSplitter
+                                x:Name="VerticalSplitter"
                                 Grid.RowSpan="3"
                                 Grid.Column="1"
                                 Width="5"
@@ -184,6 +227,7 @@
                                 ResizeBehavior="PreviousAndNext"
                                 ResizeDirection="{Binding SelectedValue, ElementName=ResizeDirectionComboBox}" />
                             <GridSplitter
+                                x:Name="HorizontalSplitter"
                                 Grid.Row="1"
                                 Grid.ColumnSpan="3"
                                 Height="5"
@@ -193,6 +237,15 @@
                                 ResizeDirection="{Binding SelectedValue, ElementName=ResizeDirectionComboBox}" />
                         </Grid>
                     </GroupBox>
+                    <ToggleButton x:Name="ResizeDirectionDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ResizeDirectionDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ResizeDirectionDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ResizeDirectionComboBox,VerticalSplitter,HorizontalSplitter" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="PreviewStyle" Style="{StaticResource ContentsExpander}">
@@ -218,6 +271,7 @@
                                         Background="LightBlue"
                                         Content="Item1(Star)" />
                                     <GridSplitter
+                                        x:Name="DefaultPreviewSplitter"
                                         Grid.Column="1"
                                         Width="7"
                                         Background="Gray"
@@ -244,6 +298,7 @@
                                         Background="LightBlue"
                                         Content="Item1(Star)" />
                                     <GridSplitter
+                                        x:Name="TemplatePreviewSplitter"
                                         Grid.Column="1"
                                         Width="7"
                                         Background="Gray"
@@ -265,7 +320,6 @@
                                                 </Setter>
                                             </Style>
                                         </GridSplitter.PreviewStyle>
-
                                     </GridSplitter>
                                     <Label
                                         Grid.Column="2"
@@ -277,6 +331,15 @@
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="PreviewStyleDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=PreviewStyleDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=PreviewStyleDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PreviewStyleForPreviewStyleCheckBox,DefaultPreviewSplitter,TemplatePreviewSplitter" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="ResizeBehavior" Style="{StaticResource ContentsExpander}">
@@ -1203,7 +1266,7 @@
                     </GroupBox>
                 </StackPanel>
             </Expander>
-            <Expander Header="IsDragging(Thumb)" Style="{StaticResource ContentsExpander}">
+            <Expander Header="IsDragging(Thumb)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <Border BorderBrush="Black" BorderThickness="1">

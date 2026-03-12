@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.ScrollViewerUsage"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="4000"
     d:DesignWidth="800"
@@ -112,8 +113,10 @@
                         <GroupBox Header="VerticalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="VerticalScrollBarVisibilityComboBox"
-                                ItemsSource="{x:Static helpers:ScrollBarVisibilityHelper.AllScrollBarVisibilities}"
-                                SelectedIndex="0" />
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=ScrollBarVisibility}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
@@ -122,7 +125,7 @@
                                 <ScrollViewer
                                     x:Name="VerticalScrollBarVisibilityFitsScrollViewer"
                                     Style="{StaticResource ScrollViewerStyle}"
-                                    VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=VerticalScrollBarVisibilityComboBox}">
+                                    VerticalScrollBarVisibility="{Binding SelectedValue, ElementName=VerticalScrollBarVisibilityComboBox}">
                                     <StackPanel>
                                         <Label Content="Item1" Style="{StaticResource LabelStyle}" />
                                         <Label Content="Item2" Style="{StaticResource LabelStyle}" />
@@ -133,7 +136,7 @@
                                 <ScrollViewer
                                     x:Name="VerticalScrollBarVisibilityOverFlowsScrollViewer"
                                     Style="{StaticResource ScrollViewerStyle}"
-                                    VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=VerticalScrollBarVisibilityComboBox}">
+                                    VerticalScrollBarVisibility="{Binding SelectedValue, ElementName=VerticalScrollBarVisibilityComboBox}">
                                     <StackPanel Orientation="Vertical">
                                         <Label Content="Item1" Style="{StaticResource LabelStyle}" />
                                         <Label Content="Item2" Style="{StaticResource LabelStyle}" />
@@ -166,8 +169,10 @@
                         <GroupBox Header="HorizontalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="HorizontalScrollBarVisibilityComboBox"
-                                ItemsSource="{x:Static helpers:ScrollBarVisibilityHelper.AllScrollBarVisibilities}"
-                                SelectedIndex="0" />
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=ScrollBarVisibility}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
@@ -175,7 +180,7 @@
                             <GroupBox Header="Fits" Style="{StaticResource SubGroupBox}">
                                 <ScrollViewer
                                     x:Name="HorizontalScrollBarVisibilityFitsScrollViewer"
-                                    HorizontalScrollBarVisibility="{Binding SelectedItem, ElementName=HorizontalScrollBarVisibilityComboBox}"
+                                    HorizontalScrollBarVisibility="{Binding SelectedValue, ElementName=HorizontalScrollBarVisibilityComboBox}"
                                     Style="{StaticResource ScrollViewerStyle}"
                                     VerticalScrollBarVisibility="Disabled">
                                     <StackPanel Orientation="Horizontal">
@@ -187,7 +192,7 @@
                             <GroupBox Header="OverFlows" Style="{StaticResource SubGroupBox}">
                                 <ScrollViewer
                                     x:Name="HorizontalScrollBarVisibilityOverFlowsScrollViewer"
-                                    HorizontalScrollBarVisibility="{Binding SelectedItem, ElementName=HorizontalScrollBarVisibilityComboBox}"
+                                    HorizontalScrollBarVisibility="{Binding SelectedValue, ElementName=HorizontalScrollBarVisibilityComboBox}"
                                     Style="{StaticResource ScrollViewerStyle}"
                                     VerticalScrollBarVisibility="Disabled">
                                     <StackPanel Orientation="Horizontal">
@@ -222,8 +227,10 @@
                         <GroupBox Header="VerticalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox"
-                                ItemsSource="{x:Static helpers:ScrollBarVisibilityHelper.AllScrollBarVisibilities}"
-                                SelectedIndex="0" />
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=ScrollBarVisibility}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
@@ -269,7 +276,7 @@
                                     <ScrollViewer
                                         x:Name="ComputedVerticalScrollBarVisibilityScrollViewerFits"
                                         Style="{StaticResource ScrollViewerStyle}"
-                                        VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox}">
+                                        VerticalScrollBarVisibility="{Binding SelectedValue, ElementName=ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox}">
                                         <StackPanel>
                                             <Label Content="Item1" Style="{StaticResource LabelStyle}" />
                                             <Label Content="Item2" Style="{StaticResource LabelStyle}" />
@@ -319,7 +326,7 @@
                                     <ScrollViewer
                                         x:Name="ComputedVerticalScrollBarVisibilityScrollViewerOverFlows"
                                         Style="{StaticResource ScrollViewerStyle}"
-                                        VerticalScrollBarVisibility="{Binding SelectedItem, ElementName=ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox}">
+                                        VerticalScrollBarVisibility="{Binding SelectedValue, ElementName=ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox}">
                                         <StackPanel Orientation="Vertical">
                                             <Label Content="Item1" Style="{StaticResource LabelStyle}" />
                                             <Label Content="Item2" Style="{StaticResource LabelStyle}" />
@@ -353,8 +360,10 @@
                         <GroupBox Header="HorizontalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox"
-                                ItemsSource="{x:Static helpers:ScrollBarVisibilityHelper.AllScrollBarVisibilities}"
-                                SelectedIndex="0" />
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=ScrollBarVisibility}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
@@ -399,7 +408,7 @@
                                     </GroupBox>
                                     <ScrollViewer
                                         x:Name="ComputedHorizontalScrollBarVisibilityScrollViewerFits"
-                                        HorizontalScrollBarVisibility="{Binding SelectedItem, ElementName=ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox}"
+                                        HorizontalScrollBarVisibility="{Binding SelectedValue, ElementName=ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox}"
                                         Style="{StaticResource ScrollViewerStyle}"
                                         VerticalScrollBarVisibility="Disabled">
                                         <StackPanel Orientation="Horizontal">
@@ -449,7 +458,7 @@
                                     </GroupBox>
                                     <ScrollViewer
                                         x:Name="ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows"
-                                        HorizontalScrollBarVisibility="{Binding SelectedItem, ElementName=ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox}"
+                                        HorizontalScrollBarVisibility="{Binding SelectedValue, ElementName=ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox}"
                                         VerticalScrollBarVisibility="Disabled">
                                         <StackPanel Orientation="Horizontal">
                                             <Label Content="Item1" Style="{StaticResource LabelStyle}" />

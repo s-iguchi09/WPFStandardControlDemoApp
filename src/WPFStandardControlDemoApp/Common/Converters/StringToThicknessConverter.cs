@@ -13,9 +13,9 @@ namespace WPFStandardControlDemoApp.Common.Converters
     /// "  5  "         -> Thickness(5)
     /// パースできない場合は 0 の Thickness を返す。
     /// </summary>
-    public class StringToThicknessConverter : IValueConverter
+    public class StringToThicknessConverter : MarkupConverterBase
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is not string s || string.IsNullOrWhiteSpace(s))
                 return new Thickness(0);
@@ -64,7 +64,7 @@ namespace WPFStandardControlDemoApp.Common.Converters
             return new Thickness(0);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is not Thickness thickness)
                 return string.Empty;

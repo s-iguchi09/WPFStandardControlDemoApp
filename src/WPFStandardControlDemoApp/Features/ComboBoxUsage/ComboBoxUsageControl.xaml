@@ -7,7 +7,9 @@
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:linq="clr-namespace:System.Linq;assembly=System.Core"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.ComboBoxUsage"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     d:DataContext="{d:DesignInstance local:ComboBoxUsageViewModel,
                                      IsDesignTimeCreatable=True}"
     d:DesignHeight="3000"
@@ -24,7 +26,11 @@
                             VerticalContentAlignment="Center"
                             Content="IsDropDownOpen" />
                     </GroupBox>
-                    <ComboBox IsDropDownOpen="{Binding IsChecked, ElementName=IsDropDownOpen}" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
+                    <ComboBox
+                        DisplayMemberPath="Name"
+                        IsDropDownOpen="{Binding IsChecked, ElementName=IsDropDownOpen}"
+                        ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                        SelectedValuePath="Value" />
                 </StackPanel>
             </Expander>
             <Expander Header="IsEditable" Style="{StaticResource ContentsExpander}">
@@ -37,8 +43,10 @@
                     </GroupBox>
                     <ComboBox
                         x:Name="IsEditableComboBox"
+                        DisplayMemberPath="Name"
                         IsEditable="{Binding IsChecked, ElementName=IsEditable}"
-                        ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
+                        ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                        SelectedValuePath="Value" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <GroupBox Header="SelectedValue" Style="{StaticResource SubGroupBox}">
                             <TextBlock Text="{Binding SelectedValue, ElementName=IsEditableComboBox}" />
@@ -56,9 +64,11 @@
                     </GroupBox>
                     <ComboBox
                         x:Name="IsReadOnlyComboBox"
+                        DisplayMemberPath="Name"
                         IsEditable="True"
                         IsReadOnly="{Binding IsChecked, ElementName=IsReadOnly}"
-                        ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
+                        ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                        SelectedValuePath="Value" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <GroupBox Header="SelectedValue" Style="{StaticResource SubGroupBox}">
                             <TextBlock Text="{Binding SelectedValue, ElementName=IsReadOnlyComboBox}" />
@@ -76,15 +86,21 @@
                                 Text="100" />
                         </GroupBox>
                     </GroupBox>
-                    <ComboBox ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" MaxDropDownHeight="{Binding Text, ElementName=MaxDropDownHeightTextBox}" />
+                    <ComboBox
+                        DisplayMemberPath="Name"
+                        ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                        MaxDropDownHeight="{Binding Text, ElementName=MaxDropDownHeightTextBox}"
+                        SelectedValuePath="Value" />
                 </StackPanel>
             </Expander>
             <Expander Header="Text" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <ComboBox
                         x:Name="TextComboBox"
+                        DisplayMemberPath="Name"
                         IsEditable="True"
-                        ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
+                        ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                        SelectedValuePath="Value" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <StackPanel>
                             <GroupBox Header="Text" Style="{StaticResource SubGroupBox}">
@@ -106,8 +122,10 @@
                             Content="StaysOpenOnEdit" />
                     </GroupBox>
                     <ComboBox
+                        DisplayMemberPath="Name"
                         IsEditable="True"
-                        ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}"
+                        ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                        SelectedValuePath="Value"
                         StaysOpenOnEdit="{Binding IsChecked, ElementName=StaysOpenOnEdit}" />
                 </StackPanel>
             </Expander>
@@ -121,8 +139,10 @@
                     </GroupBox>
                     <ComboBox
                         x:Name="ShouldPreserveUserEnteredPrefixComboBox"
+                        DisplayMemberPath="Name"
                         IsEditable="True"
-                        ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}"
+                        ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                        SelectedValuePath="Value"
                         ShouldPreserveUserEnteredPrefix="{Binding IsChecked, ElementName=ShouldPreserveUserEnteredPrefix}" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <StackPanel>
@@ -138,7 +158,11 @@
             </Expander>
             <Expander Header="SelectedIndex(Selector)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
-                    <ComboBox x:Name="SelectedIndexComboBox" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
+                    <ComboBox
+                        x:Name="SelectedIndexComboBox"
+                        DisplayMemberPath="Name"
+                        ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                        SelectedValuePath="Value" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <GroupBox Header="SelectedIndex" Style="{StaticResource SubGroupBox}">
                             <TextBlock Text="{Binding SelectedIndex, ElementName=SelectedIndexComboBox}" />
@@ -151,7 +175,16 @@
                     <StackPanel>
                         <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                             <GroupBox Header="ItemsSource=Values" Style="{StaticResource SubGroupBox}">
-                                <ComboBox x:Name="SelectedItemSimpleComboBox" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
+                                <ComboBox x:Name="SelectedItemSimpleComboBox">
+                                    <sys:DayOfWeek>Sunday</sys:DayOfWeek>
+                                    <sys:DayOfWeek>Monday</sys:DayOfWeek>
+                                    <sys:DayOfWeek>Tuesday</sys:DayOfWeek>
+                                    <sys:DayOfWeek>Wednesday</sys:DayOfWeek>
+                                    <sys:DayOfWeek>Thursday</sys:DayOfWeek>
+                                    <sys:DayOfWeek>Friday</sys:DayOfWeek>
+                                    <sys:DayOfWeek>Saturday</sys:DayOfWeek>
+
+                                </ComboBox>
                             </GroupBox>
                         </GroupBox>
                         <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
@@ -164,12 +197,16 @@
                         <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                             <GroupBox Header="ItemsSource=Classes" Style="{StaticResource SubGroupBox}">
 
-                                <ComboBox x:Name="SelectedItemDicComboBox" ItemsSource="{Binding ShortingDayOfWeeks}" />
+                                <ComboBox
+                                    x:Name="SelectedItemDicComboBox"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                                    SelectedValuePath="Value" />
                             </GroupBox>
                         </GroupBox>
                         <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                             <GroupBox Header="SelectedItem" Style="{StaticResource SubGroupBox}">
-                                <TextBlock Text="{Binding SelectedItem, ElementName=SelectedItemDicComboBox}" />
+                                <TextBlock Text="{Binding SelectedValue, ElementName=SelectedItemDicComboBox}" />
                             </GroupBox>
                         </GroupBox>
                     </StackPanel>
@@ -181,9 +218,9 @@
                         <GroupBox Header="ItemsSource=Classes&#10;DisplayMemberPath=Value&#10;SelectedValuePath=Key" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="PathComboBox"
-                                DisplayMemberPath="Value"
-                                ItemsSource="{Binding ShortingDayOfWeeks}"
-                                SelectedValuePath="Key" />
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                                SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
@@ -209,13 +246,28 @@
                     </GroupBox>
                     <UniformGrid Rows="1">
                         <GroupBox Header="ComboBox1" Style="{StaticResource SubGroupBox}">
-                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
+                            <ComboBox
+                                x:Name="IsSynchronizedWithCurrentItemComboBox1"
+                                DisplayMemberPath="Name"
+                                IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                                SelectedValuePath="Value" />
                         </GroupBox>
                         <GroupBox Header="ComboBox2" Style="{StaticResource SubGroupBox}">
-                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
+                            <ComboBox
+                                x:Name="IsSynchronizedWithCurrentItemComboBox2"
+                                DisplayMemberPath="Name"
+                                IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}"
+                                ItemsSource="{Binding ItemsSource, ElementName=IsSynchronizedWithCurrentItemComboBox1}"
+                                SelectedValuePath="Value" />
                         </GroupBox>
                         <GroupBox Header="ComboBox3" Style="{StaticResource SubGroupBox}">
-                            <ComboBox IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}" ItemsSource="{x:Static helpers:DayOfWeekHelper.AllDaysOfWeeks}" />
+                            <ComboBox
+                                x:Name="IsSynchronizedWithCurrentItemComboBox3"
+                                DisplayMemberPath="Name"
+                                IsSynchronizedWithCurrentItem="{Binding IsChecked, ElementName=IsSynchronizedWithCurrentItem}"
+                                ItemsSource="{Binding ItemsSource, ElementName=IsSynchronizedWithCurrentItemComboBox1}"
+                                SelectedValuePath="Value" />
                         </GroupBox>
                     </UniformGrid>
                 </StackPanel>

@@ -6,13 +6,25 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.UniformGridUsage"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="2000"
     d:DesignWidth="800"
     mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="UniformGridUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="UniformGrid" />
+
             <Expander Header="Columns" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -24,31 +36,26 @@
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <UniformGrid Columns="{Binding Text, ElementName=ColumnsTextBox}">
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item1" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item2" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item3" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item4" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item5" />
+                        <UniformGrid x:Name="ColumnsUniformGrid" Columns="{Binding Text, ElementName=ColumnsTextBox}">
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item1" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item2" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item3" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item4" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item5" />
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="ColumnsDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ColumnsDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ColumnsDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ColumnsTextBox,ColumnsUniformGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="Rows" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -60,31 +67,26 @@
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <UniformGrid Rows="{Binding Text, ElementName=RowsTextBox}">
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item1" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item2" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item3" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item4" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item5" />
+                        <UniformGrid x:Name="RowsUniformGrid" Rows="{Binding Text, ElementName=RowsTextBox}">
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item1" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item2" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item3" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item4" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item5" />
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="RowsDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=RowsDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=RowsDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="RowsTextBox,RowsUniformGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="FirstColumn" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -104,65 +106,64 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <UniformGrid Columns="{Binding Text, ElementName=ColumnsForFirstColumnTextBox}" FirstColumn="{Binding Text, ElementName=FirstColumnTextBox}">
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item1" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item2" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item3" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item4" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item5" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item6" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item7" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item8" />
-                            <Label
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item9" />
+                        <UniformGrid
+                            x:Name="FirstColumnUniformGrid"
+                            Columns="{Binding Text, ElementName=ColumnsForFirstColumnTextBox}"
+                            FirstColumn="{Binding Text, ElementName=FirstColumnTextBox}">
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item1" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item2" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item3" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item4" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item5" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item6" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item7" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item8" />
+                            <Label BorderBrush="Black" BorderThickness="1" Content="Item9" />
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="FirstColumnDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=FirstColumnDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=FirstColumnDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="FirstColumnTextBox,ColumnsForFirstColumnTextBox,FirstColumnUniformGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="Background(Panel)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
                             <ComboBox
-                                x:Name="Background"
+                                x:Name="BackgroundComboBox"
                                 behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
-                                DisplayMemberPath="Key"
-                                ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
                                 SelectedIndex="0"
                                 SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <UniformGrid Height="30" Background="{Binding SelectedValue, ElementName=Background}" />
+                        <UniformGrid
+                            x:Name="BackgroundUniformGrid"
+                            Height="30"
+                            Background="{Binding SelectedValue, ElementName=BackgroundComboBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="BackgroundDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=BackgroundDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=BackgroundDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="BackgroundComboBox,BackgroundUniformGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ZIndex(Panel)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -184,7 +185,7 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <UniformGrid Columns="1">
+                        <UniformGrid x:Name="ZIndexUniformGrid" Columns="1">
                             <Label
                                 Panel.ZIndex="{Binding Text, ElementName=ZIndexItem1Text}"
                                 Background="LightBlue"
@@ -200,9 +201,17 @@
                                 Content="Item2" />
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="ZIndexDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ZIndexDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ZIndexDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ZIndexItem1Text,ZIndexItem2Text,ZIndexUniformGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>
-

@@ -6,25 +6,39 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.StackPanelUsage"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="1000"
     d:DesignWidth="800"
     mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="StackPanelUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="StackPanel" />
+
             <Expander Header="Orientation" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="Orientation" Style="{StaticResource SubGroupBox}">
                             <ComboBox
-                                x:Name="Orientation"
-                                ItemsSource="{x:Static helpers:OrientationHelpers.AllOrientations}"
-                                SelectedIndex="0" />
+                                x:Name="OrientationComboBox"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=Orientation}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <StackPanel Orientation="{Binding SelectedValue, ElementName=Orientation}">
+                        <StackPanel x:Name="OrientationStackPanel" Orientation="{Binding SelectedValue, ElementName=OrientationComboBox}">
                             <Label
                                 Margin="2"
                                 BorderBrush="Black"
@@ -42,8 +56,18 @@
                                 Content="Item3" />
                         </StackPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="OrientationDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=OrientationDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=OrientationDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="OrientationComboBox,OrientationStackPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="Background(Panel)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -51,17 +75,30 @@
                             <ComboBox
                                 x:Name="BackgroundComboBox"
                                 behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
-                                DisplayMemberPath="Key"
-                                ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
                                 SelectedIndex="0"
                                 SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <StackPanel Height="30" Background="{Binding SelectedItem.Value, ElementName=BackgroundComboBox}" />
+                        <StackPanel
+                            x:Name="BackgroundStackPanel"
+                            Height="30"
+                            Background="{Binding SelectedItem.Value, ElementName=BackgroundComboBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="BackgroundDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=BackgroundDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=BackgroundDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="BackgroundComboBox,BackgroundStackPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ZIndex(Panel)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -83,7 +120,7 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <StackPanel>
+                        <StackPanel x:Name="ZIndexStackPanel">
                             <Label
                                 VerticalAlignment="Top"
                                 Panel.ZIndex="{Binding Text, ElementName=ZIndexItem1Text}"
@@ -101,6 +138,15 @@
                                 Content="Item2" />
                         </StackPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="ZIndexDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ZIndexDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ZIndexDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ZIndexItem1Text,ZIndexItem2Text,ZIndexStackPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
         </StackPanel>

@@ -6,13 +6,25 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.DockPanelUsage"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="1500"
     d:DesignWidth="800"
     mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="DockPanelUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="DockPanel" />
+
             <Expander Header="LastChildFill" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -22,7 +34,7 @@
                             Content="LastChildFill" />
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <DockPanel LastChildFill="{Binding IsChecked, ElementName=LastChildFillCheckBox}">
+                        <DockPanel x:Name="LastChildFillDockPanel" LastChildFill="{Binding IsChecked, ElementName=LastChildFillCheckBox}">
                             <Label
                                 Background="LightBlue"
                                 BorderBrush="Black"
@@ -35,18 +47,33 @@
                                 Content="Item2" />
                         </DockPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="LastChildFillDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=LastChildFillDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=LastChildFillDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="LastChildFillCheckBox,LastChildFillDockPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="Dock" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <ComboBox
                             x:Name="DockComboBox"
-                            ItemsSource="{x:Static helpers:DockHelper.AllDocks}"
-                            SelectedIndex="0" />
+                            DisplayMemberPath="Name"
+                            ItemsSource="{markupextensions:EnumBindingSource EnumType=Dock}"
+                            SelectedIndex="0"
+                            SelectedValuePath="Value" />
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <DockPanel Height="100" LastChildFill="False">
+                        <DockPanel
+                            x:Name="DockUsageDockPanel"
+                            Height="100"
+                            LastChildFill="False">
                             <Label
                                 Background="LightBlue"
                                 BorderBrush="Black"
@@ -55,26 +82,49 @@
                                 DockPanel.Dock="{Binding SelectedValue, ElementName=DockComboBox}" />
                         </DockPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="DockDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=DockDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=DockDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="DockComboBox,DockUsageDockPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="Background(Panel)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
                             <ComboBox
-                                x:Name="Background"
+                                x:Name="BackgroundComboBox"
                                 behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
-                                DisplayMemberPath="Key"
-                                ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
                                 SelectedIndex="0"
                                 SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <DockPanel Height="30" Background="{Binding SelectedItem.Value, ElementName=Background}" />
+                        <DockPanel
+                            x:Name="BackgroundDockPanel"
+                            Height="30"
+                            Background="{Binding SelectedItem.Value, ElementName=BackgroundComboBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="BackgroundDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=BackgroundDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=BackgroundDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="BackgroundComboBox,BackgroundDockPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ZIndex(Panel)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -96,7 +146,7 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <DockPanel>
+                        <DockPanel x:Name="ZIndexDockPanel">
                             <Label
                                 Panel.ZIndex="{Binding Text, ElementName=ZIndexItem1Text}"
                                 Background="LightBlue"
@@ -112,6 +162,15 @@
                                 Content="Item2" />
                         </DockPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="ZIndexDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ZIndexDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ZIndexDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ZIndexItem1Text,ZIndexItem2Text,ZIndexDockPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
         </StackPanel>

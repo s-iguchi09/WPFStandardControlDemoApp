@@ -1,0 +1,448 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.SliderUsage.SliderUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:converters="clr-namespace:WPFStandardControlDemoApp.Common.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="4000"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:StringToDoubleCollectionConverter x:Key="StringToDoubleCollectionConverter" />
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="SliderUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageHeader}" Text="Slider" />
+            <Expander Header="Minimum(RangeBase)&#10;Maximum(RangeBase)&#10;Value(RangeBase)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="3">
+                            <GroupBox Header="Minimum" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="MinTextBox"
+                                    behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                    Text="0" />
+                            </GroupBox>
+                            <GroupBox Header="Maximum" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="MaxTextBox"
+                                    behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                    Text="100" />
+                            </GroupBox>
+                            <GroupBox Header="Value" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="ValueTextBox"
+                                    behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                    Text="{Binding Value, ElementName=MinMaxSlider, UpdateSourceTrigger=PropertyChanged}" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Slider
+                            x:Name="MinMaxSlider"
+                            Maximum="{Binding Text, ElementName=MaxTextBox}"
+                            Minimum="{Binding Text, ElementName=MinTextBox}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="MinMaxDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=MinMaxDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=MinMaxDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="MinTextBox,MaxTextBox,ValueTextBox,MinMaxSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="Orientation" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="Orientation" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="OrientationComboBox"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=Orientation}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Slider
+                            x:Name="OrientationSlider"
+                            Height="100"
+                            Orientation="{Binding SelectedValue, ElementName=OrientationComboBox}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="OrientationDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=OrientationDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=OrientationDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="OrientationComboBox,OrientationSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="SmallChange&#10;LargeChange" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="SmallChange" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="SmallChangeTextBox"
+                                    behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                    Text="1" />
+                            </GroupBox>
+                            <GroupBox Header="LargeChange" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="LargeChangeTextBox"
+                                    behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                    Text="10" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Slider
+                                x:Name="ChangeSlider"
+                                LargeChange="{Binding Text, ElementName=LargeChangeTextBox}"
+                                SmallChange="{Binding Text, ElementName=SmallChangeTextBox}" />
+                            <UniformGrid Margin="0,5,0,0" Columns="3">
+                                <GroupBox Header="Min" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Minimum, ElementName=ChangeSlider}" />
+                                </GroupBox>
+                                <GroupBox Header="Max" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Maximum, ElementName=ChangeSlider}" />
+                                </GroupBox>
+                                <GroupBox Header="Value" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Value, ElementName=ChangeSlider}" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="ChangeDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ChangeDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ChangeDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="SmallChangeTextBox,LargeChangeTextBox,ChangeSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="IsDirectionReversed" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="IsDirectionReversed" Style="{StaticResource SubGroupBox}">
+                            <CheckBox
+                                x:Name="IsDirectionReversedCheckBox"
+                                VerticalContentAlignment="Center"
+                                Content="IsDirectionReversed" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Slider x:Name="ReverseSlider" IsDirectionReversed="{Binding IsChecked, ElementName=IsDirectionReversedCheckBox}" />
+                            <UniformGrid Margin="0,5,0,0" Columns="3">
+                                <GroupBox Header="Min" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Minimum, ElementName=ReverseSlider}" />
+                                </GroupBox>
+                                <GroupBox Header="Max" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Maximum, ElementName=ReverseSlider}" />
+                                </GroupBox>
+                                <GroupBox Header="Value" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Value, ElementName=ReverseSlider}" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="ReverseDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ReverseDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ReverseDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsDirectionReversedCheckBox,ReverseSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="TickPlacement" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="TickPlacement" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="TickPlacementComboBox"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=TickPlacement}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Slider x:Name="PlacementSlider" TickPlacement="{Binding SelectedValue, ElementName=TickPlacementComboBox}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="PlacementDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=PlacementDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=PlacementDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="TickPlacementComboBox,PlacementSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="TickFrequency" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="TickFrequency" Style="{StaticResource SubGroupBox}">
+                            <TextBox
+                                x:Name="TickFrequencyTextBox"
+                                behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                Text="2" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Slider
+                            x:Name="FreqSlider"
+                            TickFrequency="{Binding Text, ElementName=TickFrequencyTextBox}"
+                            TickPlacement="BottomRight" />
+                    </GroupBox>
+                    <ToggleButton x:Name="FreqDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=FreqDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=FreqDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="TickFrequencyTextBox,FreqSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="IsSnapToTickEnabled" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="IsSnapToTickEnabled" Style="{StaticResource SubGroupBox}">
+                            <CheckBox
+                                x:Name="IsSnapToTickEnabledCheckBox"
+                                VerticalContentAlignment="Center"
+                                Content="IsSnapToTickEnabled" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Slider
+                            x:Name="SnapSlider"
+                            IsSnapToTickEnabled="{Binding IsChecked, ElementName=IsSnapToTickEnabledCheckBox}"
+                            TickFrequency="2"
+                            TickPlacement="BottomRight" />
+                    </GroupBox>
+                    <ToggleButton x:Name="SnapDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=SnapDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=SnapDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsSnapToTickEnabledCheckBox,SnapSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="Ticks" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="Ticks" Style="{StaticResource SubGroupBox}">
+                            <TextBox x:Name="TicksTextBox" Text="1,3,5,7,9" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Slider
+                            x:Name="TicksSlider"
+                            TickPlacement="BottomRight"
+                            Ticks="{Binding Text, ElementName=TicksTextBox, Converter={StaticResource StringToDoubleCollectionConverter}}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="TicksDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=TicksDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=TicksDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="TicksTextBox,TicksSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="SelectionStart&#10;SelectionEnd&#10;IsSelectionRangeEnabled" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="3">
+                            <GroupBox Header="SelectionStart" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="SelectionStartTextBox"
+                                    behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                    Text="2" />
+                            </GroupBox>
+                            <GroupBox Header="SelectionEnd" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="SelectionEndTextBox"
+                                    behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                    Text="8" />
+                            </GroupBox>
+                            <GroupBox Header="IsSelectionRangeEnabled" Style="{StaticResource SubGroupBox}">
+                                <CheckBox
+                                    x:Name="IsSelectionRangeEnabledCheckBox"
+                                    VerticalContentAlignment="Center"
+                                    Content="IsSelectionRangeEnabled"
+                                    IsChecked="True" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Slider
+                                x:Name="SelectionSlider"
+                                IsSelectionRangeEnabled="{Binding IsChecked, ElementName=IsSelectionRangeEnabledCheckBox}"
+                                SelectionEnd="{Binding Text, ElementName=SelectionEndTextBox, UpdateSourceTrigger=PropertyChanged}"
+                                SelectionStart="{Binding Text, ElementName=SelectionStartTextBox, UpdateSourceTrigger=PropertyChanged}"
+                                TickPlacement="BottomRight" />
+                            <UniformGrid Margin="0,5,0,0" Columns="3">
+                                <GroupBox Header="Min" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Minimum, ElementName=SelectionSlider}" />
+                                </GroupBox>
+                                <GroupBox Header="Max" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Maximum, ElementName=SelectionSlider}" />
+                                </GroupBox>
+                                <GroupBox Header="Value" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Value, ElementName=SelectionSlider}" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="SelectionDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=SelectionDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=SelectionDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="SelectionStartTextBox,SelectionEndTextBox,IsSelectionRangeEnabledCheckBox,SelectionSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="AutoToolTipPlacement" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="AutoToolTipPlacement" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="AutoToolTipPlacementComboBox"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=AutoToolTipPlacement}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Slider x:Name="ToolTipPlacementSlider" AutoToolTipPlacement="{Binding SelectedValue, ElementName=AutoToolTipPlacementComboBox}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ToolTipPlacementDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToolTipPlacementDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ToolTipPlacementDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="AutoToolTipPlacementComboBox,ToolTipPlacementSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="AutoToolTipPrecision" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="AutoToolTipPrecision" Style="{StaticResource SubGroupBox}">
+                            <TextBox
+                                x:Name="AutoToolTipPrecisionTextBox"
+                                behaviors:TextBoxIntInputBehavior.IsEnabled="True"
+                                behaviors:TextBoxIntInputBehavior.MaxValue="99"
+                                behaviors:TextBoxIntInputBehavior.MinValue="0"
+                                behaviors:TextBoxIntInputBehavior.PreventInvalidInput="True"
+                                Text="2" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Slider
+                            x:Name="PrecisionSlider"
+                            AutoToolTipPlacement="TopLeft"
+                            AutoToolTipPrecision="{Binding Text, ElementName=AutoToolTipPrecisionTextBox}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="PrecisionDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=PrecisionDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=PrecisionDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="AutoToolTipPrecisionTextBox,PrecisionSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+            <Expander Header="Delay&#10;Interval" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="Delay" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="DelayTextBox"
+                                    behaviors:TextBoxIntInputBehavior.IsEnabled="True"
+                                    Text="1000" />
+                            </GroupBox>
+                            <GroupBox Header="Interval" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="IntervalTextBox"
+                                    behaviors:TextBoxIntInputBehavior.IsEnabled="True"
+                                    Text="50" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Slider
+                                x:Name="RepeatSlider"
+                                Delay="{Binding Text, ElementName=DelayTextBox, UpdateSourceTrigger=PropertyChanged}"
+                                Interval="{Binding Text, ElementName=IntervalTextBox, UpdateSourceTrigger=PropertyChanged}" />
+                            <UniformGrid Margin="0,5,0,0" Columns="3">
+                                <GroupBox Header="Min" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Minimum, ElementName=RepeatSlider}" />
+                                </GroupBox>
+                                <GroupBox Header="Max" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Maximum, ElementName=RepeatSlider}" />
+                                </GroupBox>
+                                <GroupBox Header="Value" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Value, ElementName=RepeatSlider}" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="RepeatDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=RepeatDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=RepeatDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="DelayTextBox,IntervalTextBox,RepeatSlider" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

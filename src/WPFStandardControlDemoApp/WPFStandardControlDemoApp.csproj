@@ -28,10 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3800.47" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Folder Include="Common\MarkupExtensions\" />
     <Folder Include="RawXaml\" />
   </ItemGroup>
   <ItemGroup>
@@ -40,7 +37,6 @@
 
   <Target Name="GenerateRawXaml" BeforeTargets="BeforeBuild">
     <ItemGroup>
-      <PageXaml Include="Features\*\*.xaml" />
       <PageXaml Include="Features\*\*.xaml" />
     </ItemGroup>
 

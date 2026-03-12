@@ -1,0 +1,138 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.ProgressBarUsage.ProgressBarUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1200"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="ProgressBarUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageHeader}" Text="ProgressBar Properties" />
+
+            <Expander
+                Header="Minimum(RangeBase)&#10;Maximum(RangeBase)&#10;Value(RangeBase)"
+                IsExpanded="True"
+                Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="3">
+                            <GroupBox Header="Minimum" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="MinTextBox"
+                                    behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                    Text="0" />
+                            </GroupBox>
+                            <GroupBox Header="Maximum" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="MaxTextBox"
+                                    behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                    Text="100" />
+                            </GroupBox>
+                            <GroupBox Header="Value" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="ValueTextBox"
+                                    behaviors:TextBoxDoubleInputBehavior.IsEnabled="True"
+                                    Text="30" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <ProgressBar
+                            x:Name="BasicProgressBar"
+                            Height="20"
+                            Maximum="{Binding Text, ElementName=MaxTextBox}"
+                            Minimum="{Binding Text, ElementName=MinTextBox}"
+                            Value="{Binding Text, ElementName=ValueTextBox}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="BasicDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=BasicDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=BasicDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="MinTextBox,MaxTextBox,ValueTextBox,BasicProgressBar" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="IsIndeterminate" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <CheckBox
+                            x:Name="IsIndeterminateCheckBox"
+                            VerticalContentAlignment="Center"
+                            Content="IsIndeterminate"
+                            IsChecked="False" />
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <ProgressBar
+                            x:Name="IndeterminateProgressBar"
+                            Height="20"
+                            IsIndeterminate="{Binding IsChecked, ElementName=IsIndeterminateCheckBox}"
+                            Value="50" />
+                    </GroupBox>
+                    <ToggleButton x:Name="IndeterminateDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IndeterminateDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=IndeterminateDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsIndeterminateCheckBox,IndeterminateProgressBar" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="Orientation" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="Orientation" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="OrientationComboBox"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=Orientation}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Grid MinHeight="150">
+                            <ProgressBar
+                                x:Name="OrientationProgressBar"
+                                Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}"
+                                Height="auto"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Stretch"
+                                Orientation="{Binding SelectedValue, ElementName=OrientationComboBox}"
+                                Value="75" />
+                        </Grid>
+                    </GroupBox>
+                    <ToggleButton x:Name="OrientationDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=OrientationDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=OrientationDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="OrientationComboBox,OrientationProgressBar" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

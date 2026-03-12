@@ -6,11 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.WrapPanelUsage"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     d:DesignHeight="2000"
     d:DesignWidth="800"
     mc:Ignorable="d">
+
     <UserControl.Resources>
         <ObjectDataProvider
             x:Key="OrientationList"
@@ -20,71 +22,50 @@
                 <x:Type TypeName="Orientation" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="WrapPanelUsageControl.xaml.raw" />
+        </Style>
     </UserControl.Resources>
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="WrapPanel" />
+
             <Expander Header="Orientation" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="Orientation" Style="{StaticResource SubGroupBox}">
                             <ComboBox
-                                x:Name="Orientation"
+                                x:Name="OrientationComboBox"
                                 ItemsSource="{Binding Source={StaticResource OrientationList}}"
                                 SelectedIndex="0" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <WrapPanel Orientation="{Binding SelectedValue, ElementName=Orientation}">
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item1" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item2" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item3" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item4" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item5" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item6" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item7" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item8" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item9" />
+                        <WrapPanel x:Name="OrientationWrapPanel" Orientation="{Binding SelectedValue, ElementName=OrientationComboBox}">
+                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item1" />
+                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item2" />
+                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item3" />
+                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item4" />
+                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item5" />
                         </WrapPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="OrientationDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=OrientationDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=OrientationDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="OrientationComboBox,OrientationWrapPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ItemHeight" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -96,56 +77,24 @@
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <WrapPanel ItemHeight="{Binding Text, ElementName=ItemHeightText}">
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item1" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item2" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item3" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item4" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item5" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item6" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item7" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item8" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item9" />
+                        <WrapPanel x:Name="ItemHeightWrapPanel" ItemHeight="{Binding Text, ElementName=ItemHeightText}">
+                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item1" />
+                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item2" />
+                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item3" />
                         </WrapPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="ItemHeightDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ItemHeightDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ItemHeightDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ItemHeightText,ItemHeightWrapPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ItemWidth" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -157,74 +106,55 @@
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <WrapPanel ItemWidth="{Binding Text, ElementName=ItemWidthText}">
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item1" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item2" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item3" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item4" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item5" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item6" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item7" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item8" />
-                            <Label
-                                Margin="2"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                Content="Item9" />
+                        <WrapPanel x:Name="ItemWidthWrapPanel" ItemWidth="{Binding Text, ElementName=ItemWidthText}">
+                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item1" />
+                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item2" />
+                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item3" />
                         </WrapPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="ItemWidthDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ItemWidthDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ItemWidthDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ItemWidthText,ItemWidthWrapPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="Background(Panel)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
                             <ComboBox
-                                x:Name="Background"
+                                x:Name="BackgroundComboBox"
                                 behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
-                                DisplayMemberPath="Key"
-                                ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
                                 SelectedIndex="0"
                                 SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <WrapPanel Height="30" Background="{Binding SelectedValue, ElementName=Background}" />
+                        <WrapPanel
+                            x:Name="BackgroundWrapPanel"
+                            Height="30"
+                            Background="{Binding SelectedValue, ElementName=BackgroundComboBox}" />
                     </GroupBox>
+                    <ToggleButton x:Name="BackgroundDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=BackgroundDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=BackgroundDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="BackgroundComboBox,BackgroundWrapPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
+
             <Expander Header="ZIndex(Panel)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
@@ -246,7 +176,7 @@
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                        <WrapPanel>
+                        <WrapPanel x:Name="ZIndexWrapPanel">
                             <Label
                                 VerticalAlignment="Top"
                                 Panel.ZIndex="{Binding Text, ElementName=ZIndexItem1Text}"
@@ -264,10 +194,17 @@
                                 Content="Item2" />
                         </WrapPanel>
                     </GroupBox>
+                    <ToggleButton x:Name="ZIndexDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ZIndexDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ZIndexDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ZIndexItem1Text,ZIndexItem2Text,ZIndexWrapPanel" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>
-
-

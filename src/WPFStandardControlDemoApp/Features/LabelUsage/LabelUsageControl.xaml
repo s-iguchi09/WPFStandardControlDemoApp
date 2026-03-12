@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.LabelUsage"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="4000"
     d:DesignWidth="800"
@@ -99,8 +100,10 @@
                             <GroupBox Header="FontWeight" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
                                     x:Name="FontWeightComboBox"
-                                    ItemsSource="{x:Static helpers:FontWeightsHelper.AllFontWeigthts}"
-                                    SelectedIndex="0" />
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:StaticBindingSource TargetType=FontWeights}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
                             </GroupBox>
                         </StackPanel>
 
@@ -123,8 +126,10 @@
                             <GroupBox Header="FontStyle" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
                                     x:Name="FontStyleComboBox"
-                                    ItemsSource="{x:Static helpers:FontStylesHelpers.AllFontStyles}"
-                                    SelectedIndex="0" />
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:StaticBindingSource TargetType=FontStyles}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
@@ -146,8 +151,10 @@
                             <GroupBox Header="FontStretch" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
                                     x:Name="FontStretchComboBox"
-                                    ItemsSource="{x:Static helpers:FontStretchesHelper.AllFontStretchs}"
-                                    SelectedIndex="0" />
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:StaticBindingSource TargetType=FontStretches}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
@@ -214,8 +221,8 @@
                                 <ComboBox
                                     x:Name="BackgroundComboBox"
                                     behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
-                                    DisplayMemberPath="Key"
-                                    ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
                                     SelectedIndex="0"
                                     SelectedValuePath="Value" />
                             </GroupBox>
@@ -240,8 +247,8 @@
                                 <ComboBox
                                     x:Name="ForegroundComboBox"
                                     behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
-                                    DisplayMemberPath="Key"
-                                    ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
                                     SelectedIndex="0"
                                     SelectedValuePath="Value" />
                             </GroupBox>
@@ -273,8 +280,8 @@
                                     <ComboBox
                                         x:Name="BorderBrushComboBox"
                                         behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
-                                        DisplayMemberPath="Key"
-                                        ItemsSource="{x:Static helpers:BrushesHelper.AllBrushes}"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
                                         SelectedValuePath="Value" />
                                 </GroupBox>
                             </UniformGrid>
@@ -302,14 +309,18 @@
                                 <GroupBox Header="HorizontalContentAlignment" Style="{StaticResource SubGroupBox}">
                                     <ComboBox
                                         x:Name="HorizontalContentAlignmentComboBox"
-                                        ItemsSource="{x:Static helpers:HorizontalAlignmentHelpers.AllHorizontalAlignments}"
-                                        SelectedIndex="0" />
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{markupextensions:EnumBindingSource EnumType=HorizontalAlignment}"
+                                        SelectedIndex="0"
+                                        SelectedValuePath="Value" />
                                 </GroupBox>
                                 <GroupBox Header="VerticalContentAlignment" Style="{StaticResource SubGroupBox}">
                                     <ComboBox
                                         x:Name="VerticalContentAlignmentComboBox"
-                                        ItemsSource="{x:Static helpers:VerticalAlignmentHelpers.AllVerticalAlignments}"
-                                        SelectedIndex="0" />
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{markupextensions:EnumBindingSource EnumType=VerticalAlignment}"
+                                        SelectedIndex="0"
+                                        SelectedValuePath="Value" />
                                 </GroupBox>
                             </UniformGrid>
                         </StackPanel>

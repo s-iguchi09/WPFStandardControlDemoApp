@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.CheckBoxUsage"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="1200"
     d:DesignWidth="800"
@@ -141,8 +142,10 @@
                         <GroupBox Header="VerticalContentAlignment" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="VerticalContentAlignmentComboBox"
-                                ItemsSource="{x:Static helpers:VerticalAlignmentHelpers.AllVerticalAlignments}"
-                                SelectedIndex="0" />
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=VerticalAlignment}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">

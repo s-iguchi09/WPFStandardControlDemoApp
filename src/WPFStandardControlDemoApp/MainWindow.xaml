@@ -7,23 +7,31 @@
     xmlns:checkbox="clr-namespace:WPFStandardControlDemoApp.Features.CheckBoxUsage"
     xmlns:combobox="clr-namespace:WPFStandardControlDemoApp.Features.ComboBoxUsage"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:datepicker="clr-namespace:WPFStandardControlDemoApp.Features.DatePickerUsage"
     xmlns:dockpanel="clr-namespace:WPFStandardControlDemoApp.Features.DockPanelUsage"
+    xmlns:expander="clr-namespace:WPFStandardControlDemoApp.Features.ExpanderUsage"
     xmlns:grid="clr-namespace:WPFStandardControlDemoApp.Features.GridUsage"
     xmlns:gridsplitter="clr-namespace:WPFStandardControlDemoApp.Features.GridSplitterUsage"
+    xmlns:groupbox="clr-namespace:WPFStandardControlDemoApp.Features.GroupBoxUsage"
     xmlns:home="clr-namespace:WPFStandardControlDemoApp.Features.Home"
     xmlns:label="clr-namespace:WPFStandardControlDemoApp.Features.LabelUsage"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:passwordbox="clr-namespace:WPFStandardControlDemoApp.Features.PasswordBoxUsage"
+    xmlns:progressbar="clr-namespace:WPFStandardControlDemoApp.Features.ProgressBarUsage"
     xmlns:radiobutton="clr-namespace:WPFStandardControlDemoApp.Features.RadioButtonUsage"
     xmlns:repeatbutton="clr-namespace:WPFStandardControlDemoApp.Features.RepeatButtonUsage"
     xmlns:scrollviewer="clr-namespace:WPFStandardControlDemoApp.Features.ScrollViewerUsage"
+    xmlns:slider="clr-namespace:WPFStandardControlDemoApp.Features.SliderUsage"
     xmlns:stackpanel="clr-namespace:WPFStandardControlDemoApp.Features.StackPanelUsage"
+    xmlns:tabcontrol="clr-namespace:WPFStandardControlDemoApp.Features.TabControlUsage"
+    xmlns:tabitem="clr-namespace:WPFStandardControlDemoApp.Features.TabItemUsage"
     xmlns:textblock="clr-namespace:WPFStandardControlDemoApp.Features.TextBlockUsage"
     xmlns:textbox="clr-namespace:WPFStandardControlDemoApp.Features.TextBoxUsage"
     xmlns:togglebutton="clr-namespace:WPFStandardControlDemoApp.Features.ToggleButtonUsage"
     xmlns:uniformgrid="clr-namespace:WPFStandardControlDemoApp.Features.UniformGridUsage"
+    xmlns:viewbox="clr-namespace:WPFStandardControlDemoApp.Features.ViewboxUsage"
     xmlns:wrappanel="clr-namespace:WPFStandardControlDemoApp.Features.WrapPanelUsage"
-    xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
     Title="WPFStandardControlDemoApp"
     Width="1200"
     Height="800"
@@ -46,8 +54,16 @@
         <uniformgrid:UniformGridUsageViewModel x:Key="UniformGridUsageViewModel" />
         <gridsplitter:GridSplitterUsageViewModel x:Key="GridSplitterUsageViewModel" />
         <scrollviewer:ScrollViewerUsageViewModel x:Key="ScrollViewerUsageViewModel" />
+        <groupbox:GroupBoxUsageViewModel x:Key="GroupBoxUsageViewModel" />
+        <expander:ExpanderUsageViewModel x:Key="ExpanderUsageViewModel" />
+        <tabcontrol:TabControlUsageViewModel x:Key="TabControlUsageViewModel" />
+        <tabitem:TabItemUsageViewModel x:Key="TabItemUsageViewModel" />
+        <viewbox:ViewboxUsageViewModel x:Key="ViewboxUsageViewModel" />
+        <passwordbox:PasswordBoxUsageViewModel x:Key="PasswordBoxUsageViewModel" />
+        <datepicker:DatePickerUsageViewModel x:Key="DatePickerUsageViewModel" />
+        <slider:SliderUsageViewModel x:Key="SliderUsageViewModel" />
+        <progressbar:ProgressBarUsageViewModel x:Key="ProgressBarUsageViewModel" />
 
-        <about:AboutViewModel x:Key="AboutViewModel" />
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -110,10 +126,34 @@
                 <DataTemplate DataType="{x:Type scrollviewer:ScrollViewerUsageViewModel}">
                     <scrollviewer:ScrollViewerUsageControl DataContext="{StaticResource ScrollViewerUsageViewModel}" />
                 </DataTemplate>
-
-                <DataTemplate DataType="{x:Type about:AboutViewModel}">
-                    <about:AboutControl DataContext="{StaticResource AboutViewModel}" />
+                <DataTemplate DataType="{x:Type groupbox:GroupBoxUsageViewModel}">
+                    <groupbox:GroupBoxUsageControl DataContext="{StaticResource GroupBoxUsageViewModel}" />
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type expander:ExpanderUsageViewModel}">
+                    <expander:ExpanderUsageControl DataContext="{StaticResource ExpanderUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type tabcontrol:TabControlUsageViewModel}">
+                    <tabcontrol:TabControlUsageControl DataContext="{StaticResource TabControlUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type tabitem:TabItemUsageViewModel}">
+                    <tabitem:TabItemUsageControl DataContext="{StaticResource TabItemUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewbox:ViewboxUsageViewModel}">
+                    <viewbox:ViewboxUsageControl DataContext="{StaticResource ViewboxUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type passwordbox:PasswordBoxUsageViewModel}">
+                    <passwordbox:PasswordBoxUsageControl DataContext="{StaticResource PasswordBoxUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type datepicker:DatePickerUsageViewModel}">
+                    <datepicker:DatePickerUsageControl DataContext="{StaticResource DatePickerUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type slider:SliderUsageViewModel}">
+                    <slider:SliderUsageControl DataContext="{StaticResource SliderUsageViewModel}" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type progressbar:ProgressBarUsageViewModel}">
+                    <progressbar:ProgressBarUsageControl DataContext="{StaticResource ProgressBarUsageViewModel}" />
+                </DataTemplate>
+
             </Border.Resources>
             <ContentControl Content="{Binding SelectedItem.Content, ElementName=ContentsSelector}" />
         </Border>
@@ -139,8 +179,16 @@
                 <ListBoxItem Content="{StaticResource UniformGridUsageViewModel}" />
                 <ListBoxItem Content="{StaticResource GridSplitterUsageViewModel}" />
                 <ListBoxItem Content="{StaticResource ScrollViewerUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource GroupBoxUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource ExpanderUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource TabControlUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource TabItemUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource ViewboxUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource PasswordBoxUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource DatePickerUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource SliderUsageViewModel}" />
+                <ListBoxItem Content="{StaticResource ProgressBarUsageViewModel}" />
 
-                <ListBoxItem Content="{StaticResource AboutViewModel}" />
             </ListBox>
         </Grid>
     </Grid>

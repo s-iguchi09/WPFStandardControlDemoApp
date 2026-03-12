@@ -94,7 +94,7 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
 
                     var xml = node.ToString();
 
-                    return Regex.Replace(xml, @"\s+xmlns(:x)?=""[^""]+""", "");
+                    return Regex.Replace(xml, @"\s+xmlns(:\w+)?=""[^""]+""", "");
 
                 });
 
