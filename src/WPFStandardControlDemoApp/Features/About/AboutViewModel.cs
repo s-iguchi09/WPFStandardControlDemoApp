@@ -10,16 +10,11 @@ namespace WPFStandardControlDemoApp.Features.About
     {
         public event PropertyChangedEventHandler? PropertyChanged = delegate { };
 
-        public override string ToString()
-        {
-            return "About";
-        }
-
         public string AppTitle => Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyTitleAttribute>()?.Title ?? string.Empty;
         public string AppVersion =>
             $"Version {Assembly.GetExecutingAssembly().GetName().Version}";
 
-        public string LicenseText => WebView2LicenseText;
+        public string LicenseText => string.Empty; //WebView2LicenseText;
 
         private string WebView2LicenseText => @"Microsoft.Web.WebView2 — MIT License
 

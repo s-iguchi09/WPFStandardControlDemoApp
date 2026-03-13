@@ -15,10 +15,5 @@ namespace WPFStandardControlDemoApp.Features.ButtonUsage
         {
 
         }
-
-        public override string ToString()
-        {
-            return "Button";
-        }
     }
 }

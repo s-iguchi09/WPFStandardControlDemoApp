@@ -20,7 +20,7 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <TextBlock Style="{StaticResource PageHeader}" Text="ProgressBar Properties" />
+            <TextBlock Style="{StaticResource PageHeader}" Text="ProgressBar" />
 
             <Expander
                 Header="Minimum(RangeBase)&#10;Maximum(RangeBase)&#10;Value(RangeBase)"

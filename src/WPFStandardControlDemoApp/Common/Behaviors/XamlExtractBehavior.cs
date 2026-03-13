@@ -108,14 +108,24 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
 
         private static string LoadRawXaml(string fileName)
         {
-            var asm = Assembly.GetExecutingAssembly();
+            var asm = typeof(XamlExtractBehavior).Assembly;
+
+            // 拡張子まで含めた完全一致（LogicalNameのおかげで可能）
+            // または、これまで通り EndsWith での検索
             var resourceName = asm.GetManifestResourceNames()
-                .FirstOrDefault(n => n.EndsWith(fileName, StringComparison.OrdinalIgnoreCase));
+                .FirstOrDefault(n => n.Equals(fileName, StringComparison.OrdinalIgnoreCase)
+                                  || n.EndsWith("." + fileName, StringComparison.OrdinalIgnoreCase));
 
             if (resourceName == null)
-                throw new InvalidOperationException($"{fileName} がアセンブリ内に見つかりません。");
+            {
+                // 開発中に原因がすぐわかるよう、見つかった名前を例外に含める
+                var all = string.Join(", ", asm.GetManifestResourceNames());
+                throw new InvalidOperationException($"'{fileName}' が見つかりません。リソース一覧: {all}");
+            }
 
             using var stream = asm.GetManifestResourceStream(resourceName);
+            if (stream == null) throw new InvalidOperationException("ストリームの取得に失敗しました。");
+
             using var reader = new StreamReader(stream, Encoding.UTF8);
             return reader.ReadToEnd();
         }

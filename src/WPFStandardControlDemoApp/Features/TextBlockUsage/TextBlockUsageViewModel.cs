@@ -5,10 +5,5 @@ namespace WPFStandardControlDemoApp.Features.TextBlockUsage
     public class TextBlockUsageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged = delegate { };
-
-        public override string ToString()
-        {
-            return "TextBlock";
-        }
     }
 }

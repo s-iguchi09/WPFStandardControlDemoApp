@@ -5,10 +5,5 @@ namespace WPFStandardControlDemoApp.Features.CheckBoxUsage
     public class CheckBoxUsageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged = delegate { };
-
-        public override string ToString()
-        {
-            return "CheckBox";
-        }
     }
 }

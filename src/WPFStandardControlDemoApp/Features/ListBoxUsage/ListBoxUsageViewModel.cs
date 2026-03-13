@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace WPFStandardControlDemoApp.Features.StackPanelUsage
+namespace WPFStandardControlDemoApp.Features.ListBoxUsage
 {
-    public class StackPanelUsageViewModel : INotifyPropertyChanged
+    public class ListBoxUsageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged = delegate { };
     }

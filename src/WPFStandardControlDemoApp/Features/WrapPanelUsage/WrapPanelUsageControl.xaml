@@ -47,11 +47,31 @@
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <WrapPanel x:Name="OrientationWrapPanel" Orientation="{Binding SelectedValue, ElementName=OrientationComboBox}">
-                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item1" />
-                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item2" />
-                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item3" />
-                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item4" />
-                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item5" />
+                            <Label
+                                Margin="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item1" />
+                            <Label
+                                Margin="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item2" />
+                            <Label
+                                Margin="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item3" />
+                            <Label
+                                Margin="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item4" />
+                            <Label
+                                Margin="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item5" />
                         </WrapPanel>
                     </GroupBox>
                     <ToggleButton x:Name="OrientationDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
@@ -78,9 +98,21 @@
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <WrapPanel x:Name="ItemHeightWrapPanel" ItemHeight="{Binding Text, ElementName=ItemHeightText}">
-                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item1" />
-                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item2" />
-                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item3" />
+                            <Label
+                                Margin="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item1" />
+                            <Label
+                                Margin="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item2" />
+                            <Label
+                                Margin="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item3" />
                         </WrapPanel>
                     </GroupBox>
                     <ToggleButton x:Name="ItemHeightDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
@@ -107,9 +139,21 @@
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <WrapPanel x:Name="ItemWidthWrapPanel" ItemWidth="{Binding Text, ElementName=ItemWidthText}">
-                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item1" />
-                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item2" />
-                            <Label Margin="2" BorderBrush="Black" BorderThickness="1" Content="Item3" />
+                            <Label
+                                Margin="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item1" />
+                            <Label
+                                Margin="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item2" />
+                            <Label
+                                Margin="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item3" />
                         </WrapPanel>
                     </GroupBox>
                     <ToggleButton x:Name="ItemWidthDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
@@ -130,7 +174,6 @@
                         <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="BackgroundComboBox"
-                                behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                 DisplayMemberPath="Name"
                                 ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
                                 SelectedIndex="0"

@@ -5,10 +5,5 @@ namespace WPFStandardControlDemoApp.Features.RadioButtonUsage
     public class RadioButtonUsageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged = delegate { };
-
-        public override string ToString()
-        {
-            return "RadioButton";
-        }
     }
 }

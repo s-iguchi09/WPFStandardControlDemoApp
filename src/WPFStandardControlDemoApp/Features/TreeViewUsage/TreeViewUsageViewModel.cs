@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace WPFStandardControlDemoApp.Features.StackPanelUsage
+namespace WPFStandardControlDemoApp.Features.TreeViewUsage
 {
-    public class StackPanelUsageViewModel : INotifyPropertyChanged
+    public class TreeViewUsageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged = delegate { };
     }

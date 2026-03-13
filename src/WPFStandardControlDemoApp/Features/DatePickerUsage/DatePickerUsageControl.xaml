@@ -86,9 +86,9 @@
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <ComboBox
                             x:Name="FirstDayOfWeekComboBox"
-                            behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                             DisplayMemberPath="Name"
                             ItemsSource="{markupextensions:EnumBindingSource EnumType=sys:DayOfWeek}"
+                            SelectedIndex="0"
                             SelectedValuePath="Value" />
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">

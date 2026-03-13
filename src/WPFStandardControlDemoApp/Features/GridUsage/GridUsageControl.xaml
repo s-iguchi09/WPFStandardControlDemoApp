@@ -619,10 +619,10 @@
                         <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="BackgroundComboBox"
-                                behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                 DisplayMemberPath="Name"
                                 IsSynchronizedWithCurrentItem="True"
                                 ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
+                                SelectedIndex="0"
                                 SelectedValuePath="Value" />
                         </GroupBox>
                     </GroupBox>

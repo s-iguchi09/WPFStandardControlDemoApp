@@ -27,15 +27,31 @@
     <Content Include="Assets\icon.ico" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\MarkupExtensions\" />
-    <Folder Include="RawXaml\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="RawXaml\*.xaml.raw" />
-  </ItemGroup>
+  <Target Name="EmbedXamlAsRaw" BeforeTargets="PrepareForBuild">
+    <ItemGroup>
+      <_SourceXaml Include="Features\**\*.xaml" />
 
-  <Target Name="GenerateRawXaml" BeforeTargets="BeforeBuild">
+      <EmbeddedResource Include="@(_SourceXaml)">
+        <LogicalName>%(Filename)%(Extension).raw</LogicalName>
+      </EmbeddedResource>
+    </ItemGroup>
+  </Target>
+  <!--<ItemGroup>
+    --><!--<Page Update="Features\*\*.xaml" />--><!--
+    <EmbeddedResource Include="Features\**\*.xaml">
+      <LogicalName>%(Filename)%(Extension).raw</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>-->
+
+  <!--<ItemGroup>
+    <Page Update="Features\*\*.xaml" />
+  </ItemGroup>-->
+
+  <!--<ItemGroup>
+    <Page Update="**\*.xaml" />
+  </ItemGroup>-->
+
+  <!--<Target Name="GenerateRawXaml" BeforeTargets="PrepareForBuild">
     <ItemGroup>
       <PageXaml Include="Features\*\*.xaml" />
     </ItemGroup>
@@ -43,4 +59,10 @@
     <Copy SourceFiles="@(PageXaml)" DestinationFiles="@(PageXaml->'RawXaml\%(Filename).xaml.raw')" OverwriteReadOnlyFiles="true" />
   </Target>
 
+  <Target Name="PostBuildCleanup" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <FilesToDelete Include="$(ProjectDir)RawXaml\**\*.*" />
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" />
+  </Target>-->
 </Project>

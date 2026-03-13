@@ -6,6 +6,7 @@
     xmlns:button="clr-namespace:WPFStandardControlDemoApp.Features.ButtonUsage"
     xmlns:checkbox="clr-namespace:WPFStandardControlDemoApp.Features.CheckBoxUsage"
     xmlns:combobox="clr-namespace:WPFStandardControlDemoApp.Features.ComboBoxUsage"
+    xmlns:converters="clr-namespace:WPFStandardControlDemoApp.Common.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:datepicker="clr-namespace:WPFStandardControlDemoApp.Features.DatePickerUsage"
     xmlns:dockpanel="clr-namespace:WPFStandardControlDemoApp.Features.DockPanelUsage"
@@ -15,6 +16,8 @@
     xmlns:groupbox="clr-namespace:WPFStandardControlDemoApp.Features.GroupBoxUsage"
     xmlns:home="clr-namespace:WPFStandardControlDemoApp.Features.Home"
     xmlns:label="clr-namespace:WPFStandardControlDemoApp.Features.LabelUsage"
+    xmlns:listbox="clr-namespace:WPFStandardControlDemoApp.Features.ListBoxUsage"
+    xmlns:listview="clr-namespace:WPFStandardControlDemoApp.Features.ListViewUsage"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:passwordbox="clr-namespace:WPFStandardControlDemoApp.Features.PasswordBoxUsage"
@@ -29,6 +32,7 @@
     xmlns:textblock="clr-namespace:WPFStandardControlDemoApp.Features.TextBlockUsage"
     xmlns:textbox="clr-namespace:WPFStandardControlDemoApp.Features.TextBoxUsage"
     xmlns:togglebutton="clr-namespace:WPFStandardControlDemoApp.Features.ToggleButtonUsage"
+    xmlns:treeview="clr-namespace:WPFStandardControlDemoApp.Features.TreeViewUsage"
     xmlns:uniformgrid="clr-namespace:WPFStandardControlDemoApp.Features.UniformGridUsage"
     xmlns:viewbox="clr-namespace:WPFStandardControlDemoApp.Features.ViewboxUsage"
     xmlns:wrappanel="clr-namespace:WPFStandardControlDemoApp.Features.WrapPanelUsage"
@@ -36,160 +40,182 @@
     Width="1200"
     Height="800"
     mc:Ignorable="d">
-    <Window.Resources>
-        <home:HomeViewModel x:Key="HomeViewModel" />
-        <textbox:TextBoxUsageViewModel x:Key="TextBoxUsageViewModel" />
-        <button:ButtonUsageViewModel x:Key="ButtonUsageViewModel" />
-        <togglebutton:ToggleButtonUsageViewModel x:Key="ToggleButtonUsageViewModel" />
-        <checkbox:CheckBoxUsageViewModel x:Key="CheckBoxUsageViewModel" />
-        <radiobutton:RadioButtonUsageViewModel x:Key="RadioButtonUsageViewModel" />
-        <combobox:ComboBoxUsageViewModel x:Key="ComboBoxUsageViewModel" />
-        <repeatbutton:RepeatButtonUsageViewModel x:Key="RepeatButtonUsageViewModel" />
-        <textblock:TextBlockUsageViewModel x:Key="TextBlockUsageViewModel" />
-        <label:LabelUsageViewModel x:Key="LabelUsageViewModel" />
-        <grid:GridUsageViewModel x:Key="GridUsageViewModel" />
-        <stackpanel:StackPanelUsageViewModel x:Key="StackPanelUsageViewModel" />
-        <wrappanel:WrapPanelUsageViewModel x:Key="WrapPanelUsageViewModel" />
-        <dockpanel:DockPanelUsageViewModel x:Key="DockPanelUsageViewModel" />
-        <uniformgrid:UniformGridUsageViewModel x:Key="UniformGridUsageViewModel" />
-        <gridsplitter:GridSplitterUsageViewModel x:Key="GridSplitterUsageViewModel" />
-        <scrollviewer:ScrollViewerUsageViewModel x:Key="ScrollViewerUsageViewModel" />
-        <groupbox:GroupBoxUsageViewModel x:Key="GroupBoxUsageViewModel" />
-        <expander:ExpanderUsageViewModel x:Key="ExpanderUsageViewModel" />
-        <tabcontrol:TabControlUsageViewModel x:Key="TabControlUsageViewModel" />
-        <tabitem:TabItemUsageViewModel x:Key="TabItemUsageViewModel" />
-        <viewbox:ViewboxUsageViewModel x:Key="ViewboxUsageViewModel" />
-        <passwordbox:PasswordBoxUsageViewModel x:Key="PasswordBoxUsageViewModel" />
-        <datepicker:DatePickerUsageViewModel x:Key="DatePickerUsageViewModel" />
-        <slider:SliderUsageViewModel x:Key="SliderUsageViewModel" />
-        <progressbar:ProgressBarUsageViewModel x:Key="ProgressBarUsageViewModel" />
-
-    </Window.Resources>
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="0" LastChildFill="True">
+            <Border Margin="5" DockPanel.Dock="Top">
+                <Grid>
+                    <GroupBox Header="Search controls">
+                        <TextBox VerticalContentAlignment="Center" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+                    </GroupBox>
+                </Grid>
+            </Border>
+            <ListBox
+                x:Name="ContentsSelector"
+                VerticalAlignment="Stretch"
+                BorderThickness="0"
+                ItemsSource="{Binding ContentsView}"
+                SelectedIndex="0"
+                SelectedItem="{Binding SelectedContent}"
+                SelectionMode="Single"
+                VirtualizingPanel.IsVirtualizing="True"
+                VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                VirtualizingPanel.ScrollUnit="Pixel">
+                <ListBox.DisplayMemberPath>Name</ListBox.DisplayMemberPath>
+                <ListBox.Resources>
+                    <Style BasedOn="{StaticResource ContentsListItem}" TargetType="ListBoxItem" />
+                </ListBox.Resources>
+                <ListBox.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <StackPanel>
+                                                <GroupBox
+                                                    Margin="5"
+                                                    Padding="5"
+                                                    Header="{Binding Name}">
+                                                    <GroupBox.Style>
+                                                        <Style TargetType="{x:Type GroupBox}">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Name, Converter={converters:StringIsNullOrEmptyToBoolConverter}}" Value="True">
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </GroupBox.Style>
+                                                    <ItemsPresenter />
+                                                </GroupBox>
+                                                <ItemsPresenter>
+                                                    <ItemsPresenter.Style>
+                                                        <Style TargetType="{x:Type ItemsPresenter}">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Name, Converter={converters:StringIsNullOrEmptyToBoolConverter}}" Value="True">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </ItemsPresenter.Style>
+                                                </ItemsPresenter>
+                                            </StackPanel>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </ListBox.GroupStyle>
+            </ListBox>
+        </DockPanel>
+
         <Border
             Grid.Column="1"
             BorderBrush="{Binding BorderBrush, ElementName=ContentsSelector}"
             BorderThickness="1">
             <Border.Resources>
                 <DataTemplate DataType="{x:Type home:HomeViewModel}">
-                    <home:HomeControl DataContext="{StaticResource HomeViewModel}" />
+                    <home:HomeControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type textbox:TextBoxUsageViewModel}">
-                    <textbox:TextBoxUsageControl DataContext="{StaticResource TextBoxUsageViewModel}" />
+                    <textbox:TextBoxUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type button:ButtonUsageViewModel}">
-                    <button:ButtonUsageControl DataContext="{StaticResource ButtonUsageViewModel}" />
+                    <button:ButtonUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type togglebutton:ToggleButtonUsageViewModel}">
-                    <togglebutton:ToggleButtonUsageControl DataContext="{StaticResource ToggleButtonUsageViewModel}" />
+                    <togglebutton:ToggleButtonUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type checkbox:CheckBoxUsageViewModel}">
-                    <checkbox:CheckBoxUsageControl DataContext="{StaticResource CheckBoxUsageViewModel}" />
+                    <checkbox:CheckBoxUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type radiobutton:RadioButtonUsageViewModel}">
-                    <radiobutton:RadioButtonUsageControl DataContext="{StaticResource RadioButtonUsageViewModel}" />
+                    <radiobutton:RadioButtonUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type combobox:ComboBoxUsageViewModel}">
-                    <combobox:ComboBoxUsageControl DataContext="{StaticResource ComboBoxUsageViewModel}" />
+                    <combobox:ComboBoxUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type repeatbutton:RepeatButtonUsageViewModel}">
-                    <repeatbutton:RepeatButtonUsageControl DataContext="{StaticResource RepeatButtonUsageViewModel}" />
+                    <repeatbutton:RepeatButtonUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type textblock:TextBlockUsageViewModel}">
-                    <textblock:TextBlockUsageControl DataContext="{StaticResource TextBlockUsageViewModel}" />
+                    <textblock:TextBlockUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type label:LabelUsageViewModel}">
-                    <label:LabelUsageControl DataContext="{StaticResource LabelUsageViewModel}" />
+                    <label:LabelUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type grid:GridUsageViewModel}">
-                    <grid:GridUsageControl DataContext="{StaticResource GridUsageViewModel}" />
+                    <grid:GridUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type stackpanel:StackPanelUsageViewModel}">
-                    <stackpanel:StackPanelUsageControl DataContext="{StaticResource StackPanelUsageViewModel}" />
+                    <stackpanel:StackPanelUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type wrappanel:WrapPanelUsageViewModel}">
-                    <wrappanel:WrapPanelUsageControl DataContext="{StaticResource WrapPanelUsageViewModel}" />
+                    <wrappanel:WrapPanelUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type dockpanel:DockPanelUsageViewModel}">
-                    <dockpanel:DockPanelUsageControl DataContext="{StaticResource DockPanelUsageViewModel}" />
+                    <dockpanel:DockPanelUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type uniformgrid:UniformGridUsageViewModel}">
-                    <uniformgrid:UniformGridUsageControl DataContext="{StaticResource UniformGridUsageViewModel}" />
+                    <uniformgrid:UniformGridUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type gridsplitter:GridSplitterUsageViewModel}">
-                    <gridsplitter:GridSplitterUsageControl DataContext="{StaticResource GridSplitterUsageViewModel}" />
+                    <gridsplitter:GridSplitterUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type scrollviewer:ScrollViewerUsageViewModel}">
-                    <scrollviewer:ScrollViewerUsageControl DataContext="{StaticResource ScrollViewerUsageViewModel}" />
+                    <scrollviewer:ScrollViewerUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type groupbox:GroupBoxUsageViewModel}">
-                    <groupbox:GroupBoxUsageControl DataContext="{StaticResource GroupBoxUsageViewModel}" />
+                    <groupbox:GroupBoxUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type expander:ExpanderUsageViewModel}">
-                    <expander:ExpanderUsageControl DataContext="{StaticResource ExpanderUsageViewModel}" />
+                    <expander:ExpanderUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type tabcontrol:TabControlUsageViewModel}">
-                    <tabcontrol:TabControlUsageControl DataContext="{StaticResource TabControlUsageViewModel}" />
+                    <tabcontrol:TabControlUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type tabitem:TabItemUsageViewModel}">
-                    <tabitem:TabItemUsageControl DataContext="{StaticResource TabItemUsageViewModel}" />
+                    <tabitem:TabItemUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type viewbox:ViewboxUsageViewModel}">
-                    <viewbox:ViewboxUsageControl DataContext="{StaticResource ViewboxUsageViewModel}" />
+                    <viewbox:ViewboxUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type passwordbox:PasswordBoxUsageViewModel}">
-                    <passwordbox:PasswordBoxUsageControl DataContext="{StaticResource PasswordBoxUsageViewModel}" />
+                    <passwordbox:PasswordBoxUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type datepicker:DatePickerUsageViewModel}">
-                    <datepicker:DatePickerUsageControl DataContext="{StaticResource DatePickerUsageViewModel}" />
+                    <datepicker:DatePickerUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type slider:SliderUsageViewModel}">
-                    <slider:SliderUsageControl DataContext="{StaticResource SliderUsageViewModel}" />
+                    <slider:SliderUsageControl />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type progressbar:ProgressBarUsageViewModel}">
-                    <progressbar:ProgressBarUsageControl DataContext="{StaticResource ProgressBarUsageViewModel}" />
+                    <progressbar:ProgressBarUsageControl />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type listbox:ListBoxUsageViewModel}">
+                    <listbox:ListBoxUsageControl />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type listview:ListViewUsageViewModel}">
+                    <listview:ListViewUsageControl />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type treeview:TreeViewUsageViewModel}">
+                    <treeview:TreeViewUsageControl />
                 </DataTemplate>
 
+                <DataTemplate DataType="{x:Type about:AboutViewModel}">
+                    <about:AboutControl />
+                </DataTemplate>
             </Border.Resources>
-            <ContentControl Content="{Binding SelectedItem.Content, ElementName=ContentsSelector}" />
+            <ContentControl Grid.Column="1" Content="{Binding SelectedContent.ViewModel}" />
         </Border>
-        <Grid Grid.Column="0">
-            <ListBox x:Name="ContentsSelector" SelectionMode="Single">
-                <ListBox.Resources>
-                    <Style BasedOn="{StaticResource ContentsListItem}" TargetType="ListBoxItem" />
-                </ListBox.Resources>
-                <ListBoxItem Content="{StaticResource HomeViewModel}" IsSelected="True" />
-                <ListBoxItem Content="{StaticResource TextBoxUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource ButtonUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource ToggleButtonUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource CheckBoxUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource RadioButtonUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource ComboBoxUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource RepeatButtonUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource TextBlockUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource LabelUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource GridUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource StackPanelUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource WrapPanelUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource DockPanelUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource UniformGridUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource GridSplitterUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource ScrollViewerUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource GroupBoxUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource ExpanderUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource TabControlUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource TabItemUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource ViewboxUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource PasswordBoxUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource DatePickerUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource SliderUsageViewModel}" />
-                <ListBoxItem Content="{StaticResource ProgressBarUsageViewModel}" />
-
-            </ListBox>
-        </Grid>
     </Grid>
 </Window>

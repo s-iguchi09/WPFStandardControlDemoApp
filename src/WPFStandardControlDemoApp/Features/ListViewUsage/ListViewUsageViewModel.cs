@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace WPFStandardControlDemoApp.Features.ExpanderUsage
+namespace WPFStandardControlDemoApp.Features.ListViewUsage
 {
-    public class ExpanderUsageViewModel : INotifyPropertyChanged
+    public class ListViewUsageViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged=delegate { };
     }

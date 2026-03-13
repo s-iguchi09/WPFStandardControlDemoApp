@@ -1,0 +1,227 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.TreeViewUsage.TreeViewUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="5000"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="TreeViewUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageHeader}" Text="TreeView" />
+
+            <Expander Header="IsExpanded(TreeViewItem)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="IsExpanded" Style="{StaticResource SubGroupBox}">
+                            <CheckBox
+                                x:Name="IsExpandedCheckBox"
+                                HorizontalAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="Expand Node 1"
+                                IsChecked="True" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TreeView x:Name="IsExpandedTreeView" Height="150">
+                            <TreeViewItem Header="Node 1 (Controlled)" IsExpanded="{Binding IsChecked, ElementName=IsExpandedCheckBox}">
+                                <TreeViewItem Header="Child 1-1" />
+                                <TreeViewItem Header="Child 1-2" />
+                            </TreeViewItem>
+                            <TreeViewItem Header="Node 2 (Manual)">
+                                <TreeViewItem Header="Child 2-1" />
+                            </TreeViewItem>
+                        </TreeView>
+                    </GroupBox>
+                    <ToggleButton x:Name="IsExpandedDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IsExpandedDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=IsExpandedDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsExpandedCheckBox,IsExpandedTreeView" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="IsSelected(TreeViewItem)&#10;IsSelectionActive(TreeViewItem)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="IsSelected" Style="{StaticResource SubGroupBox}">
+                            <CheckBox
+                                x:Name="IsSelectedCheckBox"
+                                HorizontalAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="Select Node 2" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <TreeView x:Name="IsSelectedActiveTreeView" Height="120">
+                                <TreeViewItem x:Name="IsSelectedActiveNode1" Header="Node 1" />
+                                <TreeViewItem
+                                    x:Name="IsSelectedActiveNode2"
+                                    Header="Node 2"
+                                    IsSelected="{Binding IsChecked, ElementName=IsSelectedCheckBox}" />
+                                <TreeViewItem x:Name="IsSelectedActiveNode3" Header="Node 3" />
+                            </TreeView>
+                            <UniformGrid Margin="0,5,0,0" Columns="2">
+                                <GroupBox Header="SelectedItem.Header" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding SelectedItem.Header, ElementName=IsSelectedActiveTreeView, FallbackValue='(null)'}" />
+                                </GroupBox>
+                                <GroupBox Header="IsSelectionActive(Node 2)" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsSelectionActive, ElementName=IsSelectedActiveNode2}" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="IsSelectedActiveDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IsSelectedActiveDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=IsSelectedActiveDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsSelectedCheckBox,IsSelectedActiveTreeView" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="SelectedValuePath(TreeView)&#10;SelectedValue(TreeView)" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="SelectedValuePath" Style="{StaticResource SubGroupBox}">
+                            <TextBox x:Name="SelectedValuePathTextBox" Text="Header" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <TreeView
+                                x:Name="SelectedValuePathSelectedValueTreeView"
+                                Height="150"
+                                SelectedValuePath="{Binding Text, ElementName=SelectedValuePathTextBox}">
+                                <TreeViewItem Header="Desktop" IsExpanded="True">
+                                    <TreeViewItem Header="Workstation PC" />
+                                    <TreeViewItem Header="Gaming PC" />
+                                </TreeViewItem>
+                                <TreeViewItem Header="Mobile" IsExpanded="True">
+                                    <TreeViewItem Header="Laptop" />
+                                    <TreeViewItem Header="Tablet" />
+                                </TreeViewItem>
+                            </TreeView>
+                            <GroupBox Header="SelectedValue" Style="{StaticResource SubGroupBox}">
+                                <TextBlock HorizontalAlignment="Center" Text="{Binding SelectedValue, ElementName=SelectedValuePathSelectedValueTreeView, FallbackValue='(null)'}" />
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="SelectedValuePathSelectedValueDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=SelectedValuePathSelectedValueDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=SelectedValuePathSelectedValueDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="SelectedValuePathTextBox,SelectedValuePathSelectedValueTreeView" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="ItemTemplate(ItemsControl)&#10;HierarchicalDataTemplate" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <HierarchicalDataTemplate x:Key="MyTreeViewTemplate" ItemsSource="{Binding Children}">
+                            <StackPanel Orientation="Horizontal">
+                                <Path Data="M0,0 L8,4 L0,8 Z" Fill="Orange" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                    </StackPanel.Resources>
+
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="ItemTemplate" Style="{StaticResource SubGroupBox}">
+                            <TextBlock Text="Applied: MyTreeViewTemplate" HorizontalAlignment="Center" Foreground="DimGray"/>
+                        </GroupBox>
+                    </GroupBox>
+
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TreeView
+                x:Name="ItemTemplateTreeView"
+                Height="200"
+                ItemTemplate="{StaticResource MyTreeViewTemplate}"
+                ItemsSource="{Binding SampleCategories}" />
+                    </GroupBox>
+
+                    <ToggleButton x:Name="ItemTemplateDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup IsOpen="{Binding IsChecked, ElementName=ItemTemplateDetailToggleButton}" PlacementTarget="{Binding ElementName=ItemTemplateDetailToggleButton}" StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ItemTemplateTreeView" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="HorizontalScrollBarVisibility(ScrollViewer)&#10;VerticalScrollBarVisibility(ScrollViewer)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="HorizontalScrollBar" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="HorizontalScrollBarVisibilityComboBox"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:EnumBindingSource EnumType=ScrollBarVisibility}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
+                            </GroupBox>
+                            <GroupBox Header="VerticalScrollBar" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="VerticalScrollBarVisibilityComboBox"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:EnumBindingSource EnumType=ScrollBarVisibility}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <TreeView
+                            x:Name="ScrollBarVisibilityTreeView"
+                            Height="120"
+                            ScrollViewer.HorizontalScrollBarVisibility="{Binding SelectedValue, ElementName=HorizontalScrollBarVisibilityComboBox}"
+                            ScrollViewer.VerticalScrollBarVisibility="{Binding SelectedValue, ElementName=VerticalScrollBarVisibilityComboBox}">
+                            <TreeViewItem Header="This is a very long text to check how the horizontal scrollbar works in a TreeView control" IsExpanded="True">
+                                <TreeViewItem Header="Sub Item 1" />
+                                <TreeViewItem Header="Sub Item 2" />
+                                <TreeViewItem Header="Sub Item 3" />
+                                <TreeViewItem Header="Sub Item 4" />
+                                <TreeViewItem Header="Sub Item 5" />
+                            </TreeViewItem>
+                        </TreeView>
+                    </GroupBox>
+                    <ToggleButton x:Name="ScrollBarVisibilityDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ScrollBarVisibilityDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ScrollBarVisibilityDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="HorizontalScrollBarVisibilityComboBox,VerticalScrollBarVisibilityComboBox,ScrollBarVisibilityTreeView" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

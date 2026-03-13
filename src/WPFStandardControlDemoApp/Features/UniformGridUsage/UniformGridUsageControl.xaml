@@ -37,11 +37,26 @@
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <UniformGrid x:Name="ColumnsUniformGrid" Columns="{Binding Text, ElementName=ColumnsTextBox}">
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item1" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item2" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item3" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item4" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item5" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item1" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item2" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item3" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item4" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item5" />
                         </UniformGrid>
                     </GroupBox>
                     <ToggleButton x:Name="ColumnsDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
@@ -68,11 +83,26 @@
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <UniformGrid x:Name="RowsUniformGrid" Rows="{Binding Text, ElementName=RowsTextBox}">
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item1" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item2" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item3" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item4" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item5" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item1" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item2" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item3" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item4" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item5" />
                         </UniformGrid>
                     </GroupBox>
                     <ToggleButton x:Name="RowsDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
@@ -110,15 +140,42 @@
                             x:Name="FirstColumnUniformGrid"
                             Columns="{Binding Text, ElementName=ColumnsForFirstColumnTextBox}"
                             FirstColumn="{Binding Text, ElementName=FirstColumnTextBox}">
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item1" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item2" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item3" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item4" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item5" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item6" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item7" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item8" />
-                            <Label BorderBrush="Black" BorderThickness="1" Content="Item9" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item1" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item2" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item3" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item4" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item5" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item6" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item7" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item8" />
+                            <Label
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Content="Item9" />
                         </UniformGrid>
                     </GroupBox>
                     <ToggleButton x:Name="FirstColumnDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
@@ -139,7 +196,6 @@
                         <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
                             <ComboBox
                                 x:Name="BackgroundComboBox"
-                                behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                 DisplayMemberPath="Name"
                                 ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
                                 SelectedIndex="0"

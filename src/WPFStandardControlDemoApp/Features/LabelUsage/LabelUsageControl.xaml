@@ -327,7 +327,6 @@
                             <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
                                     x:Name="BackgroundComboBox"
-                                    behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                     DisplayMemberPath="Name"
                                     ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
                                     SelectedIndex="0"
@@ -366,7 +365,6 @@
                             <GroupBox Header="Foreground" Style="{StaticResource SubGroupBox}">
                                 <ComboBox
                                     x:Name="ForegroundComboBox"
-                                    behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                     DisplayMemberPath="Name"
                                     ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
                                     SelectedIndex="0"
@@ -412,9 +410,9 @@
                                 <GroupBox Header="BorderBrush" Style="{StaticResource SubGroupBox}">
                                     <ComboBox
                                         x:Name="BorderBrushComboBox"
-                                        behaviors:SelectorInitialSelectionBehavior.InitialSelectedIndex="0"
                                         DisplayMemberPath="Name"
                                         ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
+                                        SelectedIndex="0"
                                         SelectedValuePath="Value" />
                                 </GroupBox>
                             </UniformGrid>
