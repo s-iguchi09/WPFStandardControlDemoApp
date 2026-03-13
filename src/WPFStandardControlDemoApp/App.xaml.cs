@@ -17,6 +17,12 @@ namespace WPFStandardControlDemoApp
                 typeof(FrameworkElement),
                 new FrameworkPropertyMetadata(
                     System.Windows.Markup.XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "https://s-iguchi09.github.io/",
+                UseShellExecute = true
+            });
         }
     }
 
