@@ -13,9 +13,9 @@
     <PlatformTarget>x64</PlatformTarget>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <Version>0.0.2</Version>
-    <AssemblyVersion>0.0.3.0</AssemblyVersion>
-    <FileVersion>0.0.3.0</FileVersion>
+    <Version>0.0.4</Version>
+    <AssemblyVersion>0.0.4.0</AssemblyVersion>
+    <FileVersion>0.0.4.0</FileVersion>
     <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
   </PropertyGroup>
 
@@ -36,33 +36,5 @@
       </EmbeddedResource>
     </ItemGroup>
   </Target>
-  <!--<ItemGroup>
-    --><!--<Page Update="Features\*\*.xaml" />--><!--
-    <EmbeddedResource Include="Features\**\*.xaml">
-      <LogicalName>%(Filename)%(Extension).raw</LogicalName>
-    </EmbeddedResource>
-  </ItemGroup>-->
 
-  <!--<ItemGroup>
-    <Page Update="Features\*\*.xaml" />
-  </ItemGroup>-->
-
-  <!--<ItemGroup>
-    <Page Update="**\*.xaml" />
-  </ItemGroup>-->
-
-  <!--<Target Name="GenerateRawXaml" BeforeTargets="PrepareForBuild">
-    <ItemGroup>
-      <PageXaml Include="Features\*\*.xaml" />
-    </ItemGroup>
-
-    <Copy SourceFiles="@(PageXaml)" DestinationFiles="@(PageXaml->'RawXaml\%(Filename).xaml.raw')" OverwriteReadOnlyFiles="true" />
-  </Target>
-
-  <Target Name="PostBuildCleanup" AfterTargets="PostBuildEvent">
-    <ItemGroup>
-      <FilesToDelete Include="$(ProjectDir)RawXaml\**\*.*" />
-    </ItemGroup>
-    <Delete Files="@(FilesToDelete)" />
-  </Target>-->
 </Project>
