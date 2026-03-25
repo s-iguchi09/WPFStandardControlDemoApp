@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace WPFStandardControlDemoApp.Common.Behaviors
 {
-    public static class EventToCommand
+    public static class EventToCommandBehavior
     {
         /// <summary>
         /// <para>Specifies the event name to bind to the command.</para>
@@ -30,7 +30,7 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
             DependencyProperty.RegisterAttached(
                 "EventName",
                 typeof(string),
-                typeof(EventToCommand),
+                typeof(EventToCommandBehavior),
                 new PropertyMetadata(null, OnEventNameChanged));
 
         public static void SetEventName(DependencyObject obj, string value)
@@ -58,7 +58,7 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
             DependencyProperty.RegisterAttached(
                 "Command",
                 typeof(ICommand),
-                typeof(EventToCommand),
+                typeof(EventToCommandBehavior),
                 new PropertyMetadata(null));
 
         public static void SetCommand(DependencyObject obj, ICommand value)
@@ -86,7 +86,7 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
             DependencyProperty.RegisterAttached(
                 "CommandParameter",
                 typeof(object),
-                typeof(EventToCommand),
+                typeof(EventToCommandBehavior),
                 new PropertyMetadata(null));
 
         public static void SetCommandParameter(DependencyObject obj, object value)
@@ -114,7 +114,7 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
             DependencyProperty.RegisterAttached(
                 "PassEventArgs",
                 typeof(bool),
-                typeof(EventToCommand),
+                typeof(EventToCommandBehavior),
                 new PropertyMetadata(false));
 
         public static void SetPassEventArgs(DependencyObject obj, bool value)
@@ -127,7 +127,7 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
             DependencyProperty.RegisterAttached(
                 "Handler",
                 typeof(Delegate),
-                typeof(EventToCommand),
+                typeof(EventToCommandBehavior),
                 new PropertyMetadata(null));
 
         private static void SetHandler(DependencyObject obj, Delegate? value)
@@ -158,7 +158,7 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
                 if (eventInfo == null)
                     return;
 
-                var method = typeof(EventToCommand).GetMethod(
+                var method = typeof(EventToCommandBehavior).GetMethod(
                     nameof(OnEventRaised),
                     BindingFlags.Static | BindingFlags.NonPublic);
 

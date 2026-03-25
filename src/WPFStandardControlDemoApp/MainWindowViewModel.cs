@@ -4,18 +4,24 @@ using System.Runtime.CompilerServices;
 using System.Windows.Data;
 using WPFStandardControlDemoApp.Features.About;
 using WPFStandardControlDemoApp.Features.ButtonUsage;
+using WPFStandardControlDemoApp.Features.CanvasUsage;
 using WPFStandardControlDemoApp.Features.CheckBoxUsage;
 using WPFStandardControlDemoApp.Features.ComboBoxUsage;
+using WPFStandardControlDemoApp.Features.DataGridUsage;
 using WPFStandardControlDemoApp.Features.DatePickerUsage;
 using WPFStandardControlDemoApp.Features.DockPanelUsage;
 using WPFStandardControlDemoApp.Features.ExpanderUsage;
 using WPFStandardControlDemoApp.Features.GridSplitterUsage;
 using WPFStandardControlDemoApp.Features.GridUsage;
 using WPFStandardControlDemoApp.Features.GroupBoxUsage;
+using WPFStandardControlDemoApp.Features.ImageUsage;
+using WPFStandardControlDemoApp.Features.InkCanvasUsage;
 using WPFStandardControlDemoApp.Features.LabelUsage;
 using WPFStandardControlDemoApp.Features.ListBoxUsage;
 using WPFStandardControlDemoApp.Features.ListViewUsage;
+using WPFStandardControlDemoApp.Features.MenuUsage;
 using WPFStandardControlDemoApp.Features.PasswordBoxUsage;
+using WPFStandardControlDemoApp.Features.PopupUsage;
 using WPFStandardControlDemoApp.Features.ProgressBarUsage;
 using WPFStandardControlDemoApp.Features.RadioButtonUsage;
 using WPFStandardControlDemoApp.Features.RepeatButtonUsage;
@@ -27,6 +33,8 @@ using WPFStandardControlDemoApp.Features.TabItemUsage;
 using WPFStandardControlDemoApp.Features.TextBlockUsage;
 using WPFStandardControlDemoApp.Features.TextBoxUsage;
 using WPFStandardControlDemoApp.Features.ToggleButtonUsage;
+using WPFStandardControlDemoApp.Features.ToolBarUsage;
+using WPFStandardControlDemoApp.Features.ToolTipUsage;
 using WPFStandardControlDemoApp.Features.TreeViewUsage;
 using WPFStandardControlDemoApp.Features.UniformGridUsage;
 using WPFStandardControlDemoApp.Features.ViewboxUsage;
@@ -109,14 +117,28 @@ namespace WPFStandardControlDemoApp
                 // --- List ---
                 new ContentItem("ListBox", "List", ()=> new ListBoxUsageViewModel() ),
                 new ContentItem("ListView", "List", ()=> new ListViewUsageViewModel() ),
-                //new ContentItem("TreeView", "List", ()=> new TreeViewUsageViewModel() ),
+                new ContentItem("TreeView", "List", ()=> new TreeViewUsageViewModel() ),
+                new ContentItem("DataGrid", "List", ()=> new DataGridUsageViewModel() ),
 
-                // --- Navigation ---
-                new ContentItem("TabControl", "Navigation", ()=>new TabControlUsageViewModel() ),
-                new ContentItem("TabItem", "Navigation", ()=>new TabItemUsageViewModel() ),
+                // --- Graphics ---
+                new ContentItem("Image", "Graphics", ()=> new ImageUsageViewModel() ),
+                new ContentItem("Canvas", "Graphics", ()=> new CanvasUsageViewModel() ),
+                new ContentItem("InkCanvas", "Graphics", ()=> new InkCanvasUsageViewModel() ),
 
-                // --- Utilities ---
-                new ContentItem("GridSplitter", "Utilities", ()=>new GridSplitterUsageViewModel() ),
+                // --- Selectors ---
+                new ContentItem("TabControl", "Selectors", ()=>new TabControlUsageViewModel() ),
+                new ContentItem("TabItem", "Selectors", ()=>new TabItemUsageViewModel() ),
+
+                // --- Menu ---
+                new ContentItem("Menu", "Menu",()=> new MenuUsageViewModel() ),
+                new ContentItem("ToolBar", "Menu",()=> new ToolBarUsageViewModel() ),
+
+                // --- Overlays ---
+                new ContentItem("ToolTip", "OverLays", ()=> new ToolTipUsageViewModel() ),
+                new ContentItem("Popup", "OverLays", ()=> new PopupUsageViewModel() ),
+
+                // --- Resizer ---
+                new ContentItem("GridSplitter", "Resizer", ()=>new GridSplitterUsageViewModel() ),
 
                 new ContentItem("About", "General", ()=> new AboutViewModel() ),
             };

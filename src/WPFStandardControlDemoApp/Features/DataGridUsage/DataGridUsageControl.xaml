@@ -1,0 +1,897 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.DataGridUsage.DataGridUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.DataGridUsage"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    d:DesignHeight="80000"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <local:DataGridUsageViewModel />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="DataGridUsageControl.xaml.raw" />
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5,2" />
+        </Style>
+
+        <Style x:Key="SampleRowStyle" TargetType="DataGridRow">
+            <Setter Property="Background" Value="#10000000" />
+        </Style>
+        <Style x:Key="SampleCellStyle" TargetType="DataGridCell">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style x:Key="SampleColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="Blue" />
+        </Style>
+        <Style x:Key="SampleRowHeaderStyle" TargetType="DataGridRowHeader">
+            <Setter Property="Background" Value="LightGoldenrodYellow" />
+        </Style>
+        <DataTemplate x:Key="SampleHeaderTemplate">
+            <TextBlock
+                FontWeight="Bold"
+                Foreground="DarkGreen"
+                Text="{Binding}" />
+        </DataTemplate>
+
+        <ControlTemplate x:Key="SampleErrorTemplate">
+            <Grid Margin="2,0,2,0" VerticalAlignment="Center">
+                <Ellipse
+                    Width="12"
+                    Height="12"
+                    Fill="Red" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="10"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="!" />
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageHeader}" Text="DataGrid" />
+
+            <Expander Header="AlternatingRowBackground" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="AlternatingRowBackground" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="PropertyAlternatingRowBackground"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultAlternatingRowBackground"
+                            Height="150"
+                            AlternatingRowBackground="{Binding SelectedValue, ElementName=PropertyAlternatingRowBackground}"
+                            ItemsSource="{Binding Items}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleAlternatingRowBackground" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleAlternatingRowBackground}"
+                        PlacementTarget="{Binding ElementName=ToggleAlternatingRowBackground}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyAlternatingRowBackground,ResultAlternatingRowBackground" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="HorizontalScrollBarVisibility&#10;VerticalScrollBarVisibility" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="HorizontalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="PropertyHorizontalScrollBarVisibility"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:EnumBindingSource EnumType=ScrollBarVisibility}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
+                            </GroupBox>
+                            <GroupBox Header="VerticalScrollBarVisibility" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="PropertyVerticalScrollBarVisibility"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:EnumBindingSource EnumType=ScrollBarVisibility}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultScrollBarVisibility"
+                            Height="120"
+                            HorizontalScrollBarVisibility="{Binding SelectedValue, ElementName=PropertyHorizontalScrollBarVisibility}"
+                            ItemsSource="{Binding Items}"
+                            VerticalScrollBarVisibility="{Binding SelectedValue, ElementName=PropertyVerticalScrollBarVisibility}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="1000"
+                                    Binding="{Binding Name}"
+                                    Header="Wide Column" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleScrollBarVisibility" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleScrollBarVisibility}"
+                        PlacementTarget="{Binding ElementName=ToggleScrollBarVisibility}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyHorizontalScrollBarVisibility,PropertyVerticalScrollBarVisibility,ResultScrollBarVisibility" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="IsReadOnly" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="IsReadOnly" Style="{StaticResource SubGroupBox}">
+                            <CheckBox x:Name="PropertyIsReadOnly" Content="IsReadOnly" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultIsReadOnly"
+                            Height="150"
+                            IsReadOnly="{Binding IsChecked, ElementName=PropertyIsReadOnly}"
+                            ItemsSource="{Binding Items}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleIsReadOnly" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleIsReadOnly}"
+                        PlacementTarget="{Binding ElementName=ToggleIsReadOnly}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyIsReadOnly,ResultIsReadOnly" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="ColumnWidth&#10;MaxColumnWidth&#10;MinColumnWidth" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="3">
+                            <GroupBox Header="MinColumnWidth" Style="{StaticResource SubGroupBox}">
+                                <Slider
+                                    x:Name="PropertyMinColumnWidth"
+                                    IsSnapToTickEnabled="True"
+                                    Maximum="100"
+                                    Minimum="20"
+                                    Value="50" />
+                            </GroupBox>
+                            <GroupBox Header="MaxColumnWidth" Style="{StaticResource SubGroupBox}">
+                                <Slider
+                                    x:Name="PropertyMaxColumnWidth"
+                                    IsSnapToTickEnabled="True"
+                                    Maximum="500"
+                                    Minimum="100"
+                                    Value="300" />
+                            </GroupBox>
+                            <GroupBox Header="ColumnWidth" Style="{StaticResource SubGroupBox}">
+                                <Slider
+                                    x:Name="PropertyColumnWidth"
+                                    IsSnapToTickEnabled="True"
+                                    Maximum="300"
+                                    Minimum="50"
+                                    Value="100" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultColumnWidths"
+                            Height="150"
+                            AutoGenerateColumns="False"
+                            ItemsSource="{Binding Items}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="{Binding Value, ElementName=PropertyColumnWidth}"
+                                    MinWidth="{Binding Value, ElementName=PropertyMinColumnWidth}"
+                                    MaxWidth="{Binding Value, ElementName=PropertyMaxColumnWidth}"
+                                    Binding="{Binding Name}"
+                                    Header="Bound Column" />
+                                <DataGridTextColumn
+                                    Width="*"
+                                    Binding="{Binding Value}"
+                                    Header="Flexible" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleColumnWidths" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleColumnWidths}"
+                        PlacementTarget="{Binding ElementName=ToggleColumnWidths}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyMinColumnWidth,PropertyMaxColumnWidth,PropertyColumnWidth,ResultColumnWidths" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="RowDetailsVisibilityMode&#10;AreRowDetailsFrozen" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="RowDetailsVisibilityMode" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="PropertyRowDetailsVisibilityMode"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:EnumBindingSource EnumType=DataGridRowDetailsVisibilityMode}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
+                            </GroupBox>
+                            <GroupBox Header="AreRowDetailsFrozen" Style="{StaticResource SubGroupBox}">
+                                <CheckBox x:Name="PropertyAreRowDetailsFrozen" Content="AreRowDetailsFrozen" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultRowDetails"
+                            Height="200"
+                            AreRowDetailsFrozen="{Binding IsChecked, ElementName=PropertyAreRowDetailsFrozen}"
+                            ItemsSource="{Binding Items}"
+                            RowDetailsVisibilityMode="{Binding SelectedValue, ElementName=PropertyRowDetailsVisibilityMode}">
+                            <DataGrid.RowDetailsTemplate>
+                                <DataTemplate>
+                                    <Border Padding="10" Background="#F0F0F0">
+                                        <TextBlock Text="Detail Area" />
+                                    </Border>
+                                </DataTemplate>
+                            </DataGrid.RowDetailsTemplate>
+                        </DataGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleRowDetails" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleRowDetails}"
+                        PlacementTarget="{Binding ElementName=ToggleRowDetails}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyRowDetailsVisibilityMode,PropertyAreRowDetailsFrozen,ResultRowDetails" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="CanUserAddRows&#10;CanUserDeleteRows&#10;CanUserReorderColumns&#10;CanUserResizeColumns&#10;CanUserResizeRows&#10;CanUserSortColumns" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="CanUserAddRows" Style="{StaticResource SubGroupBox}">
+                                <CheckBox
+                                    x:Name="PropertyCanUserAddRows"
+                                    Content="CanUserAddRows"
+                                    IsChecked="True" />
+                            </GroupBox>
+                            <GroupBox Header="CanUserDeleteRows" Style="{StaticResource SubGroupBox}">
+                                <CheckBox
+                                    x:Name="PropertyCanUserDeleteRows"
+                                    Content="CanUserDeleteRows"
+                                    IsChecked="True" />
+                            </GroupBox>
+                            <GroupBox Header="CanUserReorderColumns" Style="{StaticResource SubGroupBox}">
+                                <CheckBox
+                                    x:Name="PropertyCanUserReorderColumns"
+                                    Content="CanUserReorderColumns"
+                                    IsChecked="True" />
+                            </GroupBox>
+                            <GroupBox Header="CanUserResizeColumns" Style="{StaticResource SubGroupBox}">
+                                <CheckBox
+                                    x:Name="PropertyCanUserResizeColumns"
+                                    Content="CanUserResizeColumns"
+                                    IsChecked="True" />
+                            </GroupBox>
+                            <GroupBox Header="CanUserResizeRows" Style="{StaticResource SubGroupBox}">
+                                <CheckBox x:Name="PropertyCanUserResizeRows" Content="CanUserResizeRows" />
+                            </GroupBox>
+                            <GroupBox Header="CanUserSortColumns" Style="{StaticResource SubGroupBox}">
+                                <CheckBox
+                                    x:Name="PropertyCanUserSortColumns"
+                                    Content="CanUserSortColumns"
+                                    IsChecked="True" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultPermissions"
+                            Height="150"
+                            CanUserAddRows="{Binding IsChecked, ElementName=PropertyCanUserAddRows}"
+                            CanUserDeleteRows="{Binding IsChecked, ElementName=PropertyCanUserDeleteRows}"
+                            CanUserReorderColumns="{Binding IsChecked, ElementName=PropertyCanUserReorderColumns}"
+                            CanUserResizeColumns="{Binding IsChecked, ElementName=PropertyCanUserResizeColumns}"
+                            CanUserResizeRows="{Binding IsChecked, ElementName=PropertyCanUserResizeRows}"
+                            CanUserSortColumns="{Binding IsChecked, ElementName=PropertyCanUserSortColumns}"
+                            ItemsSource="{Binding Items}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="TogglePermissions" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=TogglePermissions}"
+                        PlacementTarget="{Binding ElementName=TogglePermissions}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyCanUserAddRows,PropertyCanUserDeleteRows,PropertyCanUserReorderColumns,PropertyCanUserResizeColumns,PropertyCanUserResizeRows,PropertyCanUserSortColumns,ResultPermissions" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="EnableRowVirtualization&#10;EnableColumnVirtualization" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="1">
+                            <GroupBox Header="EnableRowVirtualization" Style="{StaticResource SubGroupBox}">
+                                <CheckBox
+                                    x:Name="PropertyEnableRowVirtualization"
+                                    Content="EnableRowVirtualization"
+                                    IsChecked="True" />
+                            </GroupBox>
+                            <GroupBox Header="EnableColumnVirtualization" Style="{StaticResource SubGroupBox}">
+                                <CheckBox x:Name="PropertyEnableColumnVirtualization" Content="EnableColumnVirtualization" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultVirtualization"
+                            Height="150"
+                            EnableColumnVirtualization="{Binding IsChecked, ElementName=PropertyEnableColumnVirtualization}"
+                            EnableRowVirtualization="{Binding IsChecked, ElementName=PropertyEnableRowVirtualization}"
+                            ItemsSource="{Binding Items}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleVirtualization" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleVirtualization}"
+                        PlacementTarget="{Binding ElementName=ToggleVirtualization}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyEnableRowVirtualization,PropertyEnableColumnVirtualization,ResultVirtualization" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="RowValidationErrorTemplate" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="RowValidationErrorTemplate" Style="{StaticResource SubGroupBox}">
+                            <CheckBox
+                                x:Name="PropertyApplyErrorTemplate"
+                                Content="RowValidationErrorTemplate (Apply Sample Template)"
+                                IsChecked="True" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultErrorTemplate"
+                            Height="150"
+                            ItemsSource="{Binding Items}">
+                            <DataGrid.Style>
+                                <Style BasedOn="{StaticResource {x:Type DataGrid}}" TargetType="DataGrid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=PropertyApplyErrorTemplate}" Value="True">
+                                            <Setter Property="RowValidationErrorTemplate" Value="{StaticResource SampleErrorTemplate}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.Style>
+                        </DataGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleErrorTemplate" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleErrorTemplate}"
+                        PlacementTarget="{Binding ElementName=ToggleErrorTemplate}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyApplyErrorTemplate,ResultErrorTemplate" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="SelectionMode&#10;SelectionUnit" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="SelectionMode" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="PropertySelectionMode"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:EnumBindingSource EnumType=DataGridSelectionMode}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
+                            </GroupBox>
+                            <GroupBox Header="SelectionUnit" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="PropertySelectionUnit"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:EnumBindingSource EnumType=DataGridSelectionUnit}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultSelection"
+                            Height="150"
+                            ItemsSource="{Binding Items}"
+                            SelectionMode="{Binding SelectedValue, ElementName=PropertySelectionMode}"
+                            SelectionUnit="{Binding SelectedValue, ElementName=PropertySelectionUnit}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleSelection" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleSelection}"
+                        PlacementTarget="{Binding ElementName=ToggleSelection}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertySelectionMode,PropertySelectionUnit,ResultSelection" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="GridLinesVisibility&#10;HorizontalGridLinesBrush&#10;VerticalGridLinesBrush" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="GridLinesVisibility" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="PropertyGridLinesVisibility"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:EnumBindingSource EnumType=DataGridGridLinesVisibility}"
+                                    SelectedIndex="0"
+                                    SelectedValuePath="Value" />
+                            </GroupBox>
+                            <UniformGrid Columns="2">
+                                <GroupBox Header="HorizontalGridLinesBrush" Style="{StaticResource SubGroupBox}">
+                                    <ComboBox
+                                        x:Name="PropertyHorizontalGridLinesBrush"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
+                                        SelectedIndex="0"
+                                        SelectedValuePath="Value" />
+                                </GroupBox>
+                                <GroupBox Header="VerticalGridLinesBrush" Style="{StaticResource SubGroupBox}">
+                                    <ComboBox
+                                        x:Name="PropertyVerticalGridLinesBrush"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
+                                        SelectedIndex="0"
+                                        SelectedValuePath="Value" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultGridLines"
+                            Height="150"
+                            GridLinesVisibility="{Binding SelectedValue, ElementName=PropertyGridLinesVisibility}"
+                            HorizontalGridLinesBrush="{Binding SelectedValue, ElementName=PropertyHorizontalGridLinesBrush}"
+                            ItemsSource="{Binding Items}"
+                            VerticalGridLinesBrush="{Binding SelectedValue, ElementName=PropertyVerticalGridLinesBrush}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleGridLines" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleGridLines}"
+                        PlacementTarget="{Binding ElementName=ToggleGridLines}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyGridLinesVisibility,PropertyHorizontalGridLinesBrush,PropertyVerticalGridLinesBrush,ResultGridLines" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="RowHeaderWidth&#10;RowHeaderStyle" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="RowHeaderWidth" Style="{StaticResource SubGroupBox}">
+                                <Slider
+                                    x:Name="PropertyRowHeaderWidth"
+                                    Maximum="100"
+                                    Minimum="0"
+                                    Value="20" />
+                            </GroupBox>
+                            <GroupBox Header="RowHeaderStyle" Style="{StaticResource SubGroupBox}">
+                                <CheckBox x:Name="PropertyApplyRowHeaderStyle" Content="RowHeaderStyle (Apply Sample Style)" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultRowHeader"
+                            Height="150"
+                            HeadersVisibility="All"
+                            ItemsSource="{Binding Items}"
+                            RowHeaderWidth="{Binding Value, ElementName=PropertyRowHeaderWidth}">
+                            <DataGrid.Style>
+                                <Style BasedOn="{StaticResource {x:Type DataGrid}}" TargetType="DataGrid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=PropertyApplyRowHeaderStyle}" Value="True">
+                                            <Setter Property="RowHeaderStyle" Value="{StaticResource SampleRowHeaderStyle}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.Style>
+                        </DataGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleRowHeader" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleRowHeader}"
+                        PlacementTarget="{Binding ElementName=ToggleRowHeader}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyRowHeaderWidth,PropertyApplyRowHeaderStyle,ResultRowHeader" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="ColumnHeaderHeight&#10;ColumnHeaderStyle" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="ColumnHeaderHeight" Style="{StaticResource SubGroupBox}">
+                                <Slider
+                                    x:Name="PropertyColumnHeaderHeight"
+                                    Maximum="100"
+                                    Minimum="20"
+                                    Value="30" />
+                            </GroupBox>
+                            <GroupBox Header="ColumnHeaderStyle" Style="{StaticResource SubGroupBox}">
+                                <CheckBox x:Name="PropertyApplyColumnHeaderStyle" Content="ColumnHeaderStyle (Apply Sample Style)" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultColumnHeader"
+                            Height="150"
+                            ColumnHeaderHeight="{Binding Value, ElementName=PropertyColumnHeaderHeight}"
+                            ItemsSource="{Binding Items}">
+                            <DataGrid.Style>
+                                <Style BasedOn="{StaticResource {x:Type DataGrid}}" TargetType="DataGrid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=PropertyApplyColumnHeaderStyle}" Value="True">
+                                            <Setter Property="ColumnHeaderStyle" Value="{StaticResource SampleColumnHeaderStyle}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.Style>
+                        </DataGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleColumnHeader" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleColumnHeader}"
+                        PlacementTarget="{Binding ElementName=ToggleColumnHeader}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyColumnHeaderHeight,PropertyApplyColumnHeaderStyle,ResultColumnHeader" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="RowHeight&#10;MinRowHeight" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="MinRowHeight" Style="{StaticResource SubGroupBox}">
+                                <Slider
+                                    x:Name="PropertyMinRowHeight"
+                                    Maximum="100"
+                                    Minimum="0"
+                                    Value="0" />
+                            </GroupBox>
+                            <GroupBox Header="RowHeight" Style="{StaticResource SubGroupBox}">
+                                <Slider
+                                    x:Name="PropertyRowHeight"
+                                    Maximum="100"
+                                    Minimum="20"
+                                    Value="30" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultRowHeights"
+                            Height="150"
+                            ItemsSource="{Binding Items}"
+                            MinRowHeight="{Binding Value, ElementName=PropertyMinRowHeight}"
+                            RowHeight="{Binding Value, ElementName=PropertyRowHeight}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleRowHeights" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleRowHeights}"
+                        PlacementTarget="{Binding ElementName=ToggleRowHeights}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyMinRowHeight,PropertyRowHeight,ResultRowHeights" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="ClipboardCopyMode" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="ClipboardCopyMode" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="PropertyClipboardCopyMode"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=DataGridClipboardCopyMode}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultClipboard"
+                            Height="150"
+                            ClipboardCopyMode="{Binding SelectedValue, ElementName=PropertyClipboardCopyMode}"
+                            ItemsSource="{Binding Items}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleClipboard" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleClipboard}"
+                        PlacementTarget="{Binding ElementName=ToggleClipboard}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyClipboardCopyMode,ResultClipboard" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="HeadersVisibility" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="HeadersVisibility" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="PropertyHeadersVisibility"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:EnumBindingSource EnumType=DataGridHeadersVisibility}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultHeadersVis"
+                            Height="150"
+                            HeadersVisibility="{Binding SelectedValue, ElementName=PropertyHeadersVisibility}"
+                            ItemsSource="{Binding Items}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleHeadersVis" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleHeadersVis}"
+                        PlacementTarget="{Binding ElementName=ToggleHeadersVis}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyHeadersVisibility,ResultHeadersVis" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="FrozenColumnCount" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="FrozenColumnCount" Style="{StaticResource SubGroupBox}">
+                            <Slider
+                                x:Name="PropertyFrozenColumnCount"
+                                IsSnapToTickEnabled="True"
+                                Maximum="3"
+                                Minimum="0" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultFrozen"
+                            Height="150"
+                            AutoGenerateColumns="False"
+                            FrozenColumnCount="{Binding Value, ElementName=PropertyFrozenColumnCount}"
+                            ItemsSource="{Binding Items}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Name}"
+                                    Header="Frozen" />
+                                <DataGridTextColumn
+                                    Width="600"
+                                    Binding="{Binding Value}"
+                                    Header="Scrollable" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleFrozen" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleFrozen}"
+                        PlacementTarget="{Binding ElementName=ToggleFrozen}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyFrozenColumnCount,ResultFrozen" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="RowBackground" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="RowBackground" Style="{StaticResource SubGroupBox}">
+                            <ComboBox
+                                x:Name="PropertyRowBackground"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultRowBackground"
+                            Height="150"
+                            ItemsSource="{Binding Items}"
+                            RowBackground="{Binding SelectedValue, ElementName=PropertyRowBackground}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleRowBackground" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleRowBackground}"
+                        PlacementTarget="{Binding ElementName=ToggleRowBackground}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyRowBackground,ResultRowBackground" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="AutoGenerateColumns" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="AutoGenerateColumns" Style="{StaticResource SubGroupBox}">
+                            <CheckBox
+                                x:Name="PropertyAutoGenerate"
+                                Content="AutoGenerateColumns"
+                                IsChecked="True" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultAutoCol"
+                            Height="150"
+                            AutoGenerateColumns="{Binding IsChecked, ElementName=PropertyAutoGenerate}"
+                            ItemsSource="{Binding Items}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleAutoCol" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleAutoCol}"
+                        PlacementTarget="{Binding ElementName=ToggleAutoCol}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyAutoGenerate,ResultAutoCol" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="RowStyle&#10;CellStyle" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="RowStyle" Style="{StaticResource SubGroupBox}">
+                                <CheckBox x:Name="PropertyApplyRowStyle" Content="RowStyle (Apply Sample Style)" />
+                            </GroupBox>
+                            <GroupBox Header="CellStyle" Style="{StaticResource SubGroupBox}">
+                                <CheckBox x:Name="PropertyApplyCellStyle" Content="CellStyle (Apply Sample Style)" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultStyles"
+                            Height="150"
+                            ItemsSource="{Binding Items}">
+                            <DataGrid.Style>
+                                <Style BasedOn="{StaticResource {x:Type DataGrid}}" TargetType="DataGrid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=PropertyApplyRowStyle}" Value="True">
+                                            <Setter Property="RowStyle" Value="{StaticResource SampleRowStyle}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=PropertyApplyCellStyle}" Value="True">
+                                            <Setter Property="CellStyle" Value="{StaticResource SampleCellStyle}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.Style>
+                        </DataGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleStyles" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleStyles}"
+                        PlacementTarget="{Binding ElementName=ToggleStyles}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyApplyRowStyle,PropertyApplyCellStyle,ResultStyles" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="ColumnHeaderTemplate" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="ColumnHeaderTemplate" Style="{StaticResource SubGroupBox}">
+                            <CheckBox x:Name="PropertyApplyHeaderTemplate" Content="ColumnHeaderTemplate (Apply via ColumnHeaderStyle.ContentTemplate)" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <DataGrid
+                            x:Name="ResultHeaderTemplate"
+                            Height="150"
+                            ItemsSource="{Binding Items}">
+                            <DataGrid.Style>
+                                <Style BasedOn="{StaticResource {x:Type DataGrid}}" TargetType="DataGrid">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=PropertyApplyHeaderTemplate}" Value="True">
+                                            <Setter Property="ColumnHeaderStyle">
+                                                <Setter.Value>
+                                                    <Style TargetType="DataGridColumnHeader">
+                                                        <Setter Property="ContentTemplate" Value="{StaticResource SampleHeaderTemplate}" />
+                                                    </Style>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.Style>
+                        </DataGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="ToggleHeaderTemplate" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ToggleHeaderTemplate}"
+                        PlacementTarget="{Binding ElementName=ToggleHeaderTemplate}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PropertyApplyHeaderTemplate,ResultHeaderTemplate" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="5000"
+    d:DesignHeight="2500"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -25,12 +25,12 @@
             <Expander Header="IsExpanded(TreeViewItem)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
-                        <GroupBox Header="IsExpanded" Style="{StaticResource SubGroupBox}">
+                        <GroupBox Header="IsExpanded(Node 1)" Style="{StaticResource SubGroupBox}">
                             <CheckBox
                                 x:Name="IsExpandedCheckBox"
                                 HorizontalAlignment="Center"
                                 VerticalContentAlignment="Center"
-                                Content="Expand Node 1"
+                                Content="IsExpanded(Node 1)"
                                 IsChecked="True" />
                         </GroupBox>
                     </GroupBox>
@@ -60,12 +60,12 @@
             <Expander Header="IsSelected(TreeViewItem)&#10;IsSelectionActive(TreeViewItem)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
-                        <GroupBox Header="IsSelected" Style="{StaticResource SubGroupBox}">
+                        <GroupBox Header="IsSelected(Node 2)" Style="{StaticResource SubGroupBox}">
                             <CheckBox
                                 x:Name="IsSelectedCheckBox"
                                 HorizontalAlignment="Center"
                                 VerticalContentAlignment="Center"
-                                Content="Select Node 2" />
+                                Content="IsSelected(Node 2)" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
@@ -139,35 +139,38 @@
                 </StackPanel>
             </Expander>
 
-            <Expander Header="ItemTemplate(ItemsControl)&#10;HierarchicalDataTemplate" Style="{StaticResource ContentsExpander}">
+            <Expander Header="ItemTemplate(ItemsControl)&#10;HierarchicalDataTemplate" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
-                    <StackPanel.Resources>
-                        <HierarchicalDataTemplate x:Key="MyTreeViewTemplate" ItemsSource="{Binding Children}">
-                            <StackPanel Orientation="Horizontal">
-                                <Path Data="M0,0 L8,4 L0,8 Z" Fill="Orange" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </HierarchicalDataTemplate>
-                    </StackPanel.Resources>
-
-                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
-                        <GroupBox Header="ItemTemplate" Style="{StaticResource SubGroupBox}">
-                            <TextBlock Text="Applied: MyTreeViewTemplate" HorizontalAlignment="Center" Foreground="DimGray"/>
-                        </GroupBox>
-                    </GroupBox>
-
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <GroupBox.Resources>
+                            <HierarchicalDataTemplate
+                                x:Key="MyTreeViewTemplate"
+                                x:Name="MyTreeViewTemplate"
+                                ItemsSource="{Binding Children}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path
+                                        Margin="0,0,5,0"
+                                        VerticalAlignment="Center"
+                                        Data="M0,0 L8,4 L0,8 Z"
+                                        Fill="Orange" />
+                                    <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </GroupBox.Resources>
                         <TreeView
-                x:Name="ItemTemplateTreeView"
-                Height="200"
-                ItemTemplate="{StaticResource MyTreeViewTemplate}"
-                ItemsSource="{Binding SampleCategories}" />
+                            x:Name="ItemTemplateTreeView"
+                            Height="150"
+                            ItemTemplate="{StaticResource MyTreeViewTemplate}"
+                            ItemsSource="{Binding DeviceTree}" />
                     </GroupBox>
 
                     <ToggleButton x:Name="ItemTemplateDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
-                    <Popup IsOpen="{Binding IsChecked, ElementName=ItemTemplateDetailToggleButton}" PlacementTarget="{Binding ElementName=ItemTemplateDetailToggleButton}" StaysOpen="False">
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ItemTemplateDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ItemTemplateDetailToggleButton}"
+                        StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ItemTemplateTreeView" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="MyTreeViewTemplate,ItemTemplateTreeView" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
                         </Border>
                     </Popup>
                 </StackPanel>

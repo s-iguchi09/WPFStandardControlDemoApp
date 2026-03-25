@@ -8,13 +8,13 @@ namespace WPFStandardControlDemoApp.Common.Converters
     /// Converts an Enum value to its [Description] attribute text.
     /// <para>Enum の値を [Description] 属性に設定された文字列に変換します。</para>
     /// </summary>
-    public class EnumDescriptionConverter : IValueConverter
+    public class EnumDescriptionConverter : MarkupConverterBase
     {
         /// <summary>
         /// Gets the description of the Enum. If [Description] is missing, returns the Enum name.
         /// <para>Enum の説明文を取得します。[Description] がない場合は Enum の名前を返します。</para>
         /// </summary>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is Enum enumValue)
             {
@@ -38,7 +38,7 @@ namespace WPFStandardControlDemoApp.Common.Converters
         /// Not supported. (Two-way binding is not possible for Description).
         /// <para>サポートされていません（説明文から Enum への逆変換はできません）。</para>
         /// </summary>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
         }

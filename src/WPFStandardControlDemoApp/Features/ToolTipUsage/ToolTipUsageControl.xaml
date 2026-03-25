@@ -1,0 +1,772 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.ToolTipUsage.ToolTipUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:converters="clr-namespace:WPFStandardControlDemoApp.Common.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:WPFStandardControlDemoApp.Common.Helpers"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="6000"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="ToolTipUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageHeader}" Text="ToolTip" />
+
+            <Expander Header="Placement" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Columns="3">
+                            <GroupBox Header="Placement=Absolute" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="ToolTipAbsoluteButton"
+                                    Content="Absolute"
+                                    ToolTipService.Placement="Absolute"
+                                    ToolTipService.ToolTip="Absolute" />
+                            </GroupBox>
+                            <GroupBox Header="Placement=AbsolutePoint" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="ToolTipAbsolutePointButton"
+                                    Content="AbsolutePoint"
+                                    ToolTipService.Placement="AbsolutePoint"
+                                    ToolTipService.ToolTip="AbsolutePoint" />
+                            </GroupBox>
+                            <GroupBox Header="Placement=Bottom" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="ToolTipBottomButton"
+                                    Content="Bottom"
+                                    ToolTipService.Placement="Bottom"
+                                    ToolTipService.ToolTip="Bottom" />
+                            </GroupBox>
+                            <GroupBox Header="Placement=Center" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="ToolTipCenterButton"
+                                    Content="Center"
+                                    ToolTipService.Placement="Center"
+                                    ToolTipService.ToolTip="Center" />
+                            </GroupBox>
+                            <GroupBox Header="Placement=Left" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="ToolTipLeftButton"
+                                    Content="Left"
+                                    ToolTipService.Placement="Left"
+                                    ToolTipService.ToolTip="Left" />
+                            </GroupBox>
+                            <GroupBox Header="Placement=Mouse" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="ToolTipMouseButton"
+                                    Content="Mouse"
+                                    ToolTipService.Placement="Mouse"
+                                    ToolTipService.ToolTip="Follow Mouse" />
+                            </GroupBox>
+                            <GroupBox Header="Placement=MousePoint" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="ToolTipMousePointButton"
+                                    Content="MousePoint"
+                                    ToolTipService.Placement="MousePoint"
+                                    ToolTipService.ToolTip="Point at Mouse" />
+                            </GroupBox>
+                            <GroupBox Header="Placement=Relative" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="ToolTipRelativeButton"
+                                    Content="Relative"
+                                    ToolTipService.Placement="Relative"
+                                    ToolTipService.ToolTip="Relative" />
+                            </GroupBox>
+                            <GroupBox Header="Placement=RelativePoint" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="ToolTipRelativePointButton"
+                                    Content="RelativePoint"
+                                    ToolTipService.Placement="RelativePoint"
+                                    ToolTipService.ToolTip="RelativePoint" />
+                            </GroupBox>
+                            <GroupBox Header="Placement=Right" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="ToolTipRightButton"
+                                    Content="Right"
+                                    ToolTipService.Placement="Right"
+                                    ToolTipService.ToolTip="Right" />
+                            </GroupBox>
+                            <GroupBox Header="Placement=Top" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="ToolTipTopButton"
+                                    Content="Top"
+                                    ToolTipService.Placement="Top"
+                                    ToolTipService.ToolTip="Top" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="PlacementDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=PlacementDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=PlacementDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ToolTipAbsoluteButton,ToolTipAbsolutePointButton,ToolTipBottomButton,ToolTipCenterButton,ToolTipLeftButton,ToolTipMouseButton,ToolTipMousePointButton,ToolTipRelativeButton,ToolTipRelativePointButton,ToolTipRightButton,ToolTipTopButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="HorizontalOffset" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="HorizontalOffset" Style="{StaticResource SubGroupBox}">
+                            <Slider
+                                x:Name="ValueHorizontalOffsetSlider"
+                                Maximum="100"
+                                Minimum="0"
+                                Style="{StaticResource PropertySliderStyle}" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Button
+                                x:Name="HorizontalOffsetToolTipButton"
+                                Content="Show ToolTip on hover."
+                                ToolTipService.HorizontalOffset="{Binding Value, ElementName=ValueHorizontalOffsetSlider}"
+                                ToolTipService.Placement="Bottom"
+                                ToolTipService.ToolTip="ToolTip text" />
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="HorizontalOffsetDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=HorizontalOffsetDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=HorizontalOffsetDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ValueHorizontalOffsetSlider,HorizontalOffsetToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="VerticalOffset" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="VerticalOffset" Style="{StaticResource SubGroupBox}">
+                            <Slider
+                                x:Name="ValueVerticalOffsetSlider"
+                                Maximum="100"
+                                Minimum="0"
+                                Style="{StaticResource PropertySliderStyle}" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Button
+                                x:Name="VerticalOffsetToolTipButton"
+                                Content="Show ToolTip on hover."
+                                ToolTipService.Placement="Bottom"
+                                ToolTipService.ToolTip="ToolTip text"
+                                ToolTipService.VerticalOffset="{Binding Value, ElementName=ValueVerticalOffsetSlider}" />
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="VerticalOffsetDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=VerticalOffsetDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=VerticalOffsetDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ValueVerticalOffsetSlider,VerticalOffsetToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="PlacementTarget" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Rows="1">
+                            <Border
+                                x:Name="PlacementTargetBorder"
+                                Background="LightCoral"
+                                BorderBrush="Red"
+                                BorderThickness="1">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    Text="PlacementTarget" />
+                            </Border>
+                            <Button
+                                x:Name="PlacementTargetToolTipButton"
+                                Content="Show ToolTip on hover."
+                                ToolTipService.Placement="Top"
+                                ToolTipService.PlacementTarget="{Binding ElementName=PlacementTargetBorder}"
+                                ToolTipService.ToolTip="ToolTip text" />
+                        </UniformGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="PlacementTargetDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=PlacementTargetDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=PlacementTargetDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PlacementTargetBorder,PlacementTargetToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="PlacementRectangle" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <helpers:BindingProxy x:Key="PlacementRectangleXSliderProxy" Data="{Binding Path=., ElementName=ValuePlacementRectangleXSlider}" />
+                        <helpers:BindingProxy x:Key="PlacementRectangleYSliderProxy" Data="{Binding Path=., ElementName=ValuePlacementRectangleYSlider}" />
+                        <helpers:BindingProxy x:Key="PlacementRectangleWidthSliderProxy" Data="{Binding Path=., ElementName=ValuePlacementRectangleWidthSlider}" />
+                        <helpers:BindingProxy x:Key="PlacementRectangleHeightSliderProxy" Data="{Binding Path=., ElementName=ValuePlacementRectangleHeightSlider}" />
+                    </StackPanel.Resources>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Placement" Style="{StaticResource SubGroupBox}">
+                                <ComboBox
+                                    x:Name="SelectedValuePlacementRectangleComboBox"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{markupextensions:EnumBindingSource EnumType=PlacementMode}"
+                                    SelectedValue="{x:Static PlacementMode.Bottom}"
+                                    SelectedValuePath="Value" />
+                            </GroupBox>
+                            <GroupBox Header="PlacementRectangle" Style="{StaticResource SubGroupBox}">
+                                <UniformGrid Columns="2">
+                                    <GroupBox Header="X" Style="{StaticResource SubGroupBox}">
+                                        <Slider
+                                            x:Name="ValuePlacementRectangleXSlider"
+                                            Maximum="100"
+                                            Minimum="0"
+                                            Style="{StaticResource PropertySliderStyle}" />
+                                    </GroupBox>
+                                    <GroupBox Header="Y" Style="{StaticResource SubGroupBox}">
+                                        <Slider
+                                            x:Name="ValuePlacementRectangleYSlider"
+                                            Maximum="100"
+                                            Minimum="0"
+                                            Style="{StaticResource PropertySliderStyle}" />
+                                    </GroupBox>
+                                    <GroupBox Header="Width" Style="{StaticResource SubGroupBox}">
+                                        <Slider
+                                            x:Name="ValuePlacementRectangleWidthSlider"
+                                            Maximum="100"
+                                            Minimum="0"
+                                            Style="{StaticResource PropertySliderStyle}" />
+                                    </GroupBox>
+                                    <GroupBox Header="Height" Style="{StaticResource SubGroupBox}">
+                                        <Slider
+                                            x:Name="ValuePlacementRectangleHeightSlider"
+                                            Maximum="100"
+                                            Minimum="0"
+                                            Style="{StaticResource PropertySliderStyle}" />
+                                    </GroupBox>
+                                </UniformGrid>
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Button
+                                x:Name="PlacementRectangleToolTipButton"
+                                Content="Show ToolTip on hover."
+                                ToolTipService.Placement="{Binding SelectedValue, ElementName=SelectedValuePlacementRectangleComboBox}">
+                                <Button.ToolTip>
+                                    <ToolTip Content="ToolTip text">
+                                        <ToolTip.PlacementRectangle>
+                                            <MultiBinding Converter="{converters:ValuesToRectConverter}">
+                                                <Binding Path="Data.Value" Source="{StaticResource PlacementRectangleXSliderProxy}" />
+                                                <Binding Path="Data.Value" Source="{StaticResource PlacementRectangleYSliderProxy}" />
+                                                <Binding Path="Data.Value" Source="{StaticResource PlacementRectangleWidthSliderProxy}" />
+                                                <Binding Path="Data.Value" Source="{StaticResource PlacementRectangleHeightSliderProxy}" />
+                                            </MultiBinding>
+                                        </ToolTip.PlacementRectangle>
+                                    </ToolTip>
+                                </Button.ToolTip>
+                            </Button>
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="PlacementRectangleDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=PlacementRectangleDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=PlacementRectangleDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="SelectedValuePlacementRectangleComboBox,ValuePlacementRectangleXSlider,ValuePlacementRectangleYSlider,ValuePlacementRectangleWidthSlider,ValuePlacementRectangleHeightSlider,PlacementRectangleToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="ShowsToolTipOnKeyboardFocus" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="ShowsToolTipOnKeyboardFocus=True" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="KeyboardFocusTrueToolTipButton"
+                                    Content="Show ToolTip on focus."
+                                    ToolTipService.ShowsToolTipOnKeyboardFocus="True"
+                                    ToolTipService.ToolTip="Keyboard Focused!" />
+                            </GroupBox>
+                            <GroupBox Header="ShowsToolTipOnKeyboardFocus=False" Style="{StaticResource SubGroupBox}">
+                                <Button
+                                    x:Name="KeyboardFocusFalseToolTipButton"
+                                    Content="Show ToolTip on hover."
+                                    ToolTipService.ShowsToolTipOnKeyboardFocus="False"
+                                    ToolTipService.ToolTip="Won't show on focus" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="KeyboardFocusDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=KeyboardFocusDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=KeyboardFocusDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="KeyboardFocusTrueToolTipButton,KeyboardFocusFalseToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="HasDropShadow" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="HasDropShadow" Style="{StaticResource SubGroupBox}">
+                            <CheckBox
+                                x:Name="IsCheckedHasDropShadowCheckBox"
+                                Content="HasDropShadow"
+                                Style="{StaticResource PropertyVarticalStyle}" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Button
+                                x:Name="DropShadowToolTipButton"
+                                Content="Show ToolTip on hover."
+                                ToolTipService.HasDropShadow="{Binding IsChecked, ElementName=IsCheckedHasDropShadowCheckBox}"
+                                ToolTipService.ToolTip="ToolTip text" />
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="HasDropShadowDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=HasDropShadowDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=HasDropShadowDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsCheckedHasDropShadowCheckBox,DropShadowToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="InitialShowDelay(ToolTipService)" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="InitialShowDelay (ms)" Style="{StaticResource SubGroupBox}">
+                            <Slider
+                                x:Name="ValueInitialShowDelaySlider"
+                                Maximum="5000"
+                                Minimum="0"
+                                Style="{StaticResource PropertySliderStyle}"
+                                Value="500" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Button
+                            x:Name="InitialShowDelayToolTipButton"
+                            Content="Show ToolTip on hover."
+                            ToolTip="Delayed ToolTip"
+                            ToolTipService.InitialShowDelay="{Binding Value, ElementName=ValueInitialShowDelaySlider}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="InitialShowDelayDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=InitialShowDelayDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=InitialShowDelayDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ValueInitialShowDelaySlider,InitialShowDelayToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="ShowDuration(ToolTipService)" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="ShowDuration (ms)" Style="{StaticResource SubGroupBox}">
+                            <Slider
+                                x:Name="ValueShowDurationSlider"
+                                Maximum="20000"
+                                Minimum="500"
+                                Style="{StaticResource PropertySliderStyle}"
+                                Value="5000" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Button
+                            x:Name="ShowDurationToolTipButton"
+                            Content="Show ToolTip on hover."
+                            ToolTip="Displaying ToolTip"
+                            ToolTipService.ShowDuration="{Binding Value, ElementName=ValueShowDurationSlider}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="ShowDurationDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ShowDurationDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ShowDurationDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ValueShowDurationSlider,ShowDurationToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="BetweenShowDelay(ToolTipService)" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="BetweenShowDelay (ms)" Style="{StaticResource SubGroupBox}">
+                            <Slider
+                                x:Name="ValueBetweenShowDelaySlider"
+                                Maximum="10000"
+                                Minimum="0"
+                                Style="{StaticResource PropertySliderStyle}"
+                                Value="2000" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Button
+                            x:Name="BetweenShowDelayToolTipButton"
+                            Content="Show ToolTip on hover."
+                            ToolTip="Between Delay Test"
+                            ToolTipService.BetweenShowDelay="{Binding Value, ElementName=ValueBetweenShowDelaySlider}" />
+                    </GroupBox>
+                    <ToggleButton x:Name="BetweenShowDelayDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=BetweenShowDelayDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=BetweenShowDelayDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ValueBetweenShowDelaySlider,BetweenShowDelayToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="Width(FrameworkElement)&#10;MaxWidth(FrameworkElement)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <helpers:BindingProxy x:Key="WidthSliderProxy" Data="{Binding Path=., ElementName=ValueWidthSlider}" />
+                        <helpers:BindingProxy x:Key="MaxWidthSliderProxy" Data="{Binding Path=., ElementName=ValueMaxWidthSlider}" />
+                    </StackPanel.Resources>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="Width" Style="{StaticResource SubGroupBox}">
+                                <Slider
+                                    x:Name="ValueWidthSlider"
+                                    Maximum="500"
+                                    Minimum="50"
+                                    Style="{StaticResource PropertySliderStyle}"
+                                    Value="200" />
+                            </GroupBox>
+                            <GroupBox Header="MaxWidth" Style="{StaticResource SubGroupBox}">
+                                <Slider
+                                    x:Name="ValueMaxWidthSlider"
+                                    Maximum="600"
+                                    Minimum="50"
+                                    Style="{StaticResource PropertySliderStyle}"
+                                    Value="400" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Button x:Name="WidthToolTipButton" Content="Show ToolTip on hover.">
+                            <Button.ToolTip>
+                                <ToolTip Width="{Binding Data.Value, Source={StaticResource WidthSliderProxy}}" MaxWidth="{Binding Data.Value, Source={StaticResource MaxWidthSliderProxy}}">
+                                    <TextBlock Text="Width and MaxWidth Demo Content. This text will wrap if MaxWidth is exceeded." TextWrapping="Wrap" />
+                                </ToolTip>
+                            </Button.ToolTip>
+                        </Button>
+                    </GroupBox>
+                    <ToggleButton x:Name="WidthDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=WidthDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=WidthDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ValueWidthSlider,ValueMaxWidthSlider,WidthToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="Height(FrameworkElement)&#10;MaxHeight(FrameworkElement)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <helpers:BindingProxy x:Key="HeightSliderProxy" Data="{Binding Path=., ElementName=ValueHeightSlider}" />
+                        <helpers:BindingProxy x:Key="MaxHeightSliderProxy" Data="{Binding Path=., ElementName=ValueMaxHeightSlider}" />
+                    </StackPanel.Resources>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="Height" Style="{StaticResource SubGroupBox}">
+                                <Slider
+                                    x:Name="ValueHeightSlider"
+                                    Maximum="300"
+                                    Minimum="30"
+                                    Style="{StaticResource PropertySliderStyle}"
+                                    Value="100" />
+                            </GroupBox>
+                            <GroupBox Header="MaxHeight" Style="{StaticResource SubGroupBox}">
+                                <Slider
+                                    x:Name="ValueMaxHeightSlider"
+                                    Maximum="500"
+                                    Minimum="50"
+                                    Style="{StaticResource PropertySliderStyle}"
+                                    Value="200" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Button x:Name="HeightToolTipButton" Content="Show ToolTip on hover.">
+                            <Button.ToolTip>
+                                <ToolTip
+                                    Height="{Binding Data.Value, Source={StaticResource HeightSliderProxy}}"
+                                    MaxHeight="{Binding Data.Value, Source={StaticResource MaxHeightSliderProxy}}"
+                                    Content="Height and MaxHeight Demo Content" />
+                            </Button.ToolTip>
+                        </Button>
+                    </GroupBox>
+                    <ToggleButton x:Name="HeightDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=HeightDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=HeightDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ValueHeightSlider,ValueMaxHeightSlider,HeightToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="Background(Control)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <helpers:BindingProxy x:Key="BackgroundProxy" Data="{Binding Path=., ElementName=SelectedBackgroundComboBox}" />
+                    </StackPanel.Resources>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <ComboBox
+                            x:Name="SelectedBackgroundComboBox"
+                            DisplayMemberPath="Name"
+                            ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
+                            SelectedIndex="0"
+                            SelectedValuePath="Value" />
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Button x:Name="BackgroundToolTipButton" Content="Show ToolTip on hover.">
+                            <Button.ToolTip>
+                                <ToolTip Background="{Binding Data.SelectedValue, Source={StaticResource BackgroundProxy}}" Content="Background Demo" />
+                            </Button.ToolTip>
+                        </Button>
+                    </GroupBox>
+                    <ToggleButton x:Name="BackgroundDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=BackgroundDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=BackgroundDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="SelectedBackgroundComboBox,BackgroundToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="Foreground(Control)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <helpers:BindingProxy x:Key="ForegroundProxy" Data="{Binding Path=., ElementName=SelectedForegroundComboBox}" />
+                    </StackPanel.Resources>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <ComboBox
+                            x:Name="SelectedForegroundComboBox"
+                            DisplayMemberPath="Name"
+                            ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
+                            SelectedIndex="0"
+                            SelectedValuePath="Value" />
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Button x:Name="ForegroundToolTipButton" Content="Show ToolTip on hover.">
+                            <Button.ToolTip>
+                                <ToolTip Content="Foreground Demo" Foreground="{Binding Data.SelectedValue, Source={StaticResource ForegroundProxy}}" />
+                            </Button.ToolTip>
+                        </Button>
+                    </GroupBox>
+                    <ToggleButton x:Name="ForegroundDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ForegroundDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ForegroundDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="SelectedForegroundComboBox,ForegroundToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="BorderBrush(Control)&#10;BorderThickness(Control)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <helpers:BindingProxy x:Key="BorderBrushProxy" Data="{Binding Path=., ElementName=SelectedBorderBrushComboBox}" />
+                        <helpers:BindingProxy x:Key="BorderThicknessProxy" Data="{Binding Path=., ElementName=ValueBorderThicknessSlider}" />
+                    </StackPanel.Resources>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <ComboBox
+                                x:Name="SelectedBorderBrushComboBox"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{markupextensions:StaticBindingSource TargetType=Brushes}"
+                                SelectedIndex="0"
+                                SelectedValuePath="Value" />
+                            <Slider
+                                x:Name="ValueBorderThicknessSlider"
+                                Maximum="20"
+                                Minimum="0"
+                                Style="{StaticResource PropertySliderStyle}"
+                                Value="2" />
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Button x:Name="BorderToolTipButton" Content="Show ToolTip on hover.">
+                            <Button.ToolTip>
+                                <ToolTip
+                                    BorderBrush="{Binding Data.SelectedValue, Source={StaticResource BorderBrushProxy}}"
+                                    BorderThickness="{Binding Data.Value, Source={StaticResource BorderThicknessProxy}}"
+                                    Content="Border Settings Demo" />
+                            </Button.ToolTip>
+                        </Button>
+                    </GroupBox>
+                    <ToggleButton x:Name="BorderDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=BorderDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=BorderDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="SelectedBorderBrushComboBox,ValueBorderThicknessSlider,BorderToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="Padding(Control)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <helpers:BindingProxy x:Key="PaddingProxy" Data="{Binding Path=., ElementName=ValuePaddingSlider}" />
+                    </StackPanel.Resources>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <Slider
+                            x:Name="ValuePaddingSlider"
+                            Maximum="50"
+                            Minimum="0"
+                            Style="{StaticResource PropertySliderStyle}"
+                            Value="10" />
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Button x:Name="PaddingToolTipButton" Content="Show ToolTip on hover.">
+                            <Button.ToolTip>
+                                <ToolTip Padding="{Binding Data.Value, Source={StaticResource PaddingProxy}}" Content="Padding Demo" />
+                            </Button.ToolTip>
+                        </Button>
+                    </GroupBox>
+                    <ToggleButton x:Name="PaddingDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=PaddingDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=PaddingDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ValuePaddingSlider,PaddingToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="HorizontalContentAlignment(Control)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <helpers:BindingProxy x:Key="HorizontalAlignProxy" Data="{Binding Path=., ElementName=SelectedHorizontalContentAlignmentComboBox}" />
+                    </StackPanel.Resources>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <ComboBox
+                            x:Name="SelectedHorizontalContentAlignmentComboBox"
+                            DisplayMemberPath="Name"
+                            ItemsSource="{markupextensions:EnumBindingSource EnumType=HorizontalAlignment}"
+                            SelectedValue="{x:Static HorizontalAlignment.Center}"
+                            SelectedValuePath="Value" />
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Button x:Name="HorizontalAlignmentToolTipButton" Content="Show ToolTip on hover.">
+                            <Button.ToolTip>
+                                <ToolTip
+                                    Width="200"
+                                    HorizontalContentAlignment="{Binding Data.SelectedValue, Source={StaticResource HorizontalAlignProxy}}"
+                                    Content="Horizontal Alignment" />
+                            </Button.ToolTip>
+                        </Button>
+                    </GroupBox>
+                    <ToggleButton x:Name="HorizontalAlignDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=HorizontalAlignDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=HorizontalAlignDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="SelectedHorizontalContentAlignmentComboBox,HorizontalAlignmentToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="VerticalContentAlignment(Control)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <helpers:BindingProxy x:Key="VerticalAlignProxy" Data="{Binding Path=., ElementName=SelectedVerticalContentAlignmentComboBox}" />
+                    </StackPanel.Resources>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <ComboBox
+                            x:Name="SelectedVerticalContentAlignmentComboBox"
+                            DisplayMemberPath="Name"
+                            ItemsSource="{markupextensions:EnumBindingSource EnumType=VerticalAlignment}"
+                            SelectedValue="{x:Static VerticalAlignment.Center}"
+                            SelectedValuePath="Value" />
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Button x:Name="VerticalAlignmentToolTipButton" Content="Show ToolTip on hover.">
+                            <Button.ToolTip>
+                                <ToolTip
+                                    Height="80"
+                                    VerticalContentAlignment="{Binding Data.SelectedValue, Source={StaticResource VerticalAlignProxy}}"
+                                    Content="Vertical Alignment" />
+                            </Button.ToolTip>
+                        </Button>
+                    </GroupBox>
+                    <ToggleButton x:Name="VerticalAlignDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=VerticalAlignDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=VerticalAlignDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="SelectedVerticalContentAlignmentComboBox,VerticalAlignmentToolTipButton" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

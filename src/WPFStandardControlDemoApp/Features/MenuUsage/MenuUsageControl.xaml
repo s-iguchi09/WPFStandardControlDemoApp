@@ -1,0 +1,256 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.MenuUsage.MenuUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="3000"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="MenuUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Style="{StaticResource PageHeader}" Text="Menu" />
+
+            <Expander Header="IsMainMenu" Style="{StaticResource ContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="IsMainMenu" Style="{StaticResource SubGroupBox}">
+                            <CheckBox
+                                x:Name="IsMainMenuCheckBox"
+                                HorizontalAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="IsMainMenu"
+                                IsChecked="True" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Menu x:Name="IsMainMenuMenu" IsMainMenu="{Binding IsChecked, ElementName=IsMainMenuCheckBox}">
+                            <MenuItem Header="Main Menu(_M)">
+                                <MenuItem Header="Item 1" />
+                            </MenuItem>
+                        </Menu>
+                    </GroupBox>
+                    <ToggleButton x:Name="IsMainMenuDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=IsMainMenuDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=IsMainMenuDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsMainMenuCheckBox,IsMainMenuMenu" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="IsCheckable(MenuItem)&#10;IsChecked(MenuItem)&#10;StaysOpenOnClick(MenuItem)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <UniformGrid Columns="2">
+                            <GroupBox Header="IsCheckable" Style="{StaticResource SubGroupBox}">
+                                <CheckBox
+                                    x:Name="IsCheckableCheckBox"
+                                    HorizontalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="IsCheckable"
+                                    IsChecked="True" />
+                            </GroupBox>
+                            <GroupBox Header="StaysOpenOnClick" Style="{StaticResource SubGroupBox}">
+                                <CheckBox
+                                    x:Name="StaysOpenOnClickCheckBox"
+                                    HorizontalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="StaysOpenOnClick"
+                                    IsChecked="True" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Menu IsMainMenu="False">
+                                <MenuItem Header="Options">
+                                    <MenuItem
+                                        x:Name="InteractiveMenuItem"
+                                        Header="Interactive Item"
+                                        IsCheckable="{Binding IsChecked, ElementName=IsCheckableCheckBox}"
+                                        StaysOpenOnClick="{Binding IsChecked, ElementName=StaysOpenOnClickCheckBox}" />
+                                </MenuItem>
+                            </Menu>
+                            <GroupBox
+                                Margin="0,10,0,0"
+                                Header="IsChecked"
+                                Style="{StaticResource SubGroupBox}">
+                                <CheckBox
+                                    x:Name="IsCheckedSyncCheckBox"
+                                    HorizontalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="IsChecked"
+                                    IsChecked="{Binding IsChecked, ElementName=InteractiveMenuItem, Mode=TwoWay}" />
+                            </GroupBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="InteractiveDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=InteractiveDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=InteractiveDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsCheckableCheckBox,IsCheckedSyncCheckBox,StaysOpenOnClickCheckBox,InteractiveMenuItem" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="Role(MenuItem)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Menu IsMainMenu="False">
+                                <MenuItem x:Name="RoleTopLevelHeaderItem" Header="TopLevelHeader">
+                                    <MenuItem x:Name="RoleSubmenuHeaderItem" Header="SubmenuHeader">
+                                        <MenuItem x:Name="RoleSubmenuItemItem" Header="SubmenuItem" />
+                                    </MenuItem>
+                                </MenuItem>
+                                <MenuItem x:Name="RoleTopLevelItemItem" Header="TopLevelItem" />
+                            </Menu>
+                            <UniformGrid Margin="0,10,0,0" Columns="2">
+                                <GroupBox Header="TopLevelHeader" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Role, ElementName=RoleTopLevelHeaderItem}" />
+                                </GroupBox>
+                                <GroupBox Header="TopLevelItem" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Role, ElementName=RoleTopLevelItemItem}" />
+                                </GroupBox>
+                                <GroupBox Header="SubmenuHeader" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Role, ElementName=RoleSubmenuHeaderItem}" />
+                                </GroupBox>
+                                <GroupBox Header="SubmenuItem" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Role, ElementName=RoleSubmenuItemItem}" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="RoleDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=RoleDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=RoleDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="RoleTopLevelHeaderItem,RoleSubmenuHeaderItem,RoleSubmenuItemItem,RoleTopLevelItemItem" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="Command(MenuItem)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
+                        <GroupBox Header="CommandParameter" Style="{StaticResource SubGroupBox}">
+                            <TextBox Text="Selected text to Copy" />
+                        </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Menu IsMainMenu="False">
+                                <MenuItem Header="Execute">
+                                    <MenuItem
+                                        x:Name="CommandActionMenuItem"
+                                        Command="ApplicationCommands.Copy"
+                                        Header="Copy to Clipboard" />
+                                </MenuItem>
+                            </Menu>
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="CommandDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=CommandDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=CommandDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="CommandActionMenuItem" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="Icon(MenuItem)&#10;InputGestureText(MenuItem)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Menu IsMainMenu="False">
+                            <MenuItem Header="File">
+                                <MenuItem
+                                    x:Name="VisualMenuItem"
+                                    Header="Open..."
+                                    InputGestureText="Ctrl+O">
+                                    <MenuItem.Icon>
+                                        <Rectangle
+                                            Width="12"
+                                            Height="12"
+                                            Fill="DodgerBlue" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </MenuItem>
+                        </Menu>
+                    </GroupBox>
+                    <ToggleButton x:Name="VisualDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=VisualDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=VisualDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="VisualMenuItem" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="IsHighlighted(MenuItem)&#10;IsPressed(MenuItem)&#10;IsSubmenuOpen(MenuItem)&#10;IsSuspendingPopupAnimation(MenuItem)" Style="{StaticResource BaseContentsExpander}">
+                <StackPanel>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <StackPanel>
+                            <Menu IsMainMenu="False">
+                                <MenuItem x:Name="ObservationTargetMenuItem" Header="Observation Target">
+                                    <MenuItem Header="Sub Item 1" />
+                                    <MenuItem Header="Sub Item 2" />
+                                </MenuItem>
+                            </Menu>
+                            <UniformGrid Margin="0,10,0,0" Columns="2">
+                                <GroupBox Header="IsHighlighted" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsHighlighted, ElementName=ObservationTargetMenuItem}" />
+                                </GroupBox>
+                                <GroupBox Header="IsPressed" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsPressed, ElementName=ObservationTargetMenuItem}" />
+                                </GroupBox>
+                                <GroupBox Header="IsSubmenuOpen" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsSubmenuOpen, ElementName=ObservationTargetMenuItem}" />
+                                </GroupBox>
+                                <GroupBox Header="IsSuspendingPopupAnimation" Style="{StaticResource SubGroupBox}">
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsSuspendingPopupAnimation, ElementName=ObservationTargetMenuItem}" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <ToggleButton x:Name="StatusDetailToggleButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=StatusDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=StatusDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ObservationTargetMenuItem" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Expander>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

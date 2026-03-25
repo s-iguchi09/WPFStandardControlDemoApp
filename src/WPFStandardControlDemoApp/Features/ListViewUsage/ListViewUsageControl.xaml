@@ -62,7 +62,7 @@
                 </StackPanel>
             </Expander>
 
-            <Expander Header="View(ListView)&#10;Columns(GridView)&#10;AllowsColumnReorder(GridView)" Style="{StaticResource BaseContentsExpander}">
+            <Expander Header="View&#10;Columns(GridView)&#10;AllowsColumnReorder(GridView)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <GroupBox Header="AllowsColumnReorder" Style="{StaticResource SubGroupBox}">
@@ -193,12 +193,12 @@
             <Expander Header="IsSelected(ListBoxItem)" Style="{StaticResource BaseContentsExpander}">
                 <StackPanel>
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
-                        <GroupBox Header="Item 1 Selection" Style="{StaticResource SubGroupBox}">
+                        <GroupBox Header="IsSelected(Item 1)" Style="{StaticResource SubGroupBox}">
                             <CheckBox
                                 x:Name="IsSelectedCheckBox"
                                 HorizontalAlignment="Center"
                                 VerticalContentAlignment="Center"
-                                Content="Select First Item" />
+                                Content="IsSelected(Item 1)" />
                         </GroupBox>
                     </GroupBox>
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">

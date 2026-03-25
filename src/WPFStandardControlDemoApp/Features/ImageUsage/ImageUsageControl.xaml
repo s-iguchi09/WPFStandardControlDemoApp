@@ -1,0 +1,92 @@
+﻿<UserControl
+    x:Class="WPFStandardControlDemoApp.Features.ImageUsage.ImageUsageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:markupextensions="clr-namespace:WPFStandardControlDemoApp.Common.MarkupExtensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="800"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="CodeViewerTextBoxStyleCustom"
+            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
+            TargetType="TextBox">
+            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="ImageUsageControl.xaml.raw" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <DockPanel LastChildFill="True">
+            <TextBlock
+                DockPanel.Dock="Top"
+                Style="{StaticResource PageHeader}"
+                Text="Image" />
+
+            <Expander
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Header="Source&#10;Stretch&#10;StretchDirection"
+                IsExpanded="True"
+                Style="{StaticResource ContentsExpander}">
+                <DockPanel LastChildFill="True">
+                    <GroupBox
+                        DockPanel.Dock="Top"
+                        Header="Property"
+                        Style="{StaticResource PropertyGroupBox}">
+                        <StackPanel>
+                            <GroupBox Header="Source" Style="{StaticResource SubGroupBox}">
+                                <TextBox
+                                    x:Name="SourceTextBox"
+                                    IsReadOnly="False"
+                                    Text="C:\Windows\Web\Wallpaper\Windows\img0.jpg" />
+                            </GroupBox>
+                            <UniformGrid Columns="2">
+                                <GroupBox Header="Stretch" Style="{StaticResource SubGroupBox}">
+                                    <ComboBox
+                                        x:Name="StretchComboBox"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{markupextensions:EnumBindingSource EnumType=Stretch}"
+                                        SelectedIndex="0"
+                                        SelectedValuePath="Value" />
+                                </GroupBox>
+                                <GroupBox Header="StretchDirection" Style="{StaticResource SubGroupBox}">
+                                    <ComboBox
+                                        x:Name="StretchDirectionComboBox"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{markupextensions:EnumBindingSource EnumType=StretchDirection}"
+                                        SelectedIndex="0"
+                                        SelectedValuePath="Value" />
+                                </GroupBox>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <ToggleButton
+                        x:Name="ImageDetailToggleButton"
+                        DockPanel.Dock="Bottom"
+                        Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=ImageDetailToggleButton}"
+                        PlacementTarget="{Binding ElementName=ImageDetailToggleButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <TextBox behaviors:XamlExtractBehavior.TargetNames="SourceTextBox,StretchComboBox,StretchDirectionComboBox,DemoImage" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                        </Border>
+                    </Popup>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <Grid Background="#F0F0F0">
+                            <Image
+                                x:Name="DemoImage"
+                                Source="{Binding Text, ElementName=SourceTextBox}"
+                                Stretch="{Binding SelectedValue, ElementName=StretchComboBox}"
+                                StretchDirection="{Binding SelectedValue, ElementName=StretchDirectionComboBox}" />
+                        </Grid>
+                    </GroupBox>
+                </DockPanel>
+            </Expander>
+        </DockPanel>
+    </Grid>
+</UserControl>
