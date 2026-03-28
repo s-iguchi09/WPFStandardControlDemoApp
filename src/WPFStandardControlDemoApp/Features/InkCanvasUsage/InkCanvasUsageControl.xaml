@@ -14,12 +14,7 @@
 
     <UserControl.Resources>
         <cmds:InkCanvasStrokesClearCommand x:Key="InkCanvasStrokesClearCommand" />
-        <Style
-            x:Key="CodeViewerTextBoxStyleCustom"
-            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
-            TargetType="TextBox">
-            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="InkCanvasUsageControl.xaml.raw" />
-        </Style>
+        <sys:String x:Key="rowXamlName">InkCanvasUsageControl.xaml.raw</sys:String>
     </UserControl.Resources>
 
     <Grid>
@@ -80,10 +75,11 @@
                                         SelectedValuePath="Value" />
                                 </GroupBox>
                                 <GroupBox Header="Pen Width" Style="{StaticResource SubGroupBox}">
-                                    <Slider Style="{StaticResource PropertySliderStyle}"
+                                    <Slider
                                         x:Name="PenWidthSlider"
                                         Maximum="30"
                                         Minimum="1"
+                                        Style="{StaticResource PropertySliderStyle}"
                                         Value="2" />
                                 </GroupBox>
                                 <GroupBox Header="Background" Style="{StaticResource SubGroupBox}">
@@ -154,7 +150,10 @@
                         PlacementTarget="{Binding ElementName=CodeViewerToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="DemoInkCanvas" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="DemoInkCanvas">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
 
@@ -162,7 +161,7 @@
                         <Grid>
                             <InkCanvas
                                 x:Name="DemoInkCanvas"
-                                behaviors:InkCanvasBehavior.PenColor="{Binding SelectedValue, ElementName=PenColorComboBox}"
+                                behaviors:InkCanvasBehavior.PenColor="{Binding SelectedItem.Value, ElementName=PenColorComboBox}"
                                 behaviors:InkCanvasBehavior.PenSize="{Binding Value, ElementName=PenWidthSlider}"
                                 Background="{Binding SelectedValue, ElementName=BackgroundBrushComboBox}"
                                 EditingMode="{Binding SelectedValue, ElementName=EditingModeComboBox}"

@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="/Resources/Styles/ToggleButtonStyle.xaml" />
                 <ResourceDictionary Source="/Resources/Styles/TextBoxStyle.xaml" />
                 <ResourceDictionary Source="/Resources/Styles/SliderStyle.xaml" />
+                <ResourceDictionary Source="/Resources/Styles/RichTextBoxStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
