@@ -2,12 +2,17 @@
     x:Class="WPFStandardControlDemoApp.Features.TextBoxUsage.TextBoxUsageControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:WPFStandardControlDemoApp.Common.Behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WPFStandardControlDemoApp.Features.TextBoxUsage"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="3000"
     d:DesignWidth="800"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <sys:String x:Key="RawXamlName">TextBoxUsageControl.xaml.raw</sys:String>
+    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBlock Style="{StaticResource PageHeader}" Text="TextBox" />
@@ -16,13 +21,13 @@
                     <GroupBox Header="Property" Style="{StaticResource PropertyGroupBox}">
                         <UniformGrid Rows="1">
                             <GroupBox Header="UpdateSourceTrigger&#10;=Default" Style="{StaticResource SubGroupBox}">
-                                <TextBox Text="{Binding Text, ElementName=UpdateSourceTrigger, UpdateSourceTrigger=Default}" />
+                                <TextBox x:Name="UpdateSourceTriggerDefaultTextBox" Text="{Binding Text, ElementName=UpdateSourceTrigger, UpdateSourceTrigger=Default}" />
                             </GroupBox>
                             <GroupBox Header="UpdateSourceTrigger&#10;=LostFocus" Style="{StaticResource SubGroupBox}">
-                                <TextBox Text="{Binding Text, ElementName=UpdateSourceTrigger, UpdateSourceTrigger=LostFocus}" />
+                                <TextBox x:Name="UpdateSourceTriggerLostFocusTextBox" Text="{Binding Text, ElementName=UpdateSourceTrigger, UpdateSourceTrigger=LostFocus}" />
                             </GroupBox>
                             <GroupBox Header="UpdateSourceTrigger&#10;=PropertyChanged" Style="{StaticResource SubGroupBox}">
-                                <TextBox Text="{Binding Text, ElementName=UpdateSourceTrigger, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox x:Name="UpdateSourceTriggerPropertyChangedTextBox" Text="{Binding Text, ElementName=UpdateSourceTrigger, UpdateSourceTrigger=PropertyChanged}" />
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
@@ -31,6 +36,18 @@
                             <TextBlock x:Name="UpdateSourceTrigger" />
                         </GroupBox>
                     </GroupBox>
+                    <ToggleButton x:Name="TextPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=TextPopupButton}"
+                        PlacementTarget="{Binding ElementName=TextPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="UpdateSourceTrigger,UpdateSourceTriggerDefaultTextBox,UpdateSourceTriggerLostFocusTextBox,UpdateSourceTriggerPropertyChangedTextBox">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="TextWrapping" Style="{StaticResource ContentsExpander}">
@@ -43,38 +60,64 @@
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <UniformGrid Columns="3">
                             <GroupBox Header="NoWrap" Style="{StaticResource SubGroupBox}">
-                                <TextBox Text="{Binding Text, ElementName=TextWrapping, UpdateSourceTrigger=PropertyChanged}" TextWrapping="NoWrap" />
+                                <TextBox x:Name="TextWrappingNoWrapTextBox" Text="{Binding Text, ElementName=TextWrapping, UpdateSourceTrigger=PropertyChanged}" TextWrapping="NoWrap" />
                             </GroupBox>
                             <GroupBox Header="Wrap" Style="{StaticResource SubGroupBox}">
-                                <TextBox Text="{Binding Text, ElementName=TextWrapping, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" />
+                                <TextBox x:Name="TextWrappingWrapTextBox" Text="{Binding Text, ElementName=TextWrapping, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" />
                             </GroupBox>
                             <GroupBox Header="WrapWithOverflow" Style="{StaticResource SubGroupBox}">
-                                <TextBox Text="{Binding Text, ElementName=TextWrapping, UpdateSourceTrigger=PropertyChanged}" TextWrapping="WrapWithOverflow" />
+                                <TextBox x:Name="TextWrappingWrapWithOverflowTextBox" Text="{Binding Text, ElementName=TextWrapping, UpdateSourceTrigger=PropertyChanged}" TextWrapping="WrapWithOverflow" />
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="TextWrappingPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=TextWrappingPopupButton}"
+                        PlacementTarget="{Binding ElementName=TextWrappingPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="TextWrapping,TextWrappingNoWrapTextBox,TextWrappingWrapTextBox,TextWrappingWrapWithOverflowTextBox">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="TextDecorations" Style="{StaticResource ContentsExpander}">
-                <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
-                    <UniformGrid Rows="1">
-                        <GroupBox Header="Baseline" Style="{StaticResource SubGroupBox}">
-                            <TextBox Text="Baseline" TextDecorations="Baseline" />
-                        </GroupBox>
-                        <GroupBox Header="None" Style="{StaticResource SubGroupBox}">
-                            <TextBox Text="None" TextDecorations="None" />
-                        </GroupBox>
-                        <GroupBox Header="OverLine" Style="{StaticResource SubGroupBox}">
-                            <TextBox Text="OverLine" TextDecorations="OverLine" />
-                        </GroupBox>
-                        <GroupBox Header="Strikethrough" Style="{StaticResource SubGroupBox}">
-                            <TextBox Text="Strikethrough" TextDecorations="Strikethrough" />
-                        </GroupBox>
-                        <GroupBox Header="Underline" Style="{StaticResource SubGroupBox}">
-                            <TextBox Text="Underline" TextDecorations="Underline" />
-                        </GroupBox>
-                    </UniformGrid>
-                </GroupBox>
+                <StackPanel>
+                    <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
+                        <UniformGrid Rows="1">
+                            <GroupBox Header="Baseline" Style="{StaticResource SubGroupBox}">
+                                <TextBox x:Name="TextDecorationsBaselineTextBox" Text="Baseline" TextDecorations="Baseline" />
+                            </GroupBox>
+                            <GroupBox Header="None" Style="{StaticResource SubGroupBox}">
+                                <TextBox x:Name="TextDecorationsNoneTextBox" Text="None" TextDecorations="None" />
+                            </GroupBox>
+                            <GroupBox Header="OverLine" Style="{StaticResource SubGroupBox}">
+                                <TextBox x:Name="TextDecorationsOverLineTextBox" Text="OverLine" TextDecorations="OverLine" />
+                            </GroupBox>
+                            <GroupBox Header="Strikethrough" Style="{StaticResource SubGroupBox}">
+                                <TextBox x:Name="TextDecorationsStrikethroughTextBox" Text="Strikethrough" TextDecorations="Strikethrough" />
+                            </GroupBox>
+                            <GroupBox Header="Underline" Style="{StaticResource SubGroupBox}">
+                                <TextBox x:Name="TextDecorationsUnderlineTextBox" Text="Underline" TextDecorations="Underline" />
+                            </GroupBox>
+                        </UniformGrid>
+                    </GroupBox>
+                    <ToggleButton x:Name="TextDecorationsPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=TextDecorationsPopupButton}"
+                        PlacementTarget="{Binding ElementName=TextDecorationsPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="TextDecorationsBaselineTextBox,TextDecorationsNoneTextBox,TextDecorationsOverLineTextBox,TextDecorationsStrikethroughTextBox,TextDecorationsUnderlineTextBox">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
+                        </Border>
+                    </Popup>
+                </StackPanel>
             </Expander>
             <Expander Header="TextAlignment" Style="{StaticResource ContentsExpander}">
                 <StackPanel>
@@ -90,30 +133,46 @@
                         <UniformGrid Columns="2" Rows="2">
                             <GroupBox Header="Left" Style="{StaticResource SubGroupBox}">
                                 <TextBox
+                                    x:Name="TextAlignmentLeftTextBox"
                                     Text="{Binding Text, ElementName=TextAlignment, UpdateSourceTrigger=PropertyChanged}"
                                     TextAlignment="Left"
                                     TextWrapping="Wrap" />
                             </GroupBox>
                             <GroupBox Header="Right" Style="{StaticResource SubGroupBox}">
                                 <TextBox
+                                    x:Name="TextAlignmentRightTextBox"
                                     Text="{Binding Text, ElementName=TextAlignment, UpdateSourceTrigger=PropertyChanged}"
                                     TextAlignment="Right"
                                     TextWrapping="Wrap" />
                             </GroupBox>
                             <GroupBox Header="Center" Style="{StaticResource SubGroupBox}">
                                 <TextBox
+                                    x:Name="TextAlignmentCenterTextBox"
                                     Text="{Binding Text, ElementName=TextAlignment, UpdateSourceTrigger=PropertyChanged}"
                                     TextAlignment="Center"
                                     TextWrapping="Wrap" />
                             </GroupBox>
                             <GroupBox Header="Justify" Style="{StaticResource SubGroupBox}">
                                 <TextBox
+                                    x:Name="TextAlignmentJustifyTextBox"
                                     Text="{Binding Text, ElementName=TextAlignment, UpdateSourceTrigger=PropertyChanged}"
                                     TextAlignment="Justify"
                                     TextWrapping="Wrap" />
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="TextAlignmentPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=TextAlignmentPopupButton}"
+                        PlacementTarget="{Binding ElementName=TextAlignmentPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="TextAlignment,TextAlignmentLeftTextBox,TextAlignmentRightTextBox,TextAlignmentCenterTextBox,TextAlignmentJustifyTextBox">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="MaxLength" Style="{StaticResource ContentsExpander}">
@@ -126,13 +185,25 @@
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <UniformGrid Rows="1">
                             <GroupBox Header="MaxLength=5" Style="{StaticResource SubGroupBox}">
-                                <TextBox MaxLength="5" Text="{Binding Text, ElementName=MaxLength, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox x:Name="MaxLength5TextBox" MaxLength="5" Text="{Binding Text, ElementName=MaxLength, UpdateSourceTrigger=PropertyChanged}" />
                             </GroupBox>
                             <GroupBox Header="MaxLength=10" Style="{StaticResource SubGroupBox}">
-                                <TextBox MaxLength="10" Text="{Binding Text, ElementName=MaxLength, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox x:Name="MaxLength10TextBox" MaxLength="10" Text="{Binding Text, ElementName=MaxLength, UpdateSourceTrigger=PropertyChanged}" />
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="MaxLengthPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=MaxLengthPopupButton}"
+                        PlacementTarget="{Binding ElementName=MaxLengthPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="MaxLength,MaxLength5TextBox,MaxLength10TextBox">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="MaxLines" Style="{StaticResource ContentsExpander}">
@@ -146,6 +217,7 @@
                         <UniformGrid Rows="1">
                             <GroupBox Header="MaxLines=2" Style="{StaticResource SubGroupBox}">
                                 <TextBox
+                                    x:Name="MaxLines2TextBox"
                                     VerticalAlignment="Top"
                                     AcceptsReturn="True"
                                     MaxLines="2"
@@ -154,6 +226,7 @@
                             </GroupBox>
                             <GroupBox Header="MaxLines=4" Style="{StaticResource SubGroupBox}">
                                 <TextBox
+                                    x:Name="MaxLines4TextBox"
                                     VerticalAlignment="Top"
                                     AcceptsReturn="True"
                                     MaxLines="4"
@@ -162,6 +235,7 @@
                             </GroupBox>
                             <GroupBox Header="MaxLines=6" Style="{StaticResource SubGroupBox}">
                                 <TextBox
+                                    x:Name="MaxLines6TextBox"
                                     VerticalAlignment="Top"
                                     AcceptsReturn="True"
                                     MaxLines="6"
@@ -170,6 +244,18 @@
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="MaxLinesPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=MaxLinesPopupButton}"
+                        PlacementTarget="{Binding ElementName=MaxLinesPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="MaxLines,MaxLines2TextBox,MaxLines4TextBox,MaxLines6TextBox">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="MinLines" Style="{StaticResource ContentsExpander}">
@@ -183,6 +269,7 @@
                         <UniformGrid Rows="1">
                             <GroupBox Header="MinLines=2" Style="{StaticResource SubGroupBox}">
                                 <TextBox
+                                    x:Name="MinLines2TextBox"
                                     VerticalAlignment="Top"
                                     AcceptsReturn="True"
                                     MinLines="2"
@@ -191,6 +278,7 @@
                             </GroupBox>
                             <GroupBox Header="MinLines=4" Style="{StaticResource SubGroupBox}">
                                 <TextBox
+                                    x:Name="MinLines4TextBox"
                                     VerticalAlignment="Top"
                                     AcceptsReturn="True"
                                     MinLines="4"
@@ -199,6 +287,7 @@
                             </GroupBox>
                             <GroupBox Header="MinLines=6" Style="{StaticResource SubGroupBox}">
                                 <TextBox
+                                    x:Name="MinLines6TextBox"
                                     VerticalAlignment="Top"
                                     AcceptsReturn="True"
                                     MinLines="6"
@@ -207,6 +296,18 @@
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="MinLinesPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=MinLinesPopupButton}"
+                        PlacementTarget="{Binding ElementName=MinLinesPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="MinLines,MinLines2TextBox,MinLines4TextBox,MinLines6TextBox">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
             <Expander Header="CharacterCasing" Style="{StaticResource ContentsExpander}">
@@ -214,16 +315,28 @@
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <UniformGrid Rows="1">
                             <GroupBox Header="Normal" Style="{StaticResource SubGroupBox}">
-                                <TextBox CharacterCasing="Normal" />
+                                <TextBox x:Name="CharacterCasingNormalTextBox" CharacterCasing="Normal" />
                             </GroupBox>
                             <GroupBox Header="Lower" Style="{StaticResource SubGroupBox}">
-                                <TextBox CharacterCasing="Lower" />
+                                <TextBox x:Name="CharacterCasingLowerTextBox" CharacterCasing="Lower" />
                             </GroupBox>
                             <GroupBox Header="Upper" Style="{StaticResource SubGroupBox}">
-                                <TextBox CharacterCasing="Upper" />
+                                <TextBox x:Name="CharacterCasingUpperTextBox" CharacterCasing="Upper" />
                             </GroupBox>
                         </UniformGrid>
                     </GroupBox>
+                    <ToggleButton x:Name="CharacterCasingPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
+                    <Popup
+                        IsOpen="{Binding IsChecked, ElementName=CharacterCasingPopupButton}"
+                        PlacementTarget="{Binding ElementName=CharacterCasingPopupButton}"
+                        StaysOpen="False">
+                        <Border Style="{StaticResource PopupBorderStyle}">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="CharacterCasingNormalTextBox,CharacterCasingLowerTextBox,CharacterCasingUpperTextBox">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
+                        </Border>
+                    </Popup>
                 </StackPanel>
             </Expander>
         </StackPanel>
