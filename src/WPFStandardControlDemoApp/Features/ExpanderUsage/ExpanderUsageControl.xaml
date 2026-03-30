@@ -108,7 +108,7 @@
                         PlacementTarget="{Binding ElementName=HeaderPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="HeaderTextBox,HeaderExpander">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="HeaderTextBox,HeaderExpander,HasHeaderTextBlock">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>

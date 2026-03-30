@@ -234,18 +234,18 @@
                                     <MenuItem Header="Sub Item 2" />
                                 </MenuItem>
                             </Menu>
-                            <UniformGrid Margin="0,10,0,0" Columns="2">
+                             <UniformGrid Margin="0,10,0,0" Columns="2">
                                 <GroupBox Header="IsHighlighted" Style="{StaticResource SubGroupBox}">
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsHighlighted, ElementName=ObservationTargetMenuItem}" />
+                                    <TextBlock x:Name="IsHighlightedTextBlock" HorizontalAlignment="Center" Text="{Binding IsHighlighted, ElementName=ObservationTargetMenuItem}" />
                                 </GroupBox>
                                 <GroupBox Header="IsPressed" Style="{StaticResource SubGroupBox}">
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsPressed, ElementName=ObservationTargetMenuItem}" />
+                                    <TextBlock x:Name="IsPressedMenuItemTextBlock" HorizontalAlignment="Center" Text="{Binding IsPressed, ElementName=ObservationTargetMenuItem}" />
                                 </GroupBox>
                                 <GroupBox Header="IsSubmenuOpen" Style="{StaticResource SubGroupBox}">
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsSubmenuOpen, ElementName=ObservationTargetMenuItem}" />
+                                    <TextBlock x:Name="IsSubmenuOpenTextBlock" HorizontalAlignment="Center" Text="{Binding IsSubmenuOpen, ElementName=ObservationTargetMenuItem}" />
                                 </GroupBox>
                                 <GroupBox Header="IsSuspendingPopupAnimation" Style="{StaticResource SubGroupBox}">
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsSuspendingPopupAnimation, ElementName=ObservationTargetMenuItem}" />
+                                    <TextBlock x:Name="IsSuspendingPopupAnimationTextBlock" HorizontalAlignment="Center" Text="{Binding IsSuspendingPopupAnimation, ElementName=ObservationTargetMenuItem}" />
                                 </GroupBox>
                             </UniformGrid>
                         </StackPanel>
@@ -256,7 +256,7 @@
                         PlacementTarget="{Binding ElementName=StatusDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="ObservationTargetMenuItem">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="ObservationTargetMenuItem,IsHighlightedTextBlock,IsPressedMenuItemTextBlock,IsSubmenuOpenTextBlock,IsSuspendingPopupAnimationTextBlock">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>

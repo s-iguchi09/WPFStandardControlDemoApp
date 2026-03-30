@@ -98,7 +98,7 @@
                         PlacementTarget="{Binding ElementName=TabStripPlacementPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="TabStripPlacementComboBox,TabStripPlacementTabControl">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="TabStripPlacementComboBox,TabStripPlacementTabControl,TabItem1TabStripPlacement,TabItem2TabStripPlacement">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>

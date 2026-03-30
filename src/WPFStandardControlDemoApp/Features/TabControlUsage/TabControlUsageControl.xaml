@@ -94,7 +94,7 @@
                         PlacementTarget="{Binding ElementName=SelectedContentPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="SelectedContentTabControl">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="SelectedContentTabControl,SelectedContentTextBlock,SelectedContentStringFormatTextBlock">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
