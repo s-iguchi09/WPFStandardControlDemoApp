@@ -35,6 +35,9 @@ jobs:
       - name: Publish (.NET 10, using pubxml)
         run: dotnet publish src/WPFStandardControlDemoApp/WPFStandardControlDemoApp.csproj -c Release -f net10.0-windows /p:PublishProfile=net10.0-windows.pubxml
 
+      - name: Publish (.NET 10, standalone, using pubxml)
+        run: dotnet publish src/WPFStandardControlDemoApp/WPFStandardControlDemoApp.csproj -c Release -f net10.0-windows /p:PublishProfile=net10.0-windows-standalone.pubxml
+
       - name: Merge publish outputs
         shell: powershell
         run: |
@@ -66,12 +69,38 @@ jobs:
 
           exit 0
 
+      - name: Merge standalone publish outputs
+        shell: powershell
+        run: |
+          mkdir publish-standalone
+
+          # --- NET 10 standalone ---
+          $pubStandalone = "src/WPFStandardControlDemoApp/bin/Release/net10.0-windows-standalone"
+          $srcStandalone = Get-ChildItem $pubStandalone -Recurse -Directory | Where-Object { $_.Name -eq "publish" } | Select-Object -First 1
+
+          if (-not $srcStandalone) {
+            Write-Error "Publish folder for net10.0-windows-standalone not found under $pubStandalone"
+            exit 1
+          }
+
+          robocopy $srcStandalone.FullName publish-standalone/WPFStandardControlDemoApp/Release/net10.0-windows /E
+          if ($LASTEXITCODE -ge 8) { exit $LASTEXITCODE }
+
+          exit 0
+
       - name: Zip all outputs
         run: |
           $version="${{ github.ref_name }}"
           powershell Compress-Archive -Path publish/* -DestinationPath "WPFStandardControlDemoApp-$version.zip"
 
+      - name: Zip standalone outputs
+        run: |
+          $version="${{ github.ref_name }}"
+          powershell Compress-Archive -Path publish-standalone/* -DestinationPath "WPFStandardControlDemoApp-standalone-$version.zip"
+
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: "WPFStandardControlDemoApp-${{ github.ref_name }}.zip"
+          files: |
+            WPFStandardControlDemoApp-${{ github.ref_name }}.zip
+            WPFStandardControlDemoApp-standalone-${{ github.ref_name }}.zip
