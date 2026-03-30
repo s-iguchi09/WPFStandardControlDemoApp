@@ -19,27 +19,59 @@ The project is built on the latest **.NET 10.0** environment, providing a straig
 ### List of Included Controls
 The following controls are currently implemented in the demo:
 
-#### Layout & Containers
-* **Grid**
-* **GridSplitter**
-* **StackPanel**
-* **DockPanel**
-* **UniformGrid**
-* **WrapPanel**
-* **ScrollViewer**
-
-#### Input & Actions
+#### Inputs
+* **TextBox**
+* **PasswordBox**
 * **Button**
 * **RepeatButton**
 * **ToggleButton**
-* **TextBox**
 * **CheckBox**
 * **RadioButton**
 * **ComboBox**
+* **DatePicker**
+* **Slider**
 
-#### Information Display
-* **Label**
+#### Layout
+* **Grid**
+* **StackPanel**
+* **WrapPanel**
+* **DockPanel**
+* **UniformGrid**
+* **Viewbox**
+* **ScrollViewer**
+
+#### Display
 * **TextBlock**
+* **Label**
+* **ProgressBar**
+* **GroupBox**
+* **Expander**
+
+#### List
+* **ListBox**
+* **ListView**
+* **TreeView**
+* **DataGrid**
+
+#### Graphics
+* **Image**
+* **Canvas**
+* **InkCanvas**
+
+#### Selectors
+* **TabControl**
+* **TabItem**
+
+#### Menu
+* **Menu**
+* **ToolBar**
+
+#### Overlays
+* **ToolTip**
+* **Popup**
+
+#### Resizer
+* **GridSplitter**
 
 ### How to Run
 #### 1. Quick Start (No Build Required)
@@ -71,27 +103,59 @@ WPF（Windows Presentation Foundation）の標準コントロールの設定方�
 ### 収録コントロール一覧
 現在、以下のコントロールのデモが実装されています。
 
-#### レイアウト・コンテナ
-* **Grid**
-* **GridSplitter**
-* **StackPanel**
-* **DockPanel**
-* **UniformGrid**
-* **WrapPanel**
-* **ScrollViewer**
-
-#### 入力・アクション
+#### Inputs
+* **TextBox**
+* **PasswordBox**
 * **Button**
 * **RepeatButton**
 * **ToggleButton**
-* **TextBox**
 * **CheckBox**
 * **RadioButton**
 * **ComboBox**
+* **DatePicker**
+* **Slider**
 
-#### 情報表示
-* **Label**
+#### Layout
+* **Grid**
+* **StackPanel**
+* **WrapPanel**
+* **DockPanel**
+* **UniformGrid**
+* **Viewbox**
+* **ScrollViewer**
+
+#### Display
 * **TextBlock**
+* **Label**
+* **ProgressBar**
+* **GroupBox**
+* **Expander**
+
+#### List
+* **ListBox**
+* **ListView**
+* **TreeView**
+* **DataGrid**
+
+#### Graphics
+* **Image**
+* **Canvas**
+* **InkCanvas**
+
+#### Selectors
+* **TabControl**
+* **TabItem**
+
+#### Menu
+* **Menu**
+* **ToolBar**
+
+#### Overlays
+* **ToolTip**
+* **Popup**
+
+#### Resizer
+* **GridSplitter**
 
 ### 実行・使用方法
 #### 1. すぐに動作を確認する場合（ビルド不要）
