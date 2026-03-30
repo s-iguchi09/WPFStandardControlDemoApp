@@ -26,6 +26,7 @@
         <Setter Property="Foreground" Value="Transparent" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="FontSize" Value="14" />
+        <Setter Property="Padding" Value="30,0"/>
         <Setter Property="Text" Value="{Binding Path=(behaviors:XamlExtractBehavior.ExtractedXaml), RelativeSource={RelativeSource AncestorType=Grid}}" />
 
     </Style>

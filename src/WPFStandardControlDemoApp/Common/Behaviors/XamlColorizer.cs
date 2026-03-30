@@ -88,6 +88,11 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
 
                     while (reader.Read())
                     {
+                        if(paragraph.Inlines.Any())
+                        {
+                            paragraph.Inlines.Add(new LineBreak());
+                        }
+
                         switch (reader.NodeType)
                         {
                             case XmlNodeType.Element:
@@ -114,7 +119,6 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
                                 }
 
                                 AddRun(paragraph, reader.IsEmptyElement ? " />" : ">", SymbolBrush);
-                                paragraph.Inlines.Add(new LineBreak());
                                 break;
 
                             case XmlNodeType.EndElement:
@@ -122,7 +126,6 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
                                 AddRun(paragraph, "</", SymbolBrush);
                                 AddRun(paragraph, reader.Name, TagNameBrush);
                                 AddRun(paragraph, ">", SymbolBrush);
-                                paragraph.Inlines.Add(new LineBreak());
                                 break;
 
                             case XmlNodeType.Text:
@@ -130,14 +133,12 @@ namespace WPFStandardControlDemoApp.Common.Behaviors
                                 {
                                     AddIndent(paragraph, reader.Depth);
                                     AddRun(paragraph, reader.Value.Trim(), TextBrush);
-                                    paragraph.Inlines.Add(new LineBreak());
                                 }
                                 break;
 
                             case XmlNodeType.Comment:
                                 AddIndent(paragraph, reader.Depth);
                                 AddRun(paragraph, "", CommentBrush);
-                                paragraph.Inlines.Add(new LineBreak());
                                 break;
                         }
                     }
