@@ -10,14 +10,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="4000"
     d:DesignWidth="800"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <Style
-            x:Key="CodeViewerTextBoxStyleCustom"
-            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
-            TargetType="TextBox">
-            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="GridUsageControl.xaml.raw" />
-        </Style>
+        <sys:String x:Key="rowXamlName">GridUsageControl.xaml.raw</sys:String>
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -174,7 +170,10 @@
                         PlacementTarget="{Binding ElementName=ColumnRowPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ColumnComboBox,RowComboBox,ColumnRowResult1Grid,ColumnRowResult2Grid,ColumnRowResult3Grid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="ColumnComboBox,RowComboBox,ColumnRowResult1Grid,ColumnRowResult2Grid,ColumnRowResult3Grid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -247,7 +246,10 @@
                         PlacementTarget="{Binding ElementName=ColumnSpanRowSpanPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ColumnSpanComboBox,RowSpanComboBox,ColumnSpanRowSpanResultGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="ColumnSpanComboBox,RowSpanComboBox,ColumnSpanRowSpanResultGrid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -309,7 +311,10 @@
                         PlacementTarget="{Binding ElementName=ShowGridLinesPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ShowGridLinesCheckBox,ShowGridLinesResultGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="ShowGridLinesCheckBox,ShowGridLinesResultGrid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -411,7 +416,10 @@
                         PlacementTarget="{Binding ElementName=IsSharedSizeScopePopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsSharedSizeScopeCheckBox,IsSharedSizeScopeText1TextBox,IsSharedSizeScopeText2TextBox,IsSharedSizeScopeResultGroupBox" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="IsSharedSizeScopeCheckBox,IsSharedSizeScopeText1TextBox,IsSharedSizeScopeText2TextBox,IsSharedSizeScopeResultGroupBox">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -509,7 +517,10 @@
                         PlacementTarget="{Binding ElementName=ColumnDefinitionWidthPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="WidthTextTextBox,MaxWidthTextBox,MinWidthTextBox,WidthTextBox,ColumnDefinitionWidthManualGrid,ColumnDefinitionWidthAutoGrid,ColumnDefinitionWidthStarGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="WidthTextTextBox,MaxWidthTextBox,MinWidthTextBox,WidthTextBox,ColumnDefinitionWidthManualGrid,ColumnDefinitionWidthAutoGrid,ColumnDefinitionWidthStarGrid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -607,7 +618,10 @@
                         PlacementTarget="{Binding ElementName=RowDefinitionHeightPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="HeightTextTextBox,MaxHeightTextBox,MinHeightTextBox,HeightTextBox,RowDefinitionHeightManualGrid,RowDefinitionHeightAutoGrid,RowDefinitionHeightStarGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="HeightTextTextBox,MaxHeightTextBox,MinHeightTextBox,HeightTextBox,RowDefinitionHeightManualGrid,RowDefinitionHeightAutoGrid,RowDefinitionHeightStarGrid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -638,7 +652,10 @@
                         PlacementTarget="{Binding ElementName=BackgroundPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="BackgroundComboBox,BackgroundResultGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="BackgroundComboBox,BackgroundResultGrid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -689,7 +706,10 @@
                         PlacementTarget="{Binding ElementName=ZIndexPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ZIndexItem1TextBox,ZIndexItem2TextBox,ZIndexResultGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="ZIndexItem1TextBox,ZIndexItem2TextBox,ZIndexResultGrid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>

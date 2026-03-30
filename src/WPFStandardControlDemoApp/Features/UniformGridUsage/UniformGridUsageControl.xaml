@@ -10,15 +10,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="2000"
     d:DesignWidth="800"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <Style
-            x:Key="CodeViewerTextBoxStyleCustom"
-            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
-            TargetType="TextBox">
-            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="UniformGridUsageControl.xaml.raw" />
-        </Style>
+        <sys:String x:Key="rowXamlName">UniformGridUsageControl.xaml.raw</sys:String>
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -65,7 +61,10 @@
                         PlacementTarget="{Binding ElementName=ColumnsDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ColumnsTextBox,ColumnsUniformGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="ColumnsTextBox,ColumnsUniformGrid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -111,7 +110,10 @@
                         PlacementTarget="{Binding ElementName=RowsDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="RowsTextBox,RowsUniformGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="RowsTextBox,RowsUniformGrid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -184,7 +186,10 @@
                         PlacementTarget="{Binding ElementName=FirstColumnDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="FirstColumnTextBox,ColumnsForFirstColumnTextBox,FirstColumnUniformGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="FirstColumnTextBox,ColumnsForFirstColumnTextBox,FirstColumnUniformGrid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -214,7 +219,10 @@
                         PlacementTarget="{Binding ElementName=BackgroundDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="BackgroundComboBox,BackgroundUniformGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="BackgroundComboBox,BackgroundUniformGrid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -263,7 +271,10 @@
                         PlacementTarget="{Binding ElementName=ZIndexDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ZIndexItem1Text,ZIndexItem2Text,ZIndexUniformGrid" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="ZIndexItem1Text,ZIndexItem2Text,ZIndexUniformGrid">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>

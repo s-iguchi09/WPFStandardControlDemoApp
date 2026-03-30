@@ -11,12 +11,7 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <Style
-            x:Key="CodeViewerTextBoxStyleCustom"
-            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
-            TargetType="TextBox">
-            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="ToolBarUsageControl.xaml.raw" />
-        </Style>
+        <sys:String x:Key="rowXamlName">ToolBarUsageControl.xaml.raw</sys:String>
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -88,7 +83,10 @@
                         PlacementTarget="{Binding ElementName=OverflowDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsOverflowOpenCheckBox,OverflowModeComboBox,OverflowToolBar" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="IsOverflowOpenCheckBox,OverflowModeComboBox,OverflowToolBar">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -156,7 +154,10 @@
                         PlacementTarget="{Binding ElementName=LayoutDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="LayoutToolBarTray" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="LayoutToolBarTray">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -218,7 +219,10 @@
                         PlacementTarget="{Binding ElementName=TrayPropertyDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="TrayBackgroundComboBox,IsLockedCheckBox,TrayOrientationComboBox,TrayPropertyToolBarTray" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="TrayBackgroundComboBox,IsLockedCheckBox,TrayOrientationComboBox,TrayPropertyToolBarTray">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>

@@ -10,14 +10,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="2000"
     d:DesignWidth="800"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <Style
-            x:Key="CodeViewerTextBoxStyleCustom"
-            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
-            TargetType="TextBox">
-            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="TabItemUsageControl.xaml.raw" />
-        </Style>
+        <sys:String x:Key="rowXamlName">TabItemUsageControl.xaml.raw</sys:String>
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
@@ -56,7 +52,10 @@
                         PlacementTarget="{Binding ElementName=IsSelectedPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="IsSelectedTab1,IsSelectedTab2,IsSelectedTabControl" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="IsSelectedTab1,IsSelectedTab2,IsSelectedTabControl">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -99,7 +98,10 @@
                         PlacementTarget="{Binding ElementName=TabStripPlacementPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="TabStripPlacementTabControl,TabItem1TabStripPlacement,TabItem2TabStripPlacement" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="TabStripPlacementTabControl,TabItem1TabStripPlacement,TabItem2TabStripPlacement">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
