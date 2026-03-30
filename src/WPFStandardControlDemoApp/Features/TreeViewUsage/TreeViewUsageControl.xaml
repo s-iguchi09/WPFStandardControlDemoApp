@@ -82,7 +82,7 @@
                                     <TextBlock HorizontalAlignment="Center" Text="{Binding SelectedItem.Header, ElementName=IsSelectedActiveTreeView, FallbackValue='(null)'}" />
                                 </GroupBox>
                                 <GroupBox Header="IsSelectionActive(Node 2)" Style="{StaticResource SubGroupBox}">
-                                    <TextBlock HorizontalAlignment="Center" Text="{Binding IsSelectionActive, ElementName=IsSelectedActiveNode2}" />
+                                    <TextBlock x:Name="IsSelectionActiveTextBlock" HorizontalAlignment="Center" Text="{Binding IsSelectionActive, ElementName=IsSelectedActiveNode2}" />
                                 </GroupBox>
                             </UniformGrid>
                         </StackPanel>
@@ -93,7 +93,7 @@
                         PlacementTarget="{Binding ElementName=IsSelectedActiveDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="IsSelectedCheckBox,IsSelectedActiveTreeView">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="IsSelectedCheckBox,IsSelectedActiveTreeView,IsSelectionActiveTextBlock">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>

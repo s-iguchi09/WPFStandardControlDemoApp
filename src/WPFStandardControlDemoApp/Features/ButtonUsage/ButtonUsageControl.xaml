@@ -159,7 +159,7 @@
                     <Button x:Name="IsPressedButton" Content="IsPressed" />
                     <GroupBox Header="Result" Style="{StaticResource ResultGroupBox}">
                         <GroupBox Header="IsPressed" Style="{StaticResource SubGroupBox}">
-                            <TextBlock Text="{Binding IsPressed, ElementName=IsPressedButton}" />
+                            <TextBlock x:Name="IsPressedTextBlock" Text="{Binding IsPressed, ElementName=IsPressedButton}" />
                         </GroupBox>
                     </GroupBox>
                     <ToggleButton x:Name="IsPressedPopupButton" Style="{StaticResource HyperlinkToggleStyle}" />
@@ -168,7 +168,7 @@
                         PlacementTarget="{Binding ElementName=IsPressedPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="IsPressedButton">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="IsPressedButton,IsPressedTextBlock">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>

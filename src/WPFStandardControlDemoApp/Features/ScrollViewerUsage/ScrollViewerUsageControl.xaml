@@ -249,37 +249,37 @@
                                         DockPanel.Dock="Bottom"
                                         Header="ContentVerticalOffset"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ContentVerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="ContentVerticalOffsetFitsTextBlock" Text="{Binding ContentVerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="VerticalOffset"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding VerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="VerticalOffsetFitsTextBlock" Text="{Binding VerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ScrollableHeight"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ScrollableHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="ScrollableHeightFitsTextBlock" Text="{Binding ScrollableHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ViewportHeight"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ViewportHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="ViewportHeightFitsTextBlock" Text="{Binding ViewportHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ExtentHeight"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ExtentHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="ExtentHeightFitsTextBlock" Text="{Binding ExtentHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ComputedVerticalScrollBarVisibility"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ComputedVerticalScrollBarVisibility, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="ComputedVerticalScrollBarVisibilityFitsTextBlock" Text="{Binding ComputedVerticalScrollBarVisibility, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <ScrollViewer
                                         x:Name="ComputedVerticalScrollBarVisibilityScrollViewerFits"
@@ -298,38 +298,38 @@
                                         DockPanel.Dock="Bottom"
                                         Header="ContentVerticalOffset"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ContentVerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="ContentVerticalOffsetOverFlowsTextBlock" Text="{Binding ContentVerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="VerticalOffset"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding VerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="VerticalOffsetOverFlowsTextBlock" Text="{Binding VerticalOffset, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ScrollableHeight"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ScrollableHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="ScrollableHeightOverFlowsTextBlock" Text="{Binding ScrollableHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ViewportHeight"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ViewportHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="ViewportHeightOverFlowsTextBlock" Text="{Binding ViewportHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
 
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ExtentHeight"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ExtentHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="ExtentHeightOverFlowsTextBlock" Text="{Binding ExtentHeight, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ComputedVerticalScrollBarVisibility"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ComputedVerticalScrollBarVisibility, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="ComputedVerticalScrollBarVisibilityOverFlowsTextBlock" Text="{Binding ComputedVerticalScrollBarVisibility, ElementName=ComputedVerticalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
                                     <ScrollViewer
                                         x:Name="ComputedVerticalScrollBarVisibilityScrollViewerOverFlows"
@@ -357,7 +357,7 @@
                         PlacementTarget="{Binding ElementName=ComputedVerticalScrollBarVisibilityPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox,ComputedVerticalScrollBarVisibilityScrollViewerFits,ComputedVerticalScrollBarVisibilityScrollViewerOverFlows">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox,ComputedVerticalScrollBarVisibilityScrollViewerFits,ContentVerticalOffsetFitsTextBlock,VerticalOffsetFitsTextBlock,ScrollableHeightFitsTextBlock,ViewportHeightFitsTextBlock,ExtentHeightFitsTextBlock,ComputedVerticalScrollBarVisibilityFitsTextBlock,ComputedVerticalScrollBarVisibilityScrollViewerOverFlows,ContentVerticalOffsetOverFlowsTextBlock,VerticalOffsetOverFlowsTextBlock,ScrollableHeightOverFlowsTextBlock,ViewportHeightOverFlowsTextBlock,ExtentHeightOverFlowsTextBlock,ComputedVerticalScrollBarVisibilityOverFlowsTextBlock">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -385,37 +385,37 @@
                                         DockPanel.Dock="Bottom"
                                         Header="ContentHorizontalOffset"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ContentHorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="ContentHorizontalOffsetFitsTextBlock" Text="{Binding ContentHorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="HorizontalOffset"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding HorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="HorizontalOffsetFitsTextBlock" Text="{Binding HorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ScrollableWidth"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ScrollableWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="ScrollableWidthFitsTextBlock" Text="{Binding ScrollableWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ViewportWidth"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ViewportWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="ViewportWidthFitsTextBlock" Text="{Binding ViewportWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ExtentWidth"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ExtentWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="ExtentWidthFitsTextBlock" Text="{Binding ExtentWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ComputedHorizontalScrollBarVisibility"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ComputedHorizontalScrollBarVisibility, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
+                                        <TextBlock x:Name="ComputedHorizontalScrollBarVisibilityFitsTextBlock" Text="{Binding ComputedHorizontalScrollBarVisibility, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerFits}" />
                                     </GroupBox>
                                     <ScrollViewer
                                         x:Name="ComputedHorizontalScrollBarVisibilityScrollViewerFits"
@@ -435,37 +435,37 @@
                                         DockPanel.Dock="Bottom"
                                         Header="ContentHorizontalOffset"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ContentHorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="ContentHorizontalOffsetOverFlowsTextBlock" Text="{Binding ContentHorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="HorizontalOffset"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding HorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="HorizontalOffsetOverFlowsTextBlock" Text="{Binding HorizontalOffset, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ScrollableWidth"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ScrollableWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="ScrollableWidthOverFlowsTextBlock" Text="{Binding ScrollableWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ViewportWidth"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ViewportWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="ViewportWidthOverFlowsTextBlock" Text="{Binding ViewportWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ExtentWidth"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ExtentWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="ExtentWidthOverFlowsTextBlock" Text="{Binding ExtentWidth, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
                                     <GroupBox
                                         DockPanel.Dock="Bottom"
                                         Header="ComputedHorizontalScrollBarVisibility"
                                         Style="{StaticResource SubGroupBox}">
-                                        <TextBlock Text="{Binding ComputedHorizontalScrollBarVisibility, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
+                                        <TextBlock x:Name="ComputedHorizontalScrollBarVisibilityOverFlowsTextBlock" Text="{Binding ComputedHorizontalScrollBarVisibility, ElementName=ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows}" />
                                     </GroupBox>
                                     <ScrollViewer
                                         x:Name="ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows"
@@ -493,7 +493,7 @@
                         PlacementTarget="{Binding ElementName=ComputedHorizontalScrollBarVisibilityPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox,ComputedHorizontalScrollBarVisibilityScrollViewerFits,ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox,ComputedHorizontalScrollBarVisibilityScrollViewerFits,ContentHorizontalOffsetFitsTextBlock,HorizontalOffsetFitsTextBlock,ScrollableWidthFitsTextBlock,ViewportWidthFitsTextBlock,ExtentWidthFitsTextBlock,ComputedHorizontalScrollBarVisibilityFitsTextBlock,ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows,ContentHorizontalOffsetOverFlowsTextBlock,HorizontalOffsetOverFlowsTextBlock,ScrollableWidthOverFlowsTextBlock,ViewportWidthOverFlowsTextBlock,ExtentWidthOverFlowsTextBlock,ComputedHorizontalScrollBarVisibilityOverFlowsTextBlock">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
