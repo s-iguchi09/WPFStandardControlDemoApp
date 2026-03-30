@@ -13,7 +13,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <sys:String x:Key="rowXamlName">TabItemUsageControl.xaml.raw</sys:String>
+        <sys:String x:Key="RawXamlName">TabItemUsageControl.xaml.raw</sys:String>
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
@@ -52,7 +52,7 @@
                         PlacementTarget="{Binding ElementName=IsSelectedPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="IsSelectedTab1,IsSelectedTab2,IsSelectedTabControl">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="IsSelectedTab1,IsSelectedTab2,IsSelectedTabControl">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -98,7 +98,7 @@
                         PlacementTarget="{Binding ElementName=TabStripPlacementPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="TabStripPlacementTabControl,TabItem1TabStripPlacement,TabItem2TabStripPlacement">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="TabStripPlacementTabControl,TabItem1TabStripPlacement,TabItem2TabStripPlacement">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>

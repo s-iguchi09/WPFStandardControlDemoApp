@@ -13,7 +13,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <sys:String x:Key="rowXamlName">ScrollViewerUsageControl.xaml.raw</sys:String>
+        <sys:String x:Key="RawXamlName">ScrollViewerUsageControl.xaml.raw</sys:String>
         <Style x:Key="LabelStyle" TargetType="Label">
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="BorderThickness" Value="1" />
@@ -59,7 +59,7 @@
                         PlacementTarget="{Binding ElementName=CanContentScrollPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="CanContentScrollCheckBox,CanContentScrollScrollViewer">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="CanContentScrollCheckBox,CanContentScrollScrollViewer">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -101,7 +101,7 @@
                         PlacementTarget="{Binding ElementName=IsDeferredScrollingEnabledPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="IsDeferredScrollingEnabledCheckBox,IsDeferredScrollingEnabledScrollViewer">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="IsDeferredScrollingEnabledCheckBox,IsDeferredScrollingEnabledScrollViewer">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -160,7 +160,7 @@
                         PlacementTarget="{Binding ElementName=VerticalScrollBarVisibilityPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="VerticalScrollBarVisibilityComboBox,VerticalScrollBarVisibilityFitsScrollViewer,VerticalScrollBarVisibilityOverFlowsScrollViewer">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="VerticalScrollBarVisibilityComboBox,VerticalScrollBarVisibilityFitsScrollViewer,VerticalScrollBarVisibilityOverFlowsScrollViewer">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -221,7 +221,7 @@
                         PlacementTarget="{Binding ElementName=HorizontalScrollBarVisibilityPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="HorizontalScrollBarVisibilityComboBox,HorizontalScrollBarVisibilityFitsScrollViewer,HorizontalScrollBarVisibilityOverFlowsScrollViewer">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="HorizontalScrollBarVisibilityComboBox,HorizontalScrollBarVisibilityFitsScrollViewer,HorizontalScrollBarVisibilityOverFlowsScrollViewer">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -357,7 +357,7 @@
                         PlacementTarget="{Binding ElementName=ComputedVerticalScrollBarVisibilityPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox,ComputedVerticalScrollBarVisibilityScrollViewerFits,ComputedVerticalScrollBarVisibilityScrollViewerOverFlows">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="ComputedVerticalScrollBarVisibilityForVerticalScrollBarVisibilityComboBox,ComputedVerticalScrollBarVisibilityScrollViewerFits,ComputedVerticalScrollBarVisibilityScrollViewerOverFlows">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -493,7 +493,7 @@
                         PlacementTarget="{Binding ElementName=ComputedHorizontalScrollBarVisibilityPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox,ComputedHorizontalScrollBarVisibilityScrollViewerFits,ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="ComputedHorizontalScrollBarVisibilityForHorizontalScrollBarVisibilityComboBox,ComputedHorizontalScrollBarVisibilityScrollViewerFits,ComputedHorizontalScrollBarVisibilityScrollViewerOverFlows">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>

@@ -13,7 +13,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <sys:String x:Key="rowXamlName">ViewboxUsageControl.xaml.raw</sys:String>
+        <sys:String x:Key="RawXamlName">ViewboxUsageControl.xaml.raw</sys:String>
     </UserControl.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
@@ -55,7 +55,7 @@
                         PlacementTarget="{Binding ElementName=StretchPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="StretchComboBox,StretchDirectionComboBox,StretchViewBox">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="StretchComboBox,StretchDirectionComboBox,StretchViewBox">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>

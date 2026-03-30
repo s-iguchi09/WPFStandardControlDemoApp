@@ -17,7 +17,7 @@
     </UserControl.DataContext>
 
     <UserControl.Resources>
-        <sys:String x:Key="rowXamlName">DataGridUsageControl.xaml.raw</sys:String>
+        <sys:String x:Key="RawXamlName">DataGridUsageControl.xaml.raw</sys:String>
 
         <Style TargetType="CheckBox">
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -89,7 +89,7 @@
                         PlacementTarget="{Binding ElementName=ToggleAlternatingRowBackground}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyAlternatingRowBackground,ResultAlternatingRowBackground">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyAlternatingRowBackground,ResultAlternatingRowBackground">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -141,7 +141,7 @@
                         PlacementTarget="{Binding ElementName=ToggleScrollBarVisibility}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyHorizontalScrollBarVisibility,PropertyVerticalScrollBarVisibility,ResultScrollBarVisibility">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyHorizontalScrollBarVisibility,PropertyVerticalScrollBarVisibility,ResultScrollBarVisibility">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -170,7 +170,7 @@
                         PlacementTarget="{Binding ElementName=ToggleIsReadOnly}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyIsReadOnly,ResultIsReadOnly">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyIsReadOnly,ResultIsReadOnly">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -235,7 +235,7 @@
                         PlacementTarget="{Binding ElementName=ToggleColumnWidths}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyMinColumnWidth,PropertyMaxColumnWidth,PropertyColumnWidth,ResultColumnWidths">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyMinColumnWidth,PropertyMaxColumnWidth,PropertyColumnWidth,ResultColumnWidths">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -283,7 +283,7 @@
                         PlacementTarget="{Binding ElementName=ToggleRowDetails}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyRowDetailsVisibilityMode,PropertyAreRowDetailsFrozen,ResultRowDetails">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyRowDetailsVisibilityMode,PropertyAreRowDetailsFrozen,ResultRowDetails">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -349,7 +349,7 @@
                         PlacementTarget="{Binding ElementName=TogglePermissions}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyCanUserAddRows,PropertyCanUserDeleteRows,PropertyCanUserReorderColumns,PropertyCanUserResizeColumns,PropertyCanUserResizeRows,PropertyCanUserSortColumns,ResultPermissions">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyCanUserAddRows,PropertyCanUserDeleteRows,PropertyCanUserReorderColumns,PropertyCanUserResizeColumns,PropertyCanUserResizeRows,PropertyCanUserSortColumns,ResultPermissions">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -387,7 +387,7 @@
                         PlacementTarget="{Binding ElementName=ToggleVirtualization}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyEnableRowVirtualization,PropertyEnableColumnVirtualization,ResultVirtualization">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyEnableRowVirtualization,PropertyEnableColumnVirtualization,ResultVirtualization">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -428,7 +428,7 @@
                         PlacementTarget="{Binding ElementName=ToggleErrorTemplate}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyApplyErrorTemplate,ResultErrorTemplate">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyApplyErrorTemplate,ResultErrorTemplate">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -473,7 +473,7 @@
                         PlacementTarget="{Binding ElementName=ToggleSelection}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertySelectionMode,PropertySelectionUnit,ResultSelection">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertySelectionMode,PropertySelectionUnit,ResultSelection">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -529,7 +529,7 @@
                         PlacementTarget="{Binding ElementName=ToggleGridLines}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyGridLinesVisibility,PropertyHorizontalGridLinesBrush,PropertyVerticalGridLinesBrush,ResultGridLines">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyGridLinesVisibility,PropertyHorizontalGridLinesBrush,PropertyVerticalGridLinesBrush,ResultGridLines">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -578,7 +578,7 @@
                         PlacementTarget="{Binding ElementName=ToggleRowHeader}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyRowHeaderWidth,PropertyApplyRowHeaderStyle,ResultRowHeader">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyRowHeaderWidth,PropertyApplyRowHeaderStyle,ResultRowHeader">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -626,7 +626,7 @@
                         PlacementTarget="{Binding ElementName=ToggleColumnHeader}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyColumnHeaderHeight,PropertyApplyColumnHeaderStyle,ResultColumnHeader">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyColumnHeaderHeight,PropertyApplyColumnHeaderStyle,ResultColumnHeader">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -669,7 +669,7 @@
                         PlacementTarget="{Binding ElementName=ToggleRowHeights}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyMinRowHeight,PropertyRowHeight,ResultRowHeights">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyMinRowHeight,PropertyRowHeight,ResultRowHeights">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -703,7 +703,7 @@
                         PlacementTarget="{Binding ElementName=ToggleClipboard}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyClipboardCopyMode,ResultClipboard">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyClipboardCopyMode,ResultClipboard">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -737,7 +737,7 @@
                         PlacementTarget="{Binding ElementName=ToggleHeadersVis}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyHeadersVisibility,ResultHeadersVis">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyHeadersVisibility,ResultHeadersVis">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -782,7 +782,7 @@
                         PlacementTarget="{Binding ElementName=ToggleFrozen}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyFrozenColumnCount,ResultFrozen">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyFrozenColumnCount,ResultFrozen">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -816,7 +816,7 @@
                         PlacementTarget="{Binding ElementName=ToggleRowBackground}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyRowBackground,ResultRowBackground">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyRowBackground,ResultRowBackground">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -848,7 +848,7 @@
                         PlacementTarget="{Binding ElementName=ToggleAutoCol}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyAutoGenerate,ResultAutoCol">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyAutoGenerate,ResultAutoCol">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -894,7 +894,7 @@
                         PlacementTarget="{Binding ElementName=ToggleStyles}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyApplyRowStyle,PropertyApplyCellStyle,ResultStyles">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyApplyRowStyle,PropertyApplyCellStyle,ResultStyles">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -938,7 +938,7 @@
                         PlacementTarget="{Binding ElementName=ToggleHeaderTemplate}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyApplyHeaderTemplate,ResultHeaderTemplate">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PropertyApplyHeaderTemplate,ResultHeaderTemplate">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>

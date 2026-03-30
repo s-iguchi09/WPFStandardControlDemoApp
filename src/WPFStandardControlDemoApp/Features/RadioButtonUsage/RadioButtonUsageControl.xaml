@@ -13,7 +13,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <sys:String x:Key="rowXamlName">RadioButtonUsageControl.xaml.raw</sys:String>
+        <sys:String x:Key="RawXamlName">RadioButtonUsageControl.xaml.raw</sys:String>
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
@@ -108,7 +108,7 @@
                         PlacementTarget="{Binding ElementName=GroupNamePopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="GroupNameNullARadioButton,GroupNameNullBRadioButton,GroupNameNullCRadioButton,GroupNameNullDRadioButton,GroupNameNullERadioButton,GroupNameNullFRadioButton,GroupName1ARadioButton,GroupName1BRadioButton,GroupName1CRadioButton,GroupName2DRadioButton,GroupName2ERadioButton,GroupName2FRadioButton">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="GroupNameNullARadioButton,GroupNameNullBRadioButton,GroupNameNullCRadioButton,GroupNameNullDRadioButton,GroupNameNullERadioButton,GroupNameNullFRadioButton,GroupName1ARadioButton,GroupName1BRadioButton,GroupName1CRadioButton,GroupName2DRadioButton,GroupName2ERadioButton,GroupName2FRadioButton">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
@@ -144,7 +144,7 @@
                         PlacementTarget="{Binding ElementName=VerticalContentAlignmentPopupButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="VerticalContentAlignmentComboBox,VerticalContentAlignmentResultRadioButton">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="VerticalContentAlignmentComboBox,VerticalContentAlignmentResultRadioButton">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
