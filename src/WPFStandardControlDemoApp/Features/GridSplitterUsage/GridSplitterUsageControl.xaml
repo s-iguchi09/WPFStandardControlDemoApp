@@ -10,14 +10,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="4000"
     d:DesignWidth="800"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <Style
-            x:Key="CodeViewerTextBoxStyleCustom"
-            BasedOn="{StaticResource CodeViewerTextBoxStyle}"
-            TargetType="TextBox">
-            <Setter Property="behaviors:XamlExtractBehavior.RawXamlFileName" Value="GridSplitterUsageControl.xaml.raw" />
-        </Style>
+        <sys:String x:Key="RawXamlName">GridSplitterUsageControl.xaml.raw</sys:String>
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
@@ -64,7 +60,10 @@
                         PlacementTarget="{Binding ElementName=DragIncrementDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="DragIncrementTextBox,DragIncrementSplitter" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="DragIncrementTextBox,DragIncrementSplitter">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -112,7 +111,10 @@
                         PlacementTarget="{Binding ElementName=KeyboardIncrementDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="KeyboardIncrementTextBox,KeyboardIncrementSplitter" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="KeyboardIncrementTextBox,KeyboardIncrementSplitter">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -159,7 +161,10 @@
                         PlacementTarget="{Binding ElementName=ShowsPreviewDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ShowsPreviewCheckBox,ShowsPreviewSplitter" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="ShowsPreviewCheckBox,ShowsPreviewSplitter">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -243,7 +248,10 @@
                         PlacementTarget="{Binding ElementName=ResizeDirectionDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="ResizeDirectionComboBox,VerticalSplitter,HorizontalSplitter" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="ResizeDirectionComboBox,VerticalSplitter,HorizontalSplitter">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>
@@ -337,7 +345,10 @@
                         PlacementTarget="{Binding ElementName=PreviewStyleDetailToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <TextBox behaviors:XamlExtractBehavior.TargetNames="PreviewStyleForPreviewStyleCheckBox,DefaultPreviewSplitter,TemplatePreviewSplitter" Style="{StaticResource CodeViewerTextBoxStyleCustom}" />
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="PreviewStyleForPreviewStyleCheckBox,DefaultPreviewSplitter,TemplatePreviewSplitter">
+                                <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
+                                <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
+                            </Grid>
                         </Border>
                     </Popup>
                 </StackPanel>

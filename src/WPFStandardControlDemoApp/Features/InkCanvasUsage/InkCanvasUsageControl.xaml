@@ -14,7 +14,7 @@
 
     <UserControl.Resources>
         <cmds:InkCanvasStrokesClearCommand x:Key="InkCanvasStrokesClearCommand" />
-        <sys:String x:Key="rowXamlName">InkCanvasUsageControl.xaml.raw</sys:String>
+        <sys:String x:Key="RawXamlName">InkCanvasUsageControl.xaml.raw</sys:String>
     </UserControl.Resources>
 
     <Grid>
@@ -150,7 +150,7 @@
                         PlacementTarget="{Binding ElementName=CodeViewerToggleButton}"
                         StaysOpen="False">
                         <Border Style="{StaticResource PopupBorderStyle}">
-                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource rowXamlName}" behaviors:XamlExtractBehavior.TargetNames="DemoInkCanvas">
+                            <Grid behaviors:XamlExtractBehavior.RawXamlFileName="{StaticResource RawXamlName}" behaviors:XamlExtractBehavior.TargetNames="DemoInkCanvas">
                                 <TextBlock Style="{StaticResource CodeViewerHiddenTextBlockStyle}" />
                                 <RichTextBox Style="{StaticResource CodeViewerRichTextBoxStyle}" />
                             </Grid>
