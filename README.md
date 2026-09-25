@@ -14,7 +14,7 @@ The project is built on the latest **.NET 10.0** environment, providing a straig
 ### Purpose of the App
 * **Real-time Behavioral Testing**: Test the styles and behaviors of various controls, such as clicks, selections, and text input, all within a single interface.
 * **Layout Panel Comparison**: Visually confirm the differences in positioning rules and resizing behaviors across various panel controls.
-* **Code Reference**: Each control in the app includes a button to **view the actual source code (XAML/C#)**, making it easy to learn implementation details.
+* **Code Reference**: Each section of a control page has a **Show Code** link that shows **the XAML of that section**. The XAML is taken from the page's own source, embedded in the executable at build time, so it is the markup that is actually running.
 
 ### List of Included Controls
 The following controls are currently implemented in the demo:
@@ -84,7 +84,7 @@ If you just want to see the app in action, you can run the pre-built executable:
 1. Clone this repository.
 2. Open the solution in **Visual Studio 2026**.
 3. Build and run the project (F5).
-4. Interact with each control and use the **built-in code view buttons** to learn the implementation methods by referring to the actual source code.
+4. Interact with each control and use the **Show Code** links to read the XAML of each section.
 
 ---
 
@@ -98,7 +98,7 @@ WPF（Windows Presentation Foundation）の標準コントロールの設定方�
 ### アプリの目的
 * **動作の即時確認**: 各コントロールのスタイルや、クリック・選択・入力時の挙動を1つの画面でテストできます。
 * **レイアウト・パネルの比較**: 多彩なパネル系コントロールによる配置ルールや、リサイズ時の挙動の違いを視覚的に確認できます。
-* **実際のコードを確認**: 各コントロールには**実際のソースコード（XAML/C#）を確認できるボタン**が用意されており、実装方法をその場ですぐに学ぶことができます。
+* **実際のコードを確認**: 各コントロールのページの節ごとに **Show Code** のリンクがあり、**その節の XAML** を表示します。XAML はビルド時に実行ファイルへ埋め込んだページ自身のソースから取り出すため、実際に動いているマークアップです。
 
 ### 収録コントロール一覧
 現在、以下のコントロールのデモが実装されています。
@@ -168,4 +168,4 @@ WPF（Windows Presentation Foundation）の標準コントロールの設定方�
 1. リポジトリをクローンします。
 2. **Visual Studio 2026** でソリューションを開きます。
 3. プロジェクトをビルドし、実行（F5）します。
-4. 各コントロールを操作し、備え付けのボタンから実際のコードを参照して実装方法を学習してください。
+4. 各コントロールを操作し、**Show Code** のリンクから各節の XAML を参照してください。
