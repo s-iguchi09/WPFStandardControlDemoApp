@@ -11,6 +11,8 @@ This is a demo application designed to help you explore the **configuration meth
 
 The project is built on the latest **.NET 10.0** environment, providing a straightforward way to understand how each control functions as a UI element and interacts with code-behind events.
 
+Detailed write-ups for every control (measured behavior, pitfalls, and XAML) are on the [project site](https://s-iguchi09.github.io/apps/wpf-standard-control-demo.html). Each control in the list below links to its page.
+
 ### Purpose of the App
 * **Real-time Behavioral Testing**: Test the styles and behaviors of various controls, such as clicks, selections, and text input, all within a single interface.
 * **Layout Panel Comparison**: Visually confirm the differences in positioning rules and resizing behaviors across various panel controls.
@@ -20,58 +22,58 @@ The project is built on the latest **.NET 10.0** environment, providing a straig
 The following controls are currently implemented in the demo:
 
 #### Inputs
-* **TextBox**
-* **PasswordBox**
-* **Button**
-* **RepeatButton**
-* **ToggleButton**
-* **CheckBox**
-* **RadioButton**
-* **ComboBox**
-* **DatePicker**
-* **Slider**
+* [**TextBox**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/textbox.html)
+* [**PasswordBox**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/passwordbox.html)
+* [**Button**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/button.html)
+* [**RepeatButton**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/repeatbutton.html)
+* [**ToggleButton**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/togglebutton.html)
+* [**CheckBox**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/checkbox.html)
+* [**RadioButton**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/radiobutton.html)
+* [**ComboBox**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/combobox.html)
+* [**DatePicker**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/datepicker.html)
+* [**Slider**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/slider.html)
 
 #### Layout
-* **Grid**
-* **StackPanel**
-* **WrapPanel**
-* **DockPanel**
-* **UniformGrid**
-* **Viewbox**
-* **ScrollViewer**
+* [**Grid**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/grid.html)
+* [**StackPanel**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/stackpanel.html)
+* [**WrapPanel**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/wrappanel.html)
+* [**DockPanel**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/dockpanel.html)
+* [**UniformGrid**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/uniformgrid.html)
+* [**Viewbox**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/viewbox.html)
+* [**ScrollViewer**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/scrollviewer.html)
 
 #### Display
-* **TextBlock**
-* **Label**
-* **ProgressBar**
-* **GroupBox**
-* **Expander**
+* [**TextBlock**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/textblock.html)
+* [**Label**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/label.html)
+* [**ProgressBar**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/progressbar.html)
+* [**GroupBox**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/groupbox.html)
+* [**Expander**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/expander.html)
 
 #### List
-* **ListBox**
-* **ListView**
-* **TreeView**
-* **DataGrid**
+* [**ListBox**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/listbox.html)
+* [**ListView**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/listview.html)
+* [**TreeView**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/treeview.html)
+* [**DataGrid**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/datagrid.html)
 
 #### Graphics
-* **Image**
-* **Canvas**
-* **InkCanvas**
+* [**Image**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/image.html)
+* [**Canvas**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/canvas.html)
+* [**InkCanvas**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/inkcanvas.html)
 
 #### Selectors
-* **TabControl**
-* **TabItem**
+* [**TabControl**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/tabcontrol.html)
+* [**TabItem**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/tabitem.html)
 
 #### Menu
-* **Menu**
-* **ToolBar**
+* [**Menu**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/menu.html)
+* [**ToolBar**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/toolbar.html)
 
 #### Overlays
-* **ToolTip**
-* **Popup**
+* [**ToolTip**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/tooltip.html)
+* [**Popup**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/popup.html)
 
 #### Resizer
-* **GridSplitter**
+* [**GridSplitter**](https://s-iguchi09.github.io/apps/wpf-standard-control-demo/gridsplitter.html)
 
 ### How to Run
 #### 1. Quick Start (No Build Required)
@@ -95,6 +97,8 @@ WPF（Windows Presentation Foundation）の標準コントロールの設定方�
 
 最新の **.NET 10.0** 環境に対応しており、各コントロールがどのようにUIとして機能し、コード（イベント）と連携するかを直感的に把握することができます。
 
+各コントロールの実測結果・注意点・XAML の解説は[サイトのページ](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo.html)にまとめています。下の一覧の各コントロールから、それぞれのページへ移動できます。
+
 ### アプリの目的
 * **動作の即時確認**: 各コントロールのスタイルや、クリック・選択・入力時の挙動を1つの画面でテストできます。
 * **レイアウト・パネルの比較**: 多彩なパネル系コントロールによる配置ルールや、リサイズ時の挙動の違いを視覚的に確認できます。
@@ -104,58 +108,58 @@ WPF（Windows Presentation Foundation）の標準コントロールの設定方�
 現在、以下のコントロールのデモが実装されています。
 
 #### Inputs
-* **TextBox**
-* **PasswordBox**
-* **Button**
-* **RepeatButton**
-* **ToggleButton**
-* **CheckBox**
-* **RadioButton**
-* **ComboBox**
-* **DatePicker**
-* **Slider**
+* [**TextBox**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/textbox.html)
+* [**PasswordBox**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/passwordbox.html)
+* [**Button**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/button.html)
+* [**RepeatButton**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/repeatbutton.html)
+* [**ToggleButton**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/togglebutton.html)
+* [**CheckBox**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/checkbox.html)
+* [**RadioButton**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/radiobutton.html)
+* [**ComboBox**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/combobox.html)
+* [**DatePicker**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/datepicker.html)
+* [**Slider**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/slider.html)
 
 #### Layout
-* **Grid**
-* **StackPanel**
-* **WrapPanel**
-* **DockPanel**
-* **UniformGrid**
-* **Viewbox**
-* **ScrollViewer**
+* [**Grid**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/grid.html)
+* [**StackPanel**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/stackpanel.html)
+* [**WrapPanel**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/wrappanel.html)
+* [**DockPanel**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/dockpanel.html)
+* [**UniformGrid**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/uniformgrid.html)
+* [**Viewbox**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/viewbox.html)
+* [**ScrollViewer**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/scrollviewer.html)
 
 #### Display
-* **TextBlock**
-* **Label**
-* **ProgressBar**
-* **GroupBox**
-* **Expander**
+* [**TextBlock**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/textblock.html)
+* [**Label**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/label.html)
+* [**ProgressBar**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/progressbar.html)
+* [**GroupBox**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/groupbox.html)
+* [**Expander**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/expander.html)
 
 #### List
-* **ListBox**
-* **ListView**
-* **TreeView**
-* **DataGrid**
+* [**ListBox**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/listbox.html)
+* [**ListView**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/listview.html)
+* [**TreeView**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/treeview.html)
+* [**DataGrid**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/datagrid.html)
 
 #### Graphics
-* **Image**
-* **Canvas**
-* **InkCanvas**
+* [**Image**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/image.html)
+* [**Canvas**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/canvas.html)
+* [**InkCanvas**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/inkcanvas.html)
 
 #### Selectors
-* **TabControl**
-* **TabItem**
+* [**TabControl**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/tabcontrol.html)
+* [**TabItem**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/tabitem.html)
 
 #### Menu
-* **Menu**
-* **ToolBar**
+* [**Menu**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/menu.html)
+* [**ToolBar**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/toolbar.html)
 
 #### Overlays
-* **ToolTip**
-* **Popup**
+* [**ToolTip**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/tooltip.html)
+* [**Popup**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/popup.html)
 
 #### Resizer
-* **GridSplitter**
+* [**GridSplitter**](https://s-iguchi09.github.io/ja/apps/wpf-standard-control-demo/gridsplitter.html)
 
 ### 実行・使用方法
 #### 1. すぐに動作を確認する場合（ビルド不要）
